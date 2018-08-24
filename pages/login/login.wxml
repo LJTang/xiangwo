@@ -1,0 +1,70 @@
+<view>
+<view hidden="{{login_Bool}}">
+  <!--<view class='login'>-->
+    <image class='logo' src='../../img/gslogo.png'></image>
+    <image class='back' src='../../img/denglu.png'></image>
+    <form bindsubmit="logon">
+
+      <view class='input'><text class='fl'>账号：</text><input name="user" class='fl' type="number" value="{{inputVal}}" placeholder="请输入11位的手机号码" maxlength="11" bindinput='getFocus'></input></view>
+      <view class='input'><text class='fl'>密码：</text><input name="password" class='fl' type="password" value="{{passwordVal}}" placeholder="请输入6-20位的密码" maxlength="20" bindinput='getPassword'></input></view>
+      <button class='login_bnt' formType="submit">登录</button>
+      <!--<button class='login_tel' bindtap="verification">手机号短信验证登录</button>-->
+
+      <navigator class='go' url='/pages/register/register' hover-class='none'>还没账号？去注册账号>></navigator>
+
+    </form>
+  </view>
+
+  <view class='fix_nav container'>
+    <block wx:for="{{nav}}" wx:for-item="list" wx:key="">
+      <navigator class='fnav_list' hover-class='none' url='{{list.url}}'>
+        <image src='{{list.img}}'></image>
+        <text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>
+      </navigator>
+    </block>
+
+  </view>
+
+</view>
+
+
+<view hidden="{{fabu_Bool}}">
+  <form bindsubmit="submitData">
+    <view class='form'>
+      <view class='list cf'>
+        <text class='fl text'>店铺老板姓名</text>
+        <view class='fl input'><input type='text' name="m_name" placeholder="请输入姓名"/></view>
+      </view>
+      <view class='list cf'>
+        <text class='fl text'>手机号</text>
+        <view class='fl input'><input type='number' name="m_phone" placeholder="请输入手机号" maxlength="11"/></view>
+      </view>
+      <view class='list cf'>
+        <text class='fl text'>店铺老板微信号</text>
+        <view class='fl input'><input type='text' name="m_openid" placeholder="请输入微信号" maxlength="20"/></view>
+      </view>
+      <view class='list cf'>
+        <text class='fl text'>产品名称</text>
+        <view class='fl input'><input type='text' name="m_product_id" placeholder="请输入产品名称" maxlength="20"/></view>
+      </view>
+      <view class='list cf'>
+        <text class='fl text'>店名</text>
+        <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名" maxlength="20"/></view>
+      </view>
+        <view class='list cf' bindtap="chooseLocation">
+          <text class='fl text'>店铺地址</text>
+          <view class="fl input" >
+            <input type='text' name="m_address" placeholder="点击选择位置" value="{{d_address}}" disabled="true"/>
+          </view>
+        </view>
+      <view class='list cf'>
+        <text class='fl text'>详细地址</text>
+        <view class='fl input'><input type='text' name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
+      </view>
+      <view class='down'>
+        <button class='big_bnt' formType="submit">提交资料审核</button>
+      </view>
+  </view>
+  </form>
+
+</view>

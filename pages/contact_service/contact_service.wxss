@@ -1,0 +1,19 @@
+.list{
+  font-size: 28rpx;
+  color: #999;
+  padding: 4% 3%;
+  border-bottom: 1px solid #f1f1f1;
+}
+.list .left image{
+  width: 40rpx;
+  height: 40rpx;
+  margin-right: 20rpx;
+}
+.list .left text{
+  color: #666;
+}
+.list .right{
+  width:14rpx;
+  height:28rpx;
+  margin-top: 8rpx;
+}

@@ -1,0 +1,96 @@
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color:#709EF4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 22;
+}
+.swiper-tab-list {
+  font-size: 28rpx;
+  width: 25%;
+  color: #fff;
+}
+.on {
+  color: #fff;
+  border-bottom: 5px solid #fff;
+}
+.concent{
+  margin-top: 80rpx;
+}
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.swiper-box view {
+  text-align: center;
+}
+.my_keep_list .list_box{
+  padding-bottom: 20rpx;
+}
+.my_keep_list .list_box image{
+  width: 96rpx;
+  height: 122rpx;
+  border: 1px solid #ddd;
+}
+.my_keep_list .list_box .right{
+  margin-left: 30rpx;
+  width: 54%;
+}
+.my_keep_list .list_box .name{
+  color: #333;
+  font-size: 32rpx;
+  padding-left: 8rpx;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.my_keep_list .list_box .time{
+  color: #999;
+  font-size: 24rpx;
+  padding-left: 8rpx;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 51rpx;
+}
+.my_keep_list .price{
+  color: #F47070;
+  font-size: 28rpx;
+  position: absolute;
+  right: 3%;
+  top: 10%;
+}
+.my_keep_list .numbers{
+  color: #999;
+  font-size: 24rpx;
+  position: absolute;
+  right: 3%;
+  bottom: 19%;
+}
+.my_keep_list .list{
+  position: relative;
+  padding:5% 3% 3% 3%;
+  border-bottom: 5px solid #f1f1f1;
+}
+.cancel{
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid #F47070;
+  color: #F47070;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 3px;
+  margin-top: 20rpx;
+}
+

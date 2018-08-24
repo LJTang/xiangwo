@@ -1,0 +1,132 @@
+page{
+    background-color: #ffffff;
+    font-family: "Helvetica Neue","Hiragino Sans GB","Microsoft YaHei","\9ED1\4F53",Arial,sans-serif;
+    font-size: 32rpx;
+}
+.navigator-hover{
+    background: none;
+}
+
+.cart-box{
+    padding-bottom: 100rpx;
+}
+.cart-list{
+    position: relative;
+    height: 226rpx;
+    border-bottom: 5px solid #e9e9e9;
+}
+.cart-list .cart-pro-select{
+    position: absolute;
+    left: 20rpx;
+    top: 90rpx;
+    width: 45rpx;
+    height: 45rpx;
+}
+.cart-list .right{
+  width: 63%;
+  margin-left: 4%;
+}
+.cart-list .cart-thumb{
+    width: 130rpx;
+    height: 182rpx;
+    border: 1px solid #ddd;
+    margin-left: 90rpx;
+    margin-top: 20rpx;
+}
+.cart-list .cart-pro-name{
+    width: 300rpx;
+    line-height: 60rpx;
+    font-size: 32rpx;
+}
+.cart-list .cart-pro-price{
+    color: #F47070;
+    font-size: 28rpx;
+}
+.cart-list .cart-count-box{
+    width: 156rpx;
+}
+.cart-list .cart-count-box text{
+    display: inline-block;
+    text-align: center;
+}
+.cart-count-down,.cart-count-add{
+    font-size: 30rpx;
+    width: 30rpx;
+    height: 30rpx;
+    line-height: 30rpx;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #999;
+}
+.cart-count-num{
+    width: 80rpx;
+    font-size: 28rpx;
+    color: #999;
+}
+.cart-del{
+    width: 80rpx;
+    height: 60rpx;
+    line-height: 45rpx;
+    text-align: right;
+    font-size: 35rpx;
+    color: #999;
+}
+.cart-footer{
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100rpx;
+    line-height: 100rpx;
+    box-sizing: border-box;
+    background: #fff;
+    color: #666;
+    border-top: 1px solid #ddd;
+}
+.cart-footer .all{
+  position: relative;
+  width: 100rpx;
+  padding-left: 80rpx;
+}
+.total-select{
+    position: absolute;
+    left: 20rpx;
+    top: 25rpx;
+    width: 45rpx;
+    height: 45rpx;
+}
+.order-icon{
+    width: 200rpx;
+    background-color: #F47070;
+    font-size: 28rpx;
+    color: #fff;
+    text-align: center;
+}
+.cart-toatl-price{
+    float: right;
+    color: #F47070;
+    margin-right: 20rpx;
+}
+
+.cart-no-data{
+    padding:40rpx 0;
+    color: #999;
+    text-align: center;
+}
+.cart-list .concent{
+  font-size: 24rpx;
+  color: #999;
+  line-height: 150%;
+  text-align: justify;
+  display:-webkit-box;
+  -webkit-box-orient:vertical;
+  -webkit-line-clamp:2;
+  text-overflow: ellipsis;
+  overflow:hidden;
+}
+.cart-list .top{
+  margin-top: 10rpx;
+}
+.cart-list .down{
+  margin-top: 25rpx;
+}

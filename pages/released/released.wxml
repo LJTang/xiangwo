@@ -1,0 +1,55 @@
+<view class='form'>
+  <view class='list cf'>
+    <text class='fl text'>店铺老板姓名</text>
+    <view class='fl input'><input type='text'></input></view>
+  </view>
+  <view class='list cf'>
+    <text class='fl text'>手机号</text>
+    <view class='fl input'><input type='number' maxlength="11"></input></view>
+  </view> 
+  <view class='list cf'>
+    <text class='fl text'>店铺老板微信号</text>
+    <view class='fl input'><input type='text'></input></view>
+  </view>
+  <view class='list cf'>
+    <text class='fl text'>产品名称</text>
+    <view class='fl input'><input type='text'></input></view>
+  </view>
+  <view class='list cf'>
+    <text class='fl text'>店名</text>
+    <view class='fl input'><input type='text'></input></view>
+  </view>
+  <view class='list cf'>
+    <text class='fl text'>店铺地址</text>
+    <view class="province cf fl" focus="{{focus}}" bindtap="open">
+      <view class='province_list'>{{province}}</view>
+      <view class='province_list'>{{city}}</view>
+      <view class='province_list'>{{county}}</view>
+    </view>
+    <image class='fl xl' src='../../img/xl.png'></image>
+  </view>
+  <view class='list cf'>
+    <text class='fl text'>详细地址</text>
+    <view class='fl input'><input type='text'></input></view>
+  </view>
+  <view class='down'>
+    <button class='big_bnt'>提交资料审核</button>
+  </view>
+</view>
+<view wx:if="{{condition}}" class="citypicker">
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange" class="citybody">
+    <view class="cityheader">
+      <view bindtap="open" class="city-cancel">取消</view>
+      <view bindtap="open" class="city-true">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{provinces}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{citys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{countys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

@@ -1,0 +1,15 @@
+<view class='p3 box'>
+  <view class='head'>
+    <image src='../../img/money.png'></image>
+    <view>提现到微信零钱</view>
+  </view>
+  <view class='cen'>
+    <view class='title'>提现金额</view>
+    <view class='input cf'>
+      <text class='fl'>￥</text>
+      <input class='fl' type='number'></input>
+    </view>
+    <view class='text'>当前可提现金额<text>299.00</text>元</view>
+  </view>
+  <navigator hover-class='none' class='big_bnt'>下一步</navigator>
+</view>

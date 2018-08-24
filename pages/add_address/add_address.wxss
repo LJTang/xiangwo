@@ -1,0 +1,83 @@
+.form .list{
+  height: 98rpx;
+  line-height: 98rpx;
+  border-bottom: 1px solid #f1f1f1;
+  padding-left: 4%;
+  position: relative;
+}
+.form .list .text{
+  font-size: 28rpx;
+  color: #999;
+  width: 22%;
+}
+.form .list .input{
+  width: 75%;
+  color: #666;
+  font-size: 28rpx;
+}
+.form .list .input input{
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+}
+.form .list .xl{
+  width: 15rpx;
+  height: 11rpx;
+  margin-right: 5%;
+  margin-top: 46rpx;
+}
+.citypicker{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 100rpx;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 9999;
+}
+.citybody {
+  position: fixed;
+  bottom: 0px;
+  background-color: #fff;
+}
+.cityheader {
+  position: absolute;
+  top:0px;
+  width: 100%;
+  z-index: 5;
+}
+.city-cancel {
+  float: left;
+  margin: 3%;
+  color: #828282;
+  font-size: 32rpx;
+}
+.city-true {
+  float: right;
+  margin: 3%;
+  color: #709EF4;
+  font-size: 32rpx;
+}
+picker-view-column view{
+  text-align: center;
+  color: #666;
+  font-size: 28rpx;
+}
+.form .list .province_list{
+  float: left;
+  font-size: 28rpx;
+  color: #666;
+  width: 150rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.down{
+  padding: 272rpx 3% 44rpx 3%;
+}
+.down view{
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  margin-top: 20rpx;
+}

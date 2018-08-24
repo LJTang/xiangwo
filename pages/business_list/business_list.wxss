@@ -1,0 +1,59 @@
+
+.search-box{
+  width: 92%;
+  border: 1px solid #ccc;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 40rpx auto;
+  border-radius: 4px;
+  position: relative;
+}
+.search-box input{
+  width: 80%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  padding-left:30rpx;
+}
+.search-box .search-btn{
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+.search-box .search-btn image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+.list_box{
+  width: 100%;
+}
+.lists .list{
+  padding: 40rpx 5%;
+  border-bottom: 1px solid #ddd;
+}
+.lists .list .left .map{
+  font-size: 28rpx;
+  width: 380rpx;
+} 
+.lists .list .left .name{
+  font-size: 24rpx;
+  color: #999;
+  margin-top: 10rpx;
+} 
+.lists .list .right image{
+  width: 21rpx;
+  height: 28rpx;
+}
+.lists .list .right text{
+  font-size: 24rpx;
+  color: #999;
+  padding-left: 10rpx;
+}

@@ -1,0 +1,21 @@
+<view class='p3'>
+  <block wx:for-items="{{more}}" wx:key="">
+    <view class='top cf'>
+      <image class='fl' src='{{item.img}}'></image>
+      <view class='fl right'>
+        <view class='name'>{{item.name}}</view><view class='price'>已获得佣金:￥{{item.price}}</view>
+      </view>
+    </view>
+    <view class='list cf'><text class='fl left'>业务员：</text><text class='fl right'>{{item.clerk}}</text> 
+      <view class='sign cf fl'>
+        <text class='v fl'>等级</text>
+        <text class='text fl'>VIP1</text>
+      </view>
+    </view>
+    <view class='list'><text class='left'>团队累计佣金：</text><text class='hot right'>{{item.team}}</text></view>
+    <view class='list'><text class='left'>我获得的佣金：</text><text class='hot right'>{{item.my}}</text></view>
+    <view class='list'><text class='left'>推广商家：</text><text class='right'>{{item.business}}</text></view>
+    <view class='list'><text class='left'>产品：</text><text class='right'>{{item.product}}</text></view>
+    <view class='list'><text class='left'>时间：</text><text class='right'>{{item.time}}</text></view>
+  </block>
+</view>

@@ -1,0 +1,104 @@
+/**app.wxss**/
+button::after{
+border:none;
+}
+input{
+outline:none;
+border:none;
+list-style: none;
+}
+.container {
+  height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-around;
+  box-sizing: border-box;
+} 
+.between{
+  justify-content: space-between;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.cf:after {
+  content: "";
+  display: table;
+  height: 0;
+  clear: both;
+  visibility: hidden;
+}
+.p3{
+  padding: 3%;
+}
+.pb{
+  padding-bottom: 140rpx;
+}
+
+.mat10R{margin-top:10rpx;}
+.mat20R{margin-top:20rpx;}
+.mat30R{margin-top:30rpx;}
+.mat50R{margin-top:50rpx;}
+
+.db{
+  border-bottom: 5px solid #f1f1f1;
+}
+.omit{
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.fix_nav{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  height: 110rpx;
+  background-color: #fff;
+  border-top: 1px solid #ddd;
+}
+.fix_nav navigator{
+  text-align: center;
+  width: 25%;
+}
+.fix_nav image{
+  width: 47rpx;
+  height: 40rpx;
+  display: block;
+  margin: 0 auto;
+}
+.fix_nav text{
+  font-size: 28rpx;
+  color: #bebebe;
+  display: block;
+}
+.fix_nav text.on{
+  color: #709EF4;
+}
+.fixed_nav{
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.big_bnt{
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  text-align: center;
+  background-color: #F47070;
+  font-size: 28rpx;
+  color: #fff;
+  border-radius: 3px;
+}
+.fixed{
+  position: fixed;
+  width: 100%;
+}

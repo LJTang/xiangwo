@@ -1,0 +1,42 @@
+<view class='head db' bindtap='setFilterPanel'>
+  <text class='fl'>时间筛选</text><image class='fr' src='../../img/xl.png'></image>
+</view>
+<view class='screen_box' wx:if="{{showfilter}}">
+  <view class='screen'>
+    <view class='screen_box_list'>
+      <view wx:for="{{time}}" wx:key="{{item.id}}" bindtap="setCateIndex" data-cateindex="{{index}}" class="screen_list cf {{cateindex==index?'active':''}}"><text class='fl'>{{item}}</text><image class='fr' src='../../img/gou.png'></image> </view>
+    </view>
+  </view>
+</view>
+<view class='mask' wx:if="{{showfilter}}" bindtap="hideFilter"></view>
+<view class='yj_list'>
+  <block wx:for="{{yj_list}}" wx:key="">
+    <view class='list cf'>
+      <view class='left fl'>
+        <view class='name'>{{item.name}}</view>
+        <view class='time'>{{item.time}}</view>
+      </view>
+      <view class='fr right'>+{{item.price}}</view>
+    </view>
+  </block>
+</view>
+<!-- <view class='container daijin' wx:if="{{daijin}}">
+  <view class='concent'>
+    <view class='dj_box'>
+      <block wx:for="{{dj_list}}" wx:key="">
+        <view class='dj_list'>
+          <image class='fl' src='{{item.img}}'></image>
+          <view class='center fl'>
+            <view class='name'>{{item.name}}</view>
+            
+            <view class='time'>{{item.time}}</view>
+            <view class='price'>{{item.price}}</view>
+          </view>
+          <view class='dj_bnt fr'>立即领取</view>
+        </view>
+      </block>
+    </view>
+    <view class='dj_head'>优惠券领取</view>
+    <view class='close' bindtap='close'><text>×</text></view>
+  </view>
+</view> -->

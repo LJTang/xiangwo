@@ -1,0 +1,53 @@
+page{
+  background-color: #f6f6f6;
+}
+.box{
+  background-color: #fff;
+  box-sizing: border-box;
+  width: 94%;
+  margin: 3% auto 0 auto;
+  padding-bottom: 6%;
+}
+.head{
+  text-align: center;
+}
+.head image{
+  width: 100rpx;
+  height: 100rpx;
+  margin-top: 50rpx;
+}
+.head view{
+  font-size: 32rpx;
+  margin-top: 20rpx;
+}
+.cen{
+  margin-top: 90rpx;
+}
+.cen .title{
+  font-size: 32rpx;
+  color: #666;
+  margin-bottom: 30rpx;
+}
+.cen .input{
+  padding-bottom: 3%;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 10rpx;
+}
+.cen .input text{
+  font-size: 60rpx;
+}
+.cen .input input{
+  height: 80rpx;
+  line-height: 80rpx;
+  padding-left: 20rpx;
+  font-size: 32rpx;
+  color: #666;
+}
+.cen .text{
+  font-size: 24rpx;
+  color: #999;
+}
+.big_bnt{
+  background-color: #709EF4;
+  margin-top: 80rpx;
+}

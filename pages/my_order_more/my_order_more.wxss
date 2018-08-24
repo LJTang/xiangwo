@@ -1,0 +1,73 @@
+.top{
+  padding: 39rpx 0;
+  border-bottom: 1px solid #f1f1f1;
+}
+.top image{
+  width: 120rpx;
+  height: 130rpx;
+  border: 1px solid #e9e9e9;
+}
+.top .name{
+  font-size: 28rpx;
+  padding-left: 8rpx;
+  display: block;
+  margin-top: 10rpx;
+}
+.top .price{
+  color: #f47070;
+  font-size: 28rpx;
+  padding-right: 8rpx;
+  margin-top: 40rpx;
+}
+.top .right{
+  margin-left: 30rpx;
+}
+.list .left{
+  font-size: 28rpx;
+  color: #999;
+}
+.list .left text{
+  color: #666;
+  text-align: justify;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+
+}
+.list{
+  font-size: 28rpx;
+  color: #999;
+  padding: 4% 0;
+  border-bottom: 1px solid #f1f1f1;
+  position: relative;
+}
+.list .right{
+  color: #666;
+}
+.list .sign{
+  width: 142rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  background-color: #709EF4;
+  color: #fff;
+  font-size: 20rpx;
+  padding-left: 3rpx;
+  margin-left: 20rpx;
+}
+.list .sign .v{
+  display: block;
+  width: 67rpx;
+  height: 36rpx;
+  line-height: 36rpx;
+  text-align: center;
+  color: #666;
+  background-color: #fff;
+  margin-top: 3rpx;
+}
+.list .sign .text{
+  padding-left: 15rpx;
+  color: #fff;
+}
+.list .hot{
+  color: #f47070;
+}

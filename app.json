@@ -1,0 +1,37 @@
+{
+  "pages":[
+    "pages/mall/mall",
+    "pages/confirm_order/confirm_order",
+    "pages/ware_more/ware_more",
+    "pages/add_address/add_address",
+    "pages/select_address/select_address",
+    "pages/train/train",
+    "pages/business/business",
+    "pages/business_list/business_list",
+    "pages/wares_more/wares_more",
+    "pages/mys/mys",
+    "pages/publicity/publicity",
+    "pages/released/released",
+    "pages/register/register",
+    "pages/login/login",
+    "pages/team_superior/team_superior",
+    "pages/sale_order/sale_order",
+    "pages/all_order/all_order",
+    "pages/cart/cart",
+    "pages/my/my",
+    "pages/write/write",
+    "pages/order_more/order_more",
+    "pages/my_order_more/my_order_more",
+    "pages/contact_service/contact_service",
+    "pages/modify/modify",
+    "pages/commission/commission",
+    "pages/commission_cashed/commission_cashed",
+    "pages/my_commission/my_commission"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#709EF4",
+    "navigationBarTitleText": "享沃科技",
+    "navigationBarTextStyle":"#fff"
+  }
+}

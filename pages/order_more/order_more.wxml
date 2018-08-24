@@ -1,0 +1,25 @@
+<view class='p3'>
+  <!--<block wx:for-items="{{more}}" wx:key="">-->
+    <view class='top cf'>
+      <image class='fl' src='{{wxURL}}{{order_D.img}}'></image>
+      <view class='fl right'>
+        <view class='name'>{{order_D.name}}</view><view class='price'>￥{{order_D.goods_price}}</view>
+      </view>
+    </view>
+    <view class='list'>
+      <view class='left'>订单状态：<text>{{order_D.order_status}}</text></view>
+      <!--<view class='right'>去付款</view>-->
+      <view class='right' wx:if="{{order_D.order_status==0}}">去付款</view>
+      <view class='right' wx:elif="{{order_D.order_status==1}}">确认收货</view>
+      <view class='right' wx:elif="{{order_D.order_status==2}}">已发货</view>
+      <view class='right' wx:elif="{{order_D.order_status==3}}">已完成</view>
+      <view class='right' wx:elif="{{order_D.order_status==4}}">已完成</view>
+      <view class='right' wx:elif="{{order_D.order_status==5}}">已完成</view>
+      <view class='right' wx:elif="{{order_D.order_status==6}}">已关闭</view>
+      <view class='right' wx:else>未知</view>
+    </view>
+    <view class='list'>规格：<text>{{order_D.height}} 、 {{order_D.weight}} </text></view>
+    <view class='list'>描述：<text>{{order_D.describe}}</text></view>
+    <view class='list'>实付款：<text>{{order_D.actual}}</text></view>
+  <!--</block>-->
+</view>

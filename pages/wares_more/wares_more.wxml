@@ -1,0 +1,53 @@
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{details.photo}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{wxURL}}{{item}}" class="slide-image" mode="aspectFit"/>
+    </swiper-item>
+  </block>
+</swiper>
+<view class='header db'>
+  <view class='cf fl header_l'>
+    <text class='state'>{{details.goods_cat==1?'免费':details.price}}</text>
+    <text class="mat10R">{{details.title}}</text>
+  </view>
+  <view class='cf fr header_r' bindtap='open_share'>
+    <image class='fl' src='../../img/fenx.png'></image>
+    <text class='fl'>分享</text>
+  </view>
+</view>
+<view class='share container' wx:if="{{share_box}}">
+  <view class='mask' bindtap="down_share"></view>
+  <view class='share_box'>
+    <view class='logo cf'>
+      <image bindtap="bindViewTap" class="userinfo-avatar fl" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class='fl'>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class='gsname omit'>广州广脉信息科技有限公司</text>
+      </view>
+    </view>
+    <image class='cp' src='{{imgURL}}{{info.img}}'></image>
+    <view class='cf concent'>
+      <view class='fl left'>
+        <view class='text1'>{{info.name}}</view>
+        <view class='text2'>{{info.price}}</view>
+        <view class='text3'>长按识别图中二维码</view>
+      </view>
+      <image class='fr right' src='{{imgURL}}{{info.img}}'></image>
+    </view>
+    <button class='share_bnt' data-name="shareBtn" open-type="share">分享给好友</button>
+  </view>
+</view>
+<view class='db profile'>
+  <view>描述：<text>{{details.goods_desc}}</text></view>
+  <view>规格：<text>{{details.goods_spc}}</text></view>
+</view>
+<view class='concent'>
+  <view class='top'><text>商品详情</text></view>
+  <view class='p3 xq_concent'>
+    <import src="../../wxParse/wxParse.wxml"/>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+</view>
+<view class='fixed_nav'>
+  <navigator hover-class='none' url='/pages/write/write' class='free'>免费领取</navigator>
+</view>

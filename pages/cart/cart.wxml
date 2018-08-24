@@ -1,0 +1,39 @@
+<view class="main">
+  <view wx:if="{{hasList}}">
+    <view class="cart-box">
+      <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
+        <icon  wx:if="{{item.selected}}" data-type="success_circle" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" class="cart-pro-select" color="#F47070"/>
+        <icon  wx:else data-type="circle" type="circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" class="cart-pro-select"/>
+        <navigator url=""><image class="cart-thumb fl" src="{{imgURL}}{{item.img}}"></image></navigator>
+        <view class='right fl'>
+          <view class='top cf'>
+            <text class="cart-pro-name fl omit">{{item.name}}</text>
+            <text class="cart-del fr" bindtap="deleteList" data-index="{{index}}" data-id='{{item.id}}'>×</text>
+          </view>
+          <view class='concent'>{{item.describe}}</view>
+          <view class='cf down'>
+            <text class="cart-pro-price fl">￥{{item.price}}</text>
+            <view class="cart-count-box fr">
+              <text class="cart-count-down" bindtap="minusCount" data-index="{{index}}">-</text>
+              <text class="cart-count-num">{{item.num}}</text>
+              <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+
+    <view class="cart-footer cf">
+      <view bindtap="bindSelectAll" class="all fl">
+        <icon wx:if="{{selectedAllStatus}}" type="success_circle" size="20" class="total-select" color="#F47070"/>
+        <icon wx:else type="circle" size="20" class="total-select"/>
+        <text>全选</text>
+      </view>
+      <navigator class="order-icon fr" url="" hover-class='none'>去结算</navigator>
+      <text class="cart-toatl-price">合计：￥{{totalPrice}}</text>
+    </view>
+  </view>
+  <view wx:else>
+      <view class="cart-no-data">购物车是空的哦~</view>
+  </view>
+</view>

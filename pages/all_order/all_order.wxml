@@ -1,0 +1,88 @@
+<view class="swiper-tab container">
+    <view class="swiper-tab-list {{menuTapCurrent==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">全部</view>
+    <view class="swiper-tab-list {{menuTapCurrent==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">待付款</view>
+    <view class="swiper-tab-list {{menuTapCurrent==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">待发货</view>
+    <view class="swiper-tab-list {{menuTapCurrent==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">待收货</view>
+</view>
+<view class='concent'>
+  <!--  -->
+  <view class="weui-cells__title" hidden="{{menuTapCurrent!='0'}}">
+   <view class='broker'>
+      <view class="my_keep_list">
+        <block wx:for="{{all_Order}}" wx:key="{{index}}">
+          <view class='list cf'>
+            <navigator class="list_box cf" url="/pages/order_more/order_more?id={{item.order_id}}" hover-class="none" data-typeid="{{sell.typeId}}">
+              <image src="{{wxURL}}{{item.goods_img}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
+            </navigator>
+            <view class='price'>￥{{item.goods_price}}</view>
+            <view class='numbers'>x{{item.goods_num}}</view>
+            <view class='cancel fr' wx:if="{{item.order_status==0}}">去付款</view>
+            <view class='cancel fr' wx:elif="{{item.order_status==1}}">确认收货</view>
+            <view class='cancel fr' wx:elif="{{item.order_status==2}}">已发货</view>
+            <view class='cancel fr' wx:elif="{{item.order_status==3}}">已完成</view>
+            <view class='cancel fr' wx:elif="{{item.order_status==4}}">已完成</view>
+            <view class='cancel fr' wx:elif="{{item.order_status==5}}">已完成</view>
+            <view class='cancel fr' wx:elif="{{item.order_status==6}}">已关闭</view>
+            <view class='cancel fr' wx:else>未知</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="weui-cells__title" hidden="{{menuTapCurrent!='1'}}">
+    <view class='broker'>
+      <view class="my_keep_list">
+        <block wx:for="{{sellb}}"  wx:key="list">
+          <view class='list cf'>
+            <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none" data-typeid="{{item.typeId}}">
+              <image src="{{item.img}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.name}}</text><text class='time'>{{item.time}}</text></view>
+            </navigator>
+            <view class='price'>￥{{item.price}}</view>
+            <view class='numbers'>x{{item.numbers}}</view>
+            <view class='cancel fr'>{{item.state}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="weui-cells__title" hidden="{{menuTapCurrent!='2'}}">
+    <view class='broker'>
+      <view class="my_keep_list">
+        <block wx:for="{{sellc}}" wx:key="list">
+          <view class='list  cf'>
+            <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none" data-typeid="{{item.typeId}}">
+              <image src="{{item.img}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.name}}</text><text class='time'>{{item.time}}</text></view>
+            </navigator>
+            <view class='price'>￥{{item.price}}</view>
+            <view class='numbers'>x{{item.numbers}}</view>
+            <view class='cancel fr'>{{item.state}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  <!--  -->
+  <view class="weui-cells__title" hidden="{{menuTapCurrent!='3'}}">
+    <view class='broker'>
+      <view class="my_keep_list">
+        <block wx:for="{{selld}}" wx:key="list">
+          <view class='list cf'>
+            <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none" data-typeid="{{item.typeId}}">
+              <image src="{{item.img}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.name}}</text><text class='time'>{{item.time}}</text></view>
+            </navigator>
+            <view class='price'>￥{{item.price}}</view>
+            <view class='numbers'>x{{item.numbers}}</view>
+            <view class='cancel fr'>{{item.state}}</view>
+          </view>
+        </block>
+      </view>
+    </view>
+  </view>
+  
+</view>

@@ -1,0 +1,60 @@
+<view class='tab_nav container'>
+  <view class="{{active==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">共享商品</view>
+  <view class="{{active==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">非共享商品</view>
+</view>
+<view class='pb'>
+  <view class='sp_list' hidden="{{active!='1'}}">
+    <view class='container title'>
+      <image src='../../img/left.png'></image>
+      <view class='text'>共享商品</view>
+      <image src='../../img/right.png'></image>
+    </view>
+    <block wx:for="{{gx_list}}" wx:key="">
+      <navigator hover-class='none' id="{{item.id}}" url='/pages/wares_more/wares_more?id={{item.id}}'>
+        <image src="{{xwURL}}{{item.image}}"></image>
+        <view class='cf name'>
+          <text class='fl left'>{{item.title}}</text><text class='fr right'>免费</text>
+        </view> 
+        <view class='concent'>{{item.goods_desc}}</view>
+      </navigator>
+    </block>
+  </view>
+  <view class='sp_list' hidden="{{active!='2'}}">
+    <view class='container title'>
+      <image src='../../img/left.png'></image>
+      <view class='text'>非共享商品</view>
+      <image src='../../img/right.png'></image>
+    </view>
+    <block wx:for="{{fgx_list}}" wx:key="{{index}}">
+      <navigator hover-class='none' url='/pages/ware_more/ware_more?id={{item.id}}'>
+        <image src="{{xwURL}}{{item.image}}"></image>
+        <view class='cf name'>
+          <text class='fl left'>{{item.title}}</text><text class='fr right'>￥{{item.price}}</text>
+        </view> 
+        <view class='concent'>{{item.goods_desc}}</view>
+      </navigator>
+    </block>
+  </view>
+</view> 
+<view class='fix_nav container'>
+  <block wx:for="{{nav}}" wx:for-item="list" wx:key="">
+    <navigator class='fnav_list' hover-class='none' url='{{list.url}}'>
+      <image src='{{list.img}}'></image>
+      <text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>
+    </navigator>
+  </block>
+</view>
+
+<!--wx:if="{{!hasUserInfo && canIUse}}"-->
+<view class="popUp_Box" wx:if="{{popUp_Bool}}">
+  <view class="shadow"></view>
+  <view class="show_Layer authorized_Box">
+    <view class="">
+      <view class="authorized_Describe">授权</view>
+      <view class="authorized_Btn">
+        <view class="btn_Cancel" bindtap="popClose">取消</view>
+        <view class="btn_OK"><button open-type="getUserInfo" bindgetuserinfo="getUserInfo">确定</button></view>
+      </view>
+    </view>
+  </view>
+</view>

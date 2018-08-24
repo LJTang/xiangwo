@@ -1,0 +1,44 @@
+<view class='form'>
+  <view class='list cf'>
+    <text class='fl text'>收件人</text>
+    <view class='fl input'><input type='text' placeholder="收件人"></input></view>
+  </view>
+  <view class='list cf'>
+    <text class='fl text'>联系电话</text>
+    <view class='fl input'><input type='number' maxlength="11" placeholder="联系电话"></input></view>
+  </view> 
+  
+  <view class='list cf' bindtap="open">
+    <text class='fl text'>店铺地址</text>
+    <view class="province cf fl" focus="{{focus}}" >
+      <view class='province_list'>{{province}}</view>
+      <view class='province_list'>{{city}}</view>
+      <view class='province_list'>{{county}}</view>
+    </view>
+    <image class='fr xl' src='../../img/xl.png'></image>
+  </view>
+  <view class='list cf'>
+    <text class='fl text'>详细地址</text>
+    <view class='fl input'><input type='text' placeholder="街道，楼牌号等"></input></view>
+  </view>
+  <view class='down'>
+    <button class='big_bnt'>保存地址</button>
+  </view>
+</view>
+<view wx:if="{{condition}}" class="citypicker">
+  <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange" class="citybody">
+    <view class="cityheader">
+      <view bindtap="open" class="city-cancel">取消</view>
+      <view bindtap="open" class="city-true">确定</view>
+    </view>
+    <picker-view-column>
+      <view wx:for="{{provinces}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{citys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+    <picker-view-column>
+      <view wx:for="{{countys}}" wx:key="item" style="line-height: 50px;padding-left:10px;">{{item}}</view>
+    </picker-view-column>
+  </picker-view>
+</view>

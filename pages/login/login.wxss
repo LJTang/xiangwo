@@ -1,0 +1,165 @@
+.login{
+  position: fixed;
+  width: 100%;
+  top: 0;
+  bottom: 0;
+}
+.login .back{
+  width: 100%;
+  height: 630rpx;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  z-index: -1
+}
+.login .logo{
+  width: 160rpx;
+  height: 232rpx;
+  margin: 76rpx auto 56rpx auto;
+  display: block;
+}
+.login .input{
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  margin:0 auto 20rpx auto;
+}
+.login .input text{
+  font-size: 28rpx;
+  color: #999;
+  padding-left: 30rpx;
+}
+.login .input input{
+  width: 75%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  color: #999;
+  padding-left: 20rpx;
+}
+.login .login_bnt{
+  width: 90%;
+  height: 95rpx;
+  line-height: 95rpx;
+  text-align: center;
+  color: #fff;
+  font-size: 32rpx;
+  background-color: #709EF4;
+  border-radius: 4px;
+  margin-bottom: 20rpx;
+}
+.login .login_tel{
+  width: 90%;
+  height: 95rpx;
+  line-height: 95rpx;
+  text-align: center;
+  color: #709EF4;
+  font-size: 32rpx;
+  background-color: #fff;
+  border: 1px solid #709EF4;
+  border-radius: 4px;
+  margin-bottom: 20rpx;
+}
+.login .go{
+  font-size: 28rpx;
+  text-align: right;
+  color: #709EF4;
+  text-decoration-line: underline;
+  padding-right: 5%;
+}
+/*************************/
+.form .list{
+  height: 98rpx;
+  line-height: 98rpx;
+  border-bottom: 1px solid #f1f1f1;
+  padding-left: 4%;
+  position: relative;
+}
+.form .list .text{
+  font-size: 28rpx;
+  color: #999;
+}
+.form .list .input{
+  width: 60%;
+  color: #666;
+  font-size: 28rpx;
+  margin-left: 20rpx;
+}
+.form .list .input input{
+  width: 100%;
+  height: 98rpx;
+  line-height: 98rpx;
+}
+.form .list .xl{
+  width: 15rpx;
+  height: 11rpx;
+  margin-right: 5%;
+  margin-top: 46rpx;
+}
+.citypicker{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 100rpx;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 9999;
+}
+.citybody {
+  position: fixed;
+  bottom: 0px;
+  background-color: #fff;
+}
+.cityheader {
+  position: absolute;
+  top:0px;
+  width: 100%;
+  z-index: 5;
+}
+.city-cancel {
+  float: left;
+  margin: 3%;
+  color: #828282;
+  font-size: 32rpx;
+}
+.city-true {
+  float: right;
+  margin: 3%;
+  color: #709EF4;
+  font-size: 32rpx;
+}
+picker-view-column view{
+  text-align: center;
+  color: #666;
+  font-size: 28rpx;
+}
+.form .list .province{
+  width: 75%;
+}
+.form .list .province_list{
+  float: left;
+  font-size: 28rpx;
+  color: #666;
+  width: 150rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  text-align: center;
+}
+.down{
+  padding: 272rpx 3% 44rpx 3%;
+}
+.down view{
+  font-size: 24rpx;
+  color: #999;
+  text-align: center;
+  margin-top: 20rpx;
+}
+
+.address_Btn{
+  background: #fff;
+  border:none;
+  text-align: left;
+}

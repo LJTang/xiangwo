@@ -1,0 +1,29 @@
+<!--index.wxml-->
+<view class="bgF2 box">
+  <view>
+    <view class="pat20R f30R"><span class="mal20R">请输入新手机号码并验证</span></view>
+    <view class="my_ListBox">
+      <view class="arrowType_View" bindtap="">
+        <view class="arrowType_Title"><span class="c1CD2E7 mal20R">+86</span></view>
+        <view class="arrowType_Center">
+          <input type="number" placeholder="请输入手机号码" maxlength="11" value="{{phoneNumber}}" bindinput='getFocus'/>
+          <view class="icon_Clear" wx:if="{{phoneNumber.length > 0}}" bindtap="clearInput">
+            <icon type="clear" size="20"></icon>
+          </view>
+        </view>
+        <view class="arrowType_IMG {{codeClick==false?'doNotOperate':'operational'}}" bindtap="gm_SendCode"><view>{{codeText}}</view></view>
+      </view>
+
+      <view class="arrowType_Two arrowType_View mat20R">
+        <view class="arrowType_Title"><span class="mal20R">验证码</span></view>
+        <view class="arrowType_Center">
+          <input type="number" placeholder="请输入验证码" value="{{verificationCode}}" bindinput='getFocusCode' maxlength="11"/>
+          <view class="icon_Clear" wx:if="{{verificationCode.length > 0}}" bindtap="clearInputCode">
+            <icon type="clear" size="20"></icon>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="validation_Btn" bindtap="onValidation">验证</view>
+  </view>
+</view>

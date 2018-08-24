@@ -1,0 +1,142 @@
+<!--index.wxml-->
+<view hidden="{{user_View}}">
+<!--<view>-->
+  <view class="tops">
+    <image class='back' src='../../img/myback.png'></image>
+    <view class="userinfo">
+      <button class='button-hover' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+  </view>
+
+  <view class='row_lists container db'>
+    <!--<block wx:for="{{row_list}}" wx:key="{{index}}">-->
+      <navigator hover-class='none' url='{{item.url}}'>
+        <view>
+          <image src='/img/my.png'></image>
+          <view>待付款</view>
+          <text class='show'>{{info.stay_pay}}</text>
+        </view>
+      </navigator>
+    <navigator hover-class='none' url='{{item.url}}'>
+      <view>
+        <image src='/img/my2.png'></image>
+        <view>待发货</view>
+        <text class='show'>{{info.fa_pay}}</text>
+      </view>
+    </navigator>
+    <navigator hover-class='none' url='{{item.url}}'>
+      <view>
+        <image src='/img/my3.png'></image>
+        <view>待收货</view>
+        <text class='show'>{{info.fa_pay}}</text>
+      </view>
+    </navigator>
+    <navigator hover-class='none' url='{{item.url}}'>
+      <view>
+        <image src='/img/my4.png'></image>
+        <view>售后</view>
+        <text class='show'>{{info.shou_pay}}</text>
+      </view>
+    </navigator>
+    <!--</block>-->
+  </view>
+  <view class="my_lists">
+    <block wx:for="{{my_list}}" wx:key="">
+      <navigator hover-class='none' url='{{item.url}}'>
+        <image class='fl my_left' src='{{item.limg}}'></image>
+        <text class='fl my_text'>{{item.text}}</text>
+        <image class='fr my_right' src='{{item.rimg}}'></image>
+      </navigator>
+    </block>
+  </view>
+</view>
+
+<view hidden="{{business_View}}">
+<!--<view hidden="true">-->
+  <view class="top">
+    <image class='back' src='../../img/myback.png'></image>
+    <view class="userinfo">
+      <button class='button-hover' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class='sign cf fl'>
+      <text class='v fl'>等级</text>
+      <text class='text fl' wx:if="{{info.level==0}}">推广员</text>
+      <text class='text fl' wx:elif="{{info.level==1}}">VIP1</text>
+      <text class='text fl' wx:elif="{{info.level==2}}">VIP2</text>
+      <text class='text fl' wx:elif="{{info.level==3}}">TOP</text>
+      <text class='text fl' wx:else></text>
+    </view>
+  </view>
+  <view class='row_list container db'>
+    <!--<block wx:for="{{row_lists}}" wx:key="">-->
+      <navigator hover-class='none' url=''>
+        <view class='price'>{{info.commission}}</view>
+        <view class='text'>累计佣金</view>
+      </navigator>
+    <navigator hover-class='none' url='/pages/my_commission/my_commission'>
+      <view class='price'>{{info.commission}}</view>
+      <view class='text'>可提现佣金</view>
+    </navigator>
+    <navigator hover-class='none' url=''>
+      <view class='price'>{{info.commission_no}}</view>
+      <view class='text'>未结算佣金</view>
+    </navigator>
+    <!--</block>-->
+  </view>
+  <view class="my_list pb">
+    <view class='first'>
+      <image class='fl my_left' src='../../img/my7.png'></image>
+      <text class='fl my_text'>团队累计佣金</text>
+      <text class='price fr'>￥{{info.commission_count}}</text>
+    </view>
+    <view class='first' bindtap='open_spread'>
+      <image class='fl my_left' src='../../img/my9.png'></image>
+      <text class='fl my_text'>推广二维码</text>
+      <image class='fr my_right' src='../../img/myr.png'></image>
+    </view>
+    <block wx:for="{{my_lists}}" wx:key="">
+      <navigator hover-class='none' url='{{item.url}}'>
+        <image class='fl my_left' src='{{item.limg}}'></image>
+        <text class='fl my_text'>{{item.text}}</text>
+        <image class='fr my_right' src='{{item.rimg}}'></image>
+      </navigator>
+    </block>
+  </view>
+</view>
+
+<view class='fix_nav container'>
+  <block wx:for="{{nav}}" wx:for-item="list" wx:key="">
+    <navigator class='fnav_list' hover-class='none' url='{{list.url}}'>
+      <image src='{{list.img}}'></image>
+      <text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>
+    </navigator>
+  </block>
+</view>
+
+<view class='spread container' wx:if="{{spread_box}}">
+  <view class='mask' bindtap="down_spread"></view>
+  <view class='spread_box'>
+    <view class='logo cf'>
+      <image bindtap="bindViewTap" class="userinfo-avatar fl" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class='fl'>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class='gsname omit'>广州广脉信息科技有限公司</text>
+      </view>
+    </view>
+
+    <view class='ewm'><image src='../../img/ewm.png'></image></view>
+    <view class='copy_box cf'>
+      <!--<view class='conents fl'selectable='true' bindlongtap='copyBtn'>{{code_ids}}</view>-->
+      <!--<view class='copy_bnt fl' bindtap='copyBtn'>复制邀请码</view>-->
+    </view>
+    <view class='hold' bindtap="download">保存图片</view>
+  </view>
+</view>

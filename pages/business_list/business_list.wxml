@@ -1,0 +1,19 @@
+
+<view class="list_box">
+  <view class="search-box">
+    <form>
+      <input class="search-input" type="search" name="searchKey" placeholder="搜索城市或产品名称" placeholder-class='color' value="{{searchName}}" bindinput='getFocus'/>
+      <view class="search-btn" form-type="submit" bindtap="onSearch"><image src='../../img/zoom.png'></image></view>
+    </form>
+  </view>
+  <view class='lists'>
+    <view class='list cf' wx:for="{{goods}}" wx:key="{{index}}" bindtap="onAddress" data-lon="{{item.m_address_x}} "data-lat="{{item.m_address_y}}">
+      <view class='left fl'>
+        <view class='map omit'>{{item.m_address}}{{item.m_address_detailed}}</view>
+        <view class='name'>{{item.m_store_name}}</view>
+      </view>
+      <view class='right fr'><image src='../../img/dwei.png'></image><text>{{item.count}}</text></view>
+    </view>
+  </view>
+</view>
+  

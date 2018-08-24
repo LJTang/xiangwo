@@ -1,0 +1,198 @@
+.address{
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 3%;
+}
+.address .myr{
+  width: 14rpx;
+  height: 28rpx;
+  margin-top: 40rpx;
+}
+.address .add text:first-child{
+  display: inline-block;
+  height: 35rpx;
+  width: 35rpx;
+  line-height: 35rpx;
+  color: #F46366;
+  border: 1px solid #F46366;
+  text-align: center;
+  border-radius: 50%;
+  font-size: 24rpx;
+}
+.address .add text:last-child{
+  font-size: 28rpx;
+  color: #999;
+  margin-left: 20rpx;
+}
+.cart-box .head{
+  padding-bottom: 3%;
+  border-bottom: 1px solid #f1f1f1;
+}
+.cart-box .head image{
+  width: 40rpx;
+  height: 34rpx;
+}
+.cart-box .head text{
+  font-size: 24rpx;
+  color: #333;
+  padding-left: 20rpx;
+}
+.cart_box{
+  padding-top:40rpx;
+}
+.cart_box .img{
+  width: 150rpx;
+  height: 150rpx;
+  display: block;
+  border: 1px solid #ddd;
+}
+.cart_box .right{
+  width: 75%;
+}
+.cart_box .right .top{
+  width: 50%;
+  margin-left: 44rpx;
+}
+.cart_box .right .cart-pro-name{
+  font-size: 32rpx;
+  display: block;
+}
+.cart_box .right .concent{
+  font-size: 24rpx;
+  color: #999;
+}
+.cart_box .right .cart-pro-price{
+  font-size: 28rpx;
+  color: #F46366;
+  text-align: right;
+  display: block;
+}
+.cart-count-box{
+    margin-top: 40rpx;
+}
+.cart-count-box text{
+    display: inline-block;
+    text-align: center;
+}
+.cart-count-down,.cart-count-add{
+    font-size: 30rpx;
+    width: 40rpx;
+    height: 40rpx;
+    line-height: 40rpx;
+    border: 1px solid #ddd;
+    text-align: center;
+    color: #999;
+    display: inline-block;
+    
+}
+.cart-count-num{
+  display: inline-block;
+  text-align: center;
+  width:60rpx;
+  font-size: 28rpx;
+  color: #999;
+}
+.leave{
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 3%;
+  border-top: 1px solid #f1f1f1;
+}
+.leave .left{
+  font-size: 28rpx;
+  color:#999;
+}
+.leave .input{
+  width: 80%;
+  margin-left: 20rpx;
+}
+.leave .input input{
+  width: 100%;
+  font-size: 28rpx;
+  color: #999;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.leave .price{
+  font-size: 28rpx;
+}
+.leave .myr{
+  width: 14rpx;
+  height: 28rpx;
+  margin-top: 40rpx;
+}
+.cart-footer{
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  
+}
+.cart-footer .order-icon{
+  width: 30%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background-color: #F46366;
+  font-size: 28rpx;
+  color: #fff;
+}
+.cart-footer .cart-toatl-price{
+  font-size: 28rpx;
+  width: 70%;
+  border-top: 1px solid #ddd;
+  text-align: right;
+
+}
+.cart-footer .cart-toatl-price text{
+  color: #F46366;
+  padding-right: 30rpx;
+}
+.citypicker{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 100rpx;
+  background-color: rgba(0, 0, 0, .5);
+  z-index: 9999;
+}
+.citybody {
+  position: fixed;
+  bottom: 0px;
+  background-color: #fff;
+}
+.cityheader {
+  position: absolute;
+  top:0px;
+  width: 100%;
+  z-index: 5;
+}
+.city-cancel {
+  float: left;
+  margin: 3%;
+  color: #828282;
+  font-size: 32rpx;
+}
+.city-true {
+  float: right;
+  margin: 3%;
+  color: #709EF4;
+  font-size: 32rpx;
+}
+picker-view-column view{
+  text-align: center;
+  color: #666;
+  font-size: 28rpx;
+}
+.form .list .province_list{
+  float: left;
+  font-size: 28rpx;
+  color: #666;
+  width: 150rpx;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}

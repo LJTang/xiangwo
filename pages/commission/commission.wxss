@@ -1,0 +1,155 @@
+.head{
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 5%;
+}
+.head text{
+  font-size: 28rpx;
+  color: #666;
+}
+.head image{
+  width: 15rpx;
+  height: 11rpx;
+  margin-top: 47rpx;
+}
+.screen_box{
+  width: 100%;
+  position: fixed;
+  top: 110rpx;
+  left: 0;
+  z-index: 89;
+  height: 800rpx;
+  background-color: #fff;
+}
+.screen .screen_list{
+  height: 80rpx;
+  line-height: 80rpx;
+  color: #666;
+  font-size: 28rpx;
+  padding: 0 5%;
+}
+.screen .screen_list image{
+  width: 27rpx;
+  height: 27rpx;
+  margin-top: 25rpx;
+  display: none;
+}
+.screen .active{
+  background-color: #F1F8FF;
+  color: #60a1f3;
+}
+.screen .active image{
+  display: block;
+}
+.mask{
+  position: fixed;
+  top: 110rpx;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 88;
+  background-color: rgba(0, 0, 0,.5);
+}
+.yj_list .list{
+  padding: 26rpx;
+  border-bottom: 1px solid #ddd;
+}
+.yj_list .list .left .name{
+  font-size: 32rpx;
+}
+.yj_list .list .left .time{
+  font-size: 24rpx;
+  color: #666;
+  margin-top: 15rpx;
+}
+.yj_list .list .right{
+  font-size: 40rpx;
+  color: #F66262;
+  margin-top:16rpx;
+
+}
+
+
+/* .daijin{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, .5);
+  z-index:9999;
+}
+.daijin .concent{
+  height: 774rpx;
+  width: 650rpx;
+  position: relative;
+  background-color: #fff;
+}
+
+.daijin .concent .close{
+  width: 60rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  text-align: center;
+  color: #666;
+  font-size: 45rpx;
+  position: absolute;
+  top: 3%;
+  right: 3%;
+}
+.daijin .concent .dj_box{
+  width: 94%;
+  height: 600rpx;
+  margin: 100rpx auto 0 auto;
+  overflow-y: scroll;
+}
+.daijin .concent .dj_box .dj_list{
+  height: 140rpx;
+  border-bottom: 1px solid #f1f1f1;
+  padding-top: 6%;
+}
+.daijin .concent .dj_box .dj_list image{
+  width: 100rpx;
+  height: 70rpx;
+  margin-top: 20rpx;
+  margin-right: 20rpx;
+}
+.daijin .concent .dj_box .dj_list .center{
+  width: 322rpx;
+}
+.daijin .concent .dj_box .dj_list .center .price{
+  font-size: 24rpx;
+  color: red;
+}
+.daijin .concent .dj_box .dj_list .center .time{
+  font-size: 24rpx;
+  color: #999;
+  padding: 6rpx 0;
+}
+.daijin .concent .dj_box .dj_list .center .name{
+  font-size: 28rpx;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.daijin .concent .dj_box .dj_list .dj_bnt{
+  width:138rpx;
+  height:55rpx;
+  border-radius:40rpx;
+  background-color:#709EF4;
+  font-size:22rpx;
+  color:#fff;
+  line-height:55rpx;
+  text-align:center;
+  margin-top: 31rpx;
+}
+.daijin .concent .dj_head{
+  font-size: 32rpx;
+  color: #666;
+  width: 200rpx;
+  text-align: center;
+  position: absolute;
+  top: 37rpx;
+  left: 50%;
+  margin-left: -100rpx;
+} */

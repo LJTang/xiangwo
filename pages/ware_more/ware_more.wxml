@@ -1,0 +1,85 @@
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+  <block wx:for="{{details.photo}}" wx:key="{{index}}">
+    <swiper-item>
+      <image src="{{wxURL}}{{item}}" class="slide-image" mode="aspectFit"/>
+    </swiper-item>
+  </block>
+</swiper>
+<view class='header db'>
+  <block>
+  <view class='cf fl header_l'>
+    <text class='state'>￥{{details.price}}</text>
+    <text>{{details.title}}</text>
+  </view>
+  <view class='cf fr header_r' bindtap='open_share'>
+    <image class='fl' src='../../img/fenx.png'></image>
+    <text class='fl'>分享</text>
+  </view>
+  </block>
+</view>
+<view class='share container' wx:if="{{share_box}}">
+  <view class='mask' bindtap="down_share"></view>
+  <view class='share_box'>
+    <view class='logo cf'>
+      <image bindtap="bindViewTap" class="userinfo-avatar fl" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <view class='fl'>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+        <text class='gsname omit'>广州广脉信息科技有限公司</text>
+      </view>
+    </view>
+    <image class='cp' src='{{imgURL}}{{info.img}}'></image>
+    <view class='cf concent'>
+      <view class='fl left'>
+        <view class='text1'>{{details.title}}</view>
+        <view class='text2'>￥{{details.price}}</view>
+        <view class='text3'>长按识别图中二维码</view>
+      </view>
+      <image class='fr right' src='../../img/ewm.png'></image>
+    </view>
+    <button class='share_bnt' data-name="shareBtn" open-type="share">分享给好友</button>
+  </view>
+</view>
+<view class='db profile'>
+  <view>描述：<text>{{details.goods_desc}}</text></view>
+  <view>规格：<text>{{details.goods_spc}}</text></view>
+</view>
+<view class='concent'>
+  <view class='top'><text>商品详情</text></view>
+  <view class='p3 xq_concent'>
+    <import src="../../wxParse/wxParse.wxml"/>
+    <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
+  </view>
+</view>
+<view class='fixed_nav container'>
+  <view class='left cf'><button open-type="contact" class="btn"><image class='fl' src='../../img/kefu.png'></image><text class='fl'>客服</text></button></view>
+  <view class='center' bindtap='jiaru'>加入购物车</view>
+  <view class='right' bindtap='buy'>立即购买</view>
+</view>
+
+<!-- 立即购买 -->
+<view class='join' wx:if="{{buy_box}}">
+  <view class='mask' bindtap="close"></view>
+  <view class='join_box p3'>
+    <view class="cart-box">
+      <!--<block wx:for="{{carts}}" wx:key="{{index}}">-->
+        <view class='top cf'>
+          <image class="img fl" src="{{wxURL}}{{details.image}}"></image>
+          <view class='fl'>
+            <view class="name omit">{{details.title}}</view>
+            <view class="price">￥{{details.price}}</view>
+          </view>
+          <text class="close fr" bindtap="close" data-index="{{index}}">×</text>
+        </view>
+        <view class='cf decrease'>
+          <view class='name fl'>数量</view>
+          <view class="count-box fr">
+            <text class="count-down" bindtap="minusCount" data-index="{{index}}">-</text>
+            <text class="count-num">{{numb}}</text>
+            <text class="count-add" bindtap="addCount" data-index="{{index}}">+</text>
+          </view>
+        </view>
+      <!--</block>-->
+    </view>
+    <view class='bnt big_bnt' bindtap="placeAnOrder">确定</view>
+  </view>
+</view>

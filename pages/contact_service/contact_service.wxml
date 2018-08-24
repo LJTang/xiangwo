@@ -1,0 +1,6 @@
+<block wx:for="{{list}}" wx:key="">
+  <view class='list cf'>
+    <view class='left fl'><image class='fl' src='{{item.limg}}'></image><text class='fl'>{{item.text}}</text></view>
+    <image class='right fr' src='{{item.rimg}}'></image>
+  </view>
+</block>
