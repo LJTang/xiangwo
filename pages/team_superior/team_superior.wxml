@@ -1,19 +1,19 @@
 <view class="swiper-tab container">
-    <view class="swiper-tab-list {{menuTapCurrent==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">TOP</view>
-    <view class="swiper-tab-list {{menuTapCurrent==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">VIP2(15)</view>
-    <view class="swiper-tab-list {{menuTapCurrent==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">VIP1(8)</view>
-    <view class="swiper-tab-list {{menuTapCurrent==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">推广大使(9)</view>
+    <view class="swiper-tab-list {{menuTapCurrent==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">TOP({{teams.top_count}})</view>
+    <view class="swiper-tab-list {{menuTapCurrent==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">VIP2({{teams.vip2}})</view>
+    <view class="swiper-tab-list {{menuTapCurrent==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">VIP1({{teams.vip1_count}})</view>
+    <view class="swiper-tab-list {{menuTapCurrent==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">推广大使({{teams.extension_count}})</view>
 </view>
 <view class='concent'>
   <!--  -->
-  <view class="weui-cells__title" hidden="{{menuTapCurrent!='0'}}">
+  <view class="weui-cells__title">
    <view class='broker'>
       <view class="superior">
-        <block wx:for="{{sella}}" wx:for-item="sell" wx:key="list">
+        <block wx:for="{{vipArray}}" wx:key="{{index}}">
           <view class='list cf'>
-            <navigator class="list_box cf" url="" hover-class="none" data-typeid="{{sell.typeId}}">
-              <image src="{{sell.img}}" class="left fl"/>
-              <view class='fl right'><text class='name '>{{sell.name}}</text><text class='time'>电话：{{sell.time}}</text></view>
+            <navigator class="list_box cf" url="" hover-class="none" data-typeid="{{item.typeId}}">
+              <image src="{{item.avatar}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.name}}</text><text class='time'>电话：{{item.serial_number}}</text></view>
             </navigator>
           </view>
         </block>
@@ -21,19 +21,19 @@
     </view>
   </view>
   <!--  -->
-  <view class="weui-cells__title" hidden="{{menuTapCurrent!='1'}}">
+  <view class="weui-cells__title" hidden="true">
     <view class='broker'>
       <view class="lower">
-        <block wx:for="{{sellb}}"  wx:key="list">
+        <block wx:for="{{vipArray}}"  wx:key="{{index}}">
           <view class='list cf'>
             <navigator class="list_box cf" url="" hover-class="none" data-typeid="{{sell.typeId}}">
-              <image src="{{item.img}}" class="left fl"/>
-              <view class='fl right'><text class='name '>{{item.name}}</text><text class='tel'>电话：{{item.tel}}</text></view>
+              <image src="{{item.avatar}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.name}}</text><text class='tel'>电话：{{item.serial_number}}</text></view>
               <view class='map'>{{item.map}}</view>
               <view class='names'>{{item.names}}</view>
             </navigator>
             <view class='cf down'>
-              <text class='fl price'>以获得佣金：￥{{item.price}}</text>
+              <text class='fl price'>以获得佣金：￥{{item.commission}}</text>
               <text class='fr time'>已推广：{{item.time}}天</text>
             </view>
           </view>
@@ -42,19 +42,19 @@
     </view>
   </view>
   <!--  -->
-  <view class="weui-cells__title" hidden="{{menuTapCurrent!='2'}}">
+  <view class="weui-cells__title" hidden="true">
     <view class='broker'>
       <view class="lower">
-        <block wx:for="{{sellc}}" wx:key="list">
+        <block wx:for="{{vipArray}}" wx:key="{{index}}">
           <view class='list  cf'>
             <navigator class="list_box cf" url="" hover-class="none" data-typeid="{{sell.typeId}}">
-              <image src="{{item.img}}" class="left fl"/>
-              <view class='fl right'><text class='name '>{{item.name}}</text><text class='tel'>电话：{{item.tel}}</text></view>
+              <image src="{{item.avatar}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.name}}</text><text class='tel'>电话：{{item.serial_number}}</text></view>
               <view class='map'>{{item.map}}</view>
               <view class='names'>{{item.names}}</view>
             </navigator>
             <view class='cf down'>
-              <text class='fl price'>以获得佣金：￥{{item.price}}</text>
+              <text class='fl price'>以获得佣金：￥{{item.commission}}</text>
               <text class='fr time'>已推广：{{item.time}}天</text>
             </view>
           </view>
@@ -63,19 +63,19 @@
     </view>
   </view>
   <!--  -->
-  <view class="weui-cells__title" hidden="{{menuTapCurrent!='3'}}">
+  <view class="weui-cells__title" hidden="true">
     <view class='broker'>
       <view class="lower">
-        <block wx:for="{{selld}}" wx:key="list">
+        <block wx:for="{{vipArray}}" wx:key="{{index}}">
           <view class='list cf'>
-            <navigator class="list_box cf" url="" hover-class="none" data-typeid="{{sell.typeId}}">
-              <image src="{{item.img}}" class="left fl"/>
-              <view class='fl right'><text class='name '>{{item.name}}</text><text class='tel'>电话：{{item.tel}}</text></view>
+            <navigator class="list_box cf" url="" hover-class="none" data-typeid="{{item.typeId}}">
+              <image src="{{item.avatar}}" class="left fl"/>
+              <view class='fl right'><text class='name '>{{item.name}}</text><text class='tel'>电话：{{item.serial_number}}</text></view>
               <view class='map'>{{item.map}}</view>
               <view class='names'>{{item.names}}</view>
             </navigator>
             <view class='cf down'>
-              <text class='fl price'>以获得佣金：￥{{item.price}}</text>
+              <text class='fl price'>以获得佣金：￥{{item.commission}}</text>
               <text class='fr time'>已推广：{{item.time}}天</text>
             </view>
           </view>

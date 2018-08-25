@@ -15,7 +15,8 @@ Page({
     values: [],
     condition: false,
     search_Bool: false,
-    form_Bool: true
+    form_Bool: true,
+    goods_id:''
 
   },
   bindChange: function (e) {
@@ -81,10 +82,11 @@ Page({
       condition: !this.data.condition
     })
   },
-  onLoad: function () {
-    console.log("onLoad");
+  onLoad: function (option) {
     var that = this;
-
+      this.setData({
+          goods_id:option.id,
+      });
     tcity.init(that);
 
     var cityData = that.data.cityData;
@@ -164,6 +166,31 @@ Page({
         }
 
     },
+    //选择位置位置
+    chooseLocation:function(e){
+        var that=this
+        wx.chooseLocation({
+            success: function(res){
+                console.log(res)
+                that.setData({
+                    address:res.name,
+                    d_address:res.address,
+                    hasLocation:true,
+                    location:{
+                        longitude:res.longitude,
+                        latitude:res.latitude
+                    }
+                })
+            },
+            fail: function() {
+
+            },
+            complete: function() {
+
+            }
+        })
+    },
+
     //  提交
     submitData:function (e) {
         var that=this;
@@ -204,14 +231,25 @@ Page({
                 duration: 2000
             });
         }else{
-            var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:1,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_xy:that.data.location.longitude+','+that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed};
+            var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:that.data.goods_id,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_x:that.data.location.longitude,m_address_y:that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed};
+            console.log(json)
+            // verification/merchantRegister
             GMAPI.doSendMsg('api/verification/merchantRegister',json,'POST',that.onMsgCallBack_SubmitData);
         }
     },
     onMsgCallBack_SubmitData:function (jsonBack){
         var data=jsonBack.data;
         if(data.code==200){
-
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+            setTimeout(function () {
+                wx.navigateBack({
+                    delta:1
+                })
+            },2000)
         }else{
             wx.showToast({
                 title:data.msg,

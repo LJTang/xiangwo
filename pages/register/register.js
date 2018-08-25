@@ -289,15 +289,17 @@ Page({
         }else{
             // GMAPI.doTurnTimestamp(e.detail.value)/1000
             var json={uid:wx.getStorageSync('strWXID').strUserID,username:e.detail.value.user_name,phone:that.data.phone,password:e.detail.value.password,idc:that.data.idcard,school:that.data.school,school_major:that.data.major,school_time:GMAPI.doTurnTimestamp(that.data.date)/1000,sex:that.data.checkboxValue};
-            console.log(json)
+            // console.log(json)
             GMAPI.doSendMsg('api/verification/register',json,'POST',that.onMsgCallBack_Register);
         }
     },
     onMsgCallBack_Register:function (jsonBack){
-        console.log(jsonBack);
         var data=jsonBack.data;
-        var head=jsonBack.header;
-        if(data.code==1){
+        if(data.code==200){
+            wx.setStorage({
+                key: 'xiangwo',
+                data:true
+            });
             wx.showToast({
                 title:data.msg,
                 icon:'none',
@@ -313,5 +315,5 @@ Page({
                 duration: 2000
             });
         }
-    },
+    }
 })

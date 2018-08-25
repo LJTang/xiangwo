@@ -135,5 +135,11 @@ Page({
     wx.navigateTo({
       url: '/pages/business_list/business_list'
     })
-  }
+  },
+    jump:function (e) {
+        var url=e.currentTarget.dataset.url;
+        wx.reLaunch({
+            url: url
+        })
+    }
 })

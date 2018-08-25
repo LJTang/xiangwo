@@ -27,6 +27,8 @@ Page({
     this.setData({
       menuTapCurrent: current
     });
+      var that=this;
+      that.data.all_Order=[];
       GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:current},'POST',that.onMsgCallBack_Order);
   },
     onLoad:function(){

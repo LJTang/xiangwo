@@ -43,7 +43,7 @@
 
 
 <view class='form' hidden="{{form_Bool}}">
-  <form bindsubmit="ch_Register">
+  <form bindsubmit="submitData">
     <view class='list cf'>
       <text class='fl text'>姓名</text>
       <view class='fl input'><input type='text' name="m_name" placeholder="请输入姓名"/></view>

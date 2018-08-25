@@ -31,8 +31,14 @@ Page({
         console.log(jsonBack.data);
         var data=jsonBack.data;
         if(data.code==200){
+            var list=data.goods;
+            var goods=[];
+            for(var i=0;i<list.length;i++){
+                goods.push(list[i])
+            }
             this.setData({
                 order_D:data.data,
+                goods:goods,
                 wxURL:data.url
             })
         }else{

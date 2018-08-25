@@ -32,6 +32,9 @@ Page({
   // 接口 
   onLoad: function (option) {
     var that = this;
+      if(option.pid==undefined){}else{
+          GMAPI.doSendMsg('api/verification/savePid',{savePid:option.pid}, 'POST');
+      }
     GMAPI.doSendMsg('api/Goods/goods_detail', { id: option.id }, 'POST', that.onMsgCallBack_Details);
   },
   onMsgCallBack_Details: function (jsonBack) {
@@ -44,5 +47,17 @@ Page({
         wxURL: jsonBack.data.url
     })
   },
+    onShareAppMessage: function (res) {
+        return {
+            title: '享沃测试2',
+            path: '/pages/wares_more/wares_more?pid='+wx.getStorageSync('strWXID').strUserID,
+            success: function(res) {
+                // 转发成功
+            },
+            fail: function(res) {
+                // 转发失败
+            }
+        }
+    }
   
 });

@@ -1,6 +1,5 @@
 // pages/confirm_order/confirm_order.js
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -10,7 +9,8 @@ Page({
     ],
     totalPrice:100,
     condition: false,
-    provinces: ["要什么100", "100", "100", "100"]
+    provinces: ["要什么100", "100", "100", "100"],
+    numb:1
   },
 
   /**
@@ -27,7 +27,6 @@ Page({
     });
     this.getTotalPrice();
   },
-
   /**
    * 绑定减数量事件
    */
@@ -62,11 +61,35 @@ Page({
       totalPrice: total.toFixed(2)
     });
   },
-
   // 打开优惠券
-  open_dj: function () {
+  open_dj: function (){
     this.setData({
       condition: !this.data.condition
     })
   },
-})
+    onLoad:function (option) {
+        this.setData({
+            numb:option.numb
+        });
+    },
+    confirmOrder:function(){
+        var that = this;
+        GMAPI.doSendMsg('api/Order/order_confirm',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.details.id,num:that.data.numb}, 'POST', that.onMsgCallBack_ConfirmOrder);
+    },
+    onMsgCallBack_ConfirmOrder: function (jsonBack){
+        var that = this;
+        console.log(jsonBack.data);
+        var data=jsonBack.data;
+        if(data.code==200){
+            wx.navigateTo({
+                url:'/pages/confirm_order/confirm_order?numb='+that.data.numb
+            })
+        }else{
+            wx.showToast({
+                title: jsonBack.data.msg,
+                icon: 'none',
+                duration:2000
+            });
+        }
+    },
+});

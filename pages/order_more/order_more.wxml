@@ -1,14 +1,23 @@
 <view class='p3'>
-  <!--<block wx:for-items="{{more}}" wx:key="">-->
+  <block wx:for-items="{{goods}}" wx:key="{{index}}">
     <view class='top cf'>
-      <image class='fl' src='{{wxURL}}{{order_D.img}}'></image>
+      <image class='fl' src='{{wxURL}}{{item.goods_img}}'></image>
       <view class='fl right'>
-        <view class='name'>{{order_D.name}}</view><view class='price'>￥{{order_D.goods_price}}</view>
+        <view class='name'>{{item.goods_name}}</view><view class='price'>￥{{item.goods_price}}</view>
       </view>
     </view>
     <view class='list'>
-      <view class='left'>订单状态：<text>{{order_D.order_status}}</text></view>
-      <!--<view class='right'>去付款</view>-->
+      <view class='left'>订单状态：
+        <text wx:if="{{order_D.order_status==0}}">待付款</text>
+        <text wx:elif="{{order_D.order_status==1}}">待收货</text>
+        <text wx:elif="{{order_D.order_status==2}}">已发货</text>
+        <text wx:elif="{{order_D.order_status==3}}">已完成</text>
+        <text wx:elif="{{order_D.order_status==4}}">已完成</text>
+        <text wx:elif="{{order_D.order_status==5}}">已完成</text>
+        <text wx:elif="{{order_D.order_status==6}}">已关闭</text>
+        <text wx:else>未知</text>
+      </view>
+
       <view class='right' wx:if="{{order_D.order_status==0}}">去付款</view>
       <view class='right' wx:elif="{{order_D.order_status==1}}">确认收货</view>
       <view class='right' wx:elif="{{order_D.order_status==2}}">已发货</view>
@@ -18,8 +27,8 @@
       <view class='right' wx:elif="{{order_D.order_status==6}}">已关闭</view>
       <view class='right' wx:else>未知</view>
     </view>
-    <view class='list'>规格：<text>{{order_D.height}} 、 {{order_D.weight}} </text></view>
-    <view class='list'>描述：<text>{{order_D.describe}}</text></view>
-    <view class='list'>实付款：<text>{{order_D.actual}}</text></view>
-  <!--</block>-->
+    <view class='list'>规格：<text>{{item.spec_name}}</text></view>
+    <view class='list'>描述：<text>{{item.goods_desc}}</text></view>
+    <view class='list'>实付款：<text>￥{{item.final_price}}</text></view>
+  </block>
 </view>

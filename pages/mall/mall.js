@@ -33,10 +33,10 @@ Page({
   },
   // 接口
   onLoad: function (option) {
-      console.log(option.id==undefined)
     var that = this;
-    // GMAPI.doSendMsg('goods/1', '', 'GET', that.onMsgCallBack_Home);
-      console.log(wx.getStorageSync('getUserInfo'))
+      if(option.pid==undefined){}else{
+          GMAPI.doSendMsg('api/verification/savePid',{savePid:option.pid}, 'POST');
+      }
       if (app.globalData.userInfo) {
           this.setData({
               userInfo: app.globalData.userInfo,
@@ -67,6 +67,9 @@ Page({
   },
     onShow:function(){
         var that = this;
+        this.setData({
+            popUp_Bool:(wx.getStorageSync('getUserInfo')==''?true:false)
+        })
         GMAPI.doSendMsg('api/Goods/goods_list',{type:that.data.active}, 'POST', that.onMsgCallBack_Home);
     },
 
@@ -163,5 +166,11 @@ Page({
             canIUse:false,
             hasUserInfo:false
         });
+    },
+    jump:function (e) {
+        var url=e.currentTarget.dataset.url;
+        wx.reLaunch({
+            url: url
+        })
     }
 });

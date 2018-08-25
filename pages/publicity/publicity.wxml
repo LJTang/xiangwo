@@ -1,18 +1,20 @@
 <view class=" {{(showfilter == true ) ? 'fixed' : ''}}">
-  <view class='top_nav container'>
-    <view class='list'>全部</view>
-    <view class='list' bindtap='setFilterPanel' data-findex="1"><text>类型</text><image src='../../img/xj.png'></image></view>
-    <view class='list' bindtap='setFilterPanel' data-findex="2"><text>产品</text><image src='../../img/xj.png'></image></view>
-  </view>
-  <view class='screen' wx:if="{{showfilter}}">
-    <view class='drop-down down1' wx:if="{{showfilterindex==1}}">
-      <view wx:for="{{cate}}" wx:key="{{item.id}}" bindtap="setCateIndex" data-cateindex="{{index}}" class="{{cateindex==index?'active':''}}">{{item.title}}</view>
-    </view>
-    <view class='drop-down down2' wx:if="{{showfilterindex==2}}">
-      <view wx:for="{{area}}" wx:key="{{item.id}}" bindtap="setAreaIndex" data-areaindex="{{index}}" class="{{areaindex==index?'active':''}}">{{item.name}}</view>
-    </view>
-  </view>
-  <view class='mask' wx:if="{{showfilter}}" bindtap="hideFilter"></view>
+  <!--<view class='top_nav container'>-->
+    <!--<view class='list'>全部</view>-->
+    <!--<view class='list' bindtap='setFilterPanel' data-findex="1"><text>类型</text><image src='../../img/xj.png'></image></view>-->
+    <!--<view class='list' bindtap='setFilterPanel' data-findex="2"><text>产品</text><image src='../../img/xj.png'></image></view>-->
+  <!--</view>-->
+  <!--<view class='screen' wx:if="{{showfilter}}">-->
+    <!--<view class='drop-down down1' wx:if="{{showfilterindex==1}}">-->
+      <!--<view wx:for="{{cate}}" wx:key="{{item.id}}" bindtap="setCateIndex" data-cateindex="{{index}}" class="{{cateindex==index?'active':''}}">{{item.title}}</view>-->
+    <!--</view>-->
+    <!--<view class='drop-down down2' wx:if="{{showfilterindex==2}}">-->
+      <!--<view wx:for="{{area}}" wx:key="{{item.id}}" bindtap="setAreaIndex" data-areaindex="{{index}}" class="{{areaindex==index?'active':''}}">{{item.name}}</view>-->
+    <!--</view>-->
+  <!--</view>-->
+  <!--<view class='mask' wx:if="{{showfilter}}" bindtap="hideFilter"></view>-->
+
+
   <view class='publicity'>
     <view class='list p3 db'>
       <view class='list_top cf'>

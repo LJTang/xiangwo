@@ -3,23 +3,9 @@ import GMAPI from "../../utils/api";
 var app = getApp();
 Page({
   data: {
-
-    menuTapCurrent: 0,
-
-    sella: [
-      { img: "../../img/logo1.png", name: "dhhdoi、", time: "13587895241", typeId: 0 },
-      { img: "../../img/logo2.png", name: "享沃", time: "13587895241", typeId: 1 },
-      { img: "../../img/logo1.png", name: "dhhdoi、", time: "13587895241", typeId: 2 }],
-
-    sellb: [{ img: "../../img/logo.png", name: "享沃", tel: "13587895241", map: "东圃XX店", names: "免费纸巾机", price: "1899", time: "10", typeId: 0 },
-      { img: "../../img/logo.png", name: "享沃", tel: "13587895241", map: "东圃XX店", names: "免费纸巾机", price: "1899", time: "10", typeId: 0 }],
-
-    sellc: [
-      { img: "../../img/logo.png", name: "享沃", tel: "13587895241", map: "东圃XX店", names: "免费纸巾机", price: "1899", time: "10", typeId: 0 }],
-
-    selld: [
-      { img: "../../img/logo.png", name: "享沃", tel: "13587895241", map: "东圃XX店", names: "免费纸巾机", price: "1899", time: "10", typeId: 0 },
-      { img: "../../img/logo.png", name: "享沃", tel: "13587895241", map: "东圃XX店", names: "免费纸巾机", price: "1899", time: "10", typeId: 1 }],
+    menuTapCurrent:3,
+      teams:[],
+      vipArray:[]
   },
 
   swichNav: function (e) {
@@ -28,15 +14,34 @@ Page({
     this.setData({
       menuTapCurrent: current
     });
+      var that=this;
+      this.data.vipArray=[];
+      GMAPI.doSendMsg('api/user/myTeam',{uid:wx.getStorageSync('strWXID').strUserID,level:parseInt(current)},'GET',that.onMsgCallBack_myTeam);
   },
     onShow:function(){
         var that=this;
-        GMAPI.doSendMsg('api/user/myTeam',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_myTeam);
+        this.data.vipArray=[];
+        GMAPI.doSendMsg('api/user/myTeam',{uid:wx.getStorageSync('strWXID').strUserID,level:that.data.menuTapCurrent},'GET',that.onMsgCallBack_myTeam);
     },
     onMsgCallBack_myTeam:function (jsonBack){
         var data=jsonBack.data;
         if(data.code==200){
-
+            // if(list.length==0){
+            //     this.setData({
+            //         address_list:[]
+            //     })
+            // }else{
+            //     for(var i=0;i<list.length;i++){
+            //         goods.push(list[i])
+            //     }
+            //     this.setData({
+            //         address_list:goods
+            //     })
+            // }
+            this.setData({
+                teams:data.data,
+                vipArray:data.data.vipArray
+            });
         }else{
             wx.showToast({
                 title:data.msg,

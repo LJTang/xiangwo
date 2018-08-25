@@ -1,5 +1,7 @@
 //index.js
 //获取应用实例
+import GMAPI from "../../utils/api";
+
 const app = getApp()
 
 Page({
@@ -13,6 +15,7 @@ Page({
     area: [
       { name: "共享产品" }, { name: "非共享产品" }
     ],
+      brochure:[]
   },
   setFilterPanel: function (e) { //展开筛选面板
     const d = this.data;
@@ -52,4 +55,39 @@ Page({
       showfilterindex: null
     })
   },
+    onShow:function(){
+        var that=this;
+        GMAPI.doSendMsg('api/exhibition/index',{},'GET',that.onMsgCallBack_Train);
+    },
+    onMsgCallBack_Train:function (jsonBack){
+        var data=jsonBack.data;
+        var that=this;
+        if(data.code==200){
+            if(data.data.length==0){
+                this.setData({
+                    brochure :[]
+                })
+            }else{
+                var goods=[];
+                var list=data.data;
+                var arr='';
+                for(var i=0;i<list.length;i++){
+                    goods.push(list[i]);
+                }
+                this.setData({
+                    brochure :goods,
+                    xwURL:jsonBack.data.Https
+                })
+            }
+
+
+        }else{
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+        }
+    }
+
 })

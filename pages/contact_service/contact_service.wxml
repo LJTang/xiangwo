@@ -1,6 +1,11 @@
-<block wx:for="{{list}}" wx:key="">
-  <view class='list cf'>
-    <view class='left fl'><image class='fl' src='{{item.limg}}'></image><text class='fl'>{{item.text}}</text></view>
-    <image class='right fr' src='{{item.rimg}}'></image>
-  </view>
-</block>
+<view class='list cf' bindtap="onMakePhoneCall">
+  <view class='left fl'><image class='fl' src='../../img/limg.png'></image><text class='fl'>一键拨号</text></view>
+  <image class='right fr' src='../../img/myr.png'></image>
+</view>
+
+<view class='list cf'>
+  <button open-type="contact" class="btn">
+    <view class='left fl'><image class='fl' src='../../img/limg1.png'></image><text class='fl'>在线客服</text></view>
+    <image class='right fr' src='../../img/myr.png'></image>
+</button>
+</view>

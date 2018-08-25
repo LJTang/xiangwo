@@ -26,7 +26,8 @@
     "pages/modify/modify",
     "pages/commission/commission",
     "pages/commission_cashed/commission_cashed",
-    "pages/my_commission/my_commission"
+    "pages/my_commission/my_commission",
+    "pages/generalize/generalize"
   ],
   "window":{
     "backgroundTextStyle":"light",

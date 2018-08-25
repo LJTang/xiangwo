@@ -1,15 +1,15 @@
 <view>
-  <block wx:for="{{list}}" wx:key="">
+  <block wx:for="{{address_list}}" wx:key="{{index}}">
     <view class='list p3 cf'>
-      <radio-group class="fl left">
-        <radio color="#F47070"></radio>
+      <radio-group class="fl left" bindchange="radioChange" data-id="{{item.id}}">
+        <radio color="#F47070" value="{{item.id}}" checked="{{item.status==1?true:''}}"/>
       </radio-group>
       <view class='fl cen'>
-        <view class='top'><text>{{item.name}}</text><text>{{item.tel}}</text></view>
-        <view class='down'>{{item.map}}</view>
+        <view class='top'><text>{{item.username}}</text><text>{{item.phone}}</text></view>
+        <view class='down'>{{item.province_value}},{{item.city_name}}{{item.district_name=='市辖区'?'':','+item.district_name}},{{item.address_value}}</view>
       </view>
-      <navigator class='right fr' hover-class='none' url=''><image src='{{item.img}}'></image></navigator>
+      <navigator class='right fr' hover-class='none' url='/pages/add_address/add_address?id={{item.id}}&name={{item.username}}&phone={{item.phone}}&province={{item.province_value}}&city={{item.city_name}}&district={{item.district_name}}&value={{item.address_value}}'><image src='../../img/tianxie.png'></image></navigator>
     </view>
   </block>
 </view>
-<navigator hover-class='none' class='big_bnt bnt' url='/pages/add_address/add_address'>+ 新增地址</navigator>
+<navigator hover-class='none' class='big_bnt bnt' url='/pages/add_address/add_address?id='>+ 新增地址</navigator>

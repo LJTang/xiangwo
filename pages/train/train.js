@@ -9,6 +9,8 @@ Page({
     filterdata: {},  //筛选条件数据
     showfilter: false, //是否显示下拉筛选
     showfilterindex: null,
+      full_Bool:true,
+      d_index:null,
     mask_box:true,
     cate: [
       { title: "视频" }, { title: "图文" }, { title: "文章" }
@@ -16,6 +18,11 @@ Page({
     area: [
       { name: "共享产品" }, { name: "非共享产品" }
     ],
+      xwURL:'',
+      article:'',
+
+      cateindex:'',
+      areaindex:'',
   },
     onLoad:function(){
         var that=this;
@@ -23,32 +30,32 @@ Page({
     },
     onShow:function(){
         var that=this;
-        GMAPI.doSendMsg('api/exhibition/index',{type:0},'GET',that.onMsgCallBack_Train);
+        GMAPI.doSendMsg('api/exhibition/index',{type:that.data.cateindex,share:that.data.areaindex},'GET',that.onMsgCallBack_Train);
     },
     onMsgCallBack_Train:function (jsonBack){
         var data=jsonBack.data;
         var that=this;
-        console.log(data.data.type,data.data.type_status)
         if(data.code==200){
-            if(data.data.type==0){
+            if(data.data.length==0){
                 this.setData({
-                    info:data.data,
-                    user_View:false,
-                    business_View: true
+                    article :[]
                 })
-            }else if(data.data.type==2&&data.data.type_status==2){
-                this.setData({
-                    user_View:true,
-                    business_View: false
-                });
-                GMAPI.doSendMsg('api/user/myTeam',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_myTeam);
             }else{
+                var goods=[];
+                var list=data.data;
+                var arr='';
+                for(var i=0;i<list.length;i++){
+                    // list[i].splice(i,0,{selected:true});
+                    // console.log(list)
+                    goods.push(list[i]);
+                }
+                console.log(goods)
                 this.setData({
-                    info:data.data,
-                    user_View:false,
-                    business_View: true
+                    article :goods,
+                    xwURL:jsonBack.data.Https
                 })
             }
+
 
         }else{
             wx.showToast({
@@ -80,7 +87,10 @@ Page({
       cateindex: dataset.cateindex,
       showfilter: false,
       showfilterindex: null
-    })
+    });
+    console.log(dataset.cateindex)
+      var that=this;
+      GMAPI.doSendMsg('api/exhibition/index',{type:dataset.cateindex,share:that.data.areaindex},'GET',that.onMsgCallBack_Train);
   },
   setAreaIndex: function (e) { //地区一级索引
     const dataset = e.currentTarget.dataset;
@@ -88,7 +98,10 @@ Page({
       areaindex: dataset.areaindex,
       showfilter: false,
       showfilterindex: null
-    })
+    });
+      var that=this;
+      GMAPI.doSendMsg('api/exhibition/index',{type:that.data.cateindex,share:dataset.areaindex},'GET',that.onMsgCallBack_Train);
+
   },
   hideFilter: function () { //关闭筛选面板
     this.setData({
@@ -109,5 +122,35 @@ Page({
     this.setData({
       mask_box: true
     })
-  }
+  },
+    full:function (e) {
+       var dataset=e.currentTarget.dataset;
+       var list=this.data.article;
+       for(var i=0;i<list.length;i++){
+           if(i==parseInt(dataset.index)){
+               list[i].selected=true;
+               list[i].active=false;
+           }
+       }
+
+        this.data.article=[];
+       this.setData({
+           article:list
+       });
+    },
+    fewer:function (e) {
+        var dataset=e.currentTarget.dataset;
+        var list=this.data.article;
+        for(var i=0;i<list.length;i++){
+            if(i==parseInt(dataset.index)){
+                list[i].selected=false;
+                list[i].active=true;
+            }
+        }
+
+        this.data.article=[];
+        this.setData({
+            article:list
+        });
+    }
 })

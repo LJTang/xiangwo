@@ -49,5 +49,5 @@
   </view>
 </view>
 <view class='fixed_nav'>
-  <navigator hover-class='none' url='/pages/write/write' class='free'>免费领取</navigator>
+  <navigator hover-class='none' url='/pages/write/write?id={{details.id}}' class='free'>免费领取</navigator>
 </view>

@@ -95,9 +95,12 @@ Page({
   //  下单
     placeAnOrder:function(){
         var that = this;
-        GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.details.id,num:that.data.numb}, 'POST', that.onMsgCallBack_PlaceAnOrder);
+        // GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.details.id,num:that.data.numb}, 'POST', that.onMsgCallBack_PlaceAnOrder);
         this.setData({
             share_box: false,
+        });
+        wx.navigateTo({
+            url:'/pages/confirm_order/confirm_order?numb='+that.data.numb
         })
     },
     onMsgCallBack_PlaceAnOrder: function (jsonBack){
@@ -106,7 +109,7 @@ Page({
         var data=jsonBack.data;
         if(data.code==200){
             wx.navigateTo({
-                url:'/pages/confirm_order/confirm_order'
+                url:'/pages/confirm_order/confirm_order?numb='+that.data.numb
             })
         }else{
             wx.showToast({
@@ -119,6 +122,9 @@ Page({
   // 接口
   onLoad: function (option) {
       var that = this;
+      if(option.pid==undefined){}else{
+          GMAPI.doSendMsg('api/verification/savePid',{savePid:option.pid}, 'POST');
+      }
       GMAPI.doSendMsg('api/Goods/goods_detail', { id: option.id }, 'POST', that.onMsgCallBack_Details);
     this.setData({
       id: option.id,
@@ -141,4 +147,16 @@ Page({
             });
         }
     },
+    onShareAppMessage: function (res) {
+        return {
+            title: '享沃测试2',
+            path: '/pages/ware_more/ware_more?pid='+wx.getStorageSync('strWXID').strUserID,
+            success: function(res) {
+                // 转发成功
+            },
+            fail: function(res) {
+                // 转发失败
+            }
+        }
+    }
 })

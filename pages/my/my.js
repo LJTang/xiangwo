@@ -31,6 +31,7 @@ Page({
           { limg: "../../img/my12.png", text: "佣金明细", rimg: "../../img/myr.png", url: "/pages/commission/commission" },
           { limg: "../../img/my5.png", text: "分销订单", rimg: "../../img/myr.png", url: "/pages/sale_order/sale_order" },
           { limg: "../../img/my8.png", text: "我的团队", rimg: "../../img/myr.png", url: "/pages/team_superior/team_superior" },
+          { limg: "../../img/my8.png", text: "我的推广", rimg: "../../img/myr.png", url: "/pages/generalize/generalize" },
           { limg: "../../img/my10.png", text: "培训", rimg: "../../img/myr.png", url: "/pages/train/train" },
           { limg: "../../img/my11.png", text: "宣传册", rimg: "../../img/myr.png", url: "/pages/publicity/publicity" },
           { limg: "../../img/my6.png", text: "联系客服", rimg: "../../img/myr.png", url: "/pages/contact_service/contact_service" },
@@ -228,7 +229,13 @@ Page({
     //             });
     //         }
     //     })
+    },
+    jump:function (e) {
+        var url=e.currentTarget.dataset.url;
+        wx.reLaunch({
+            url: url
+        })
     }
 
 
-})
+});

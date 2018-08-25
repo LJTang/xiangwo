@@ -1,11 +1,13 @@
+
 <view class='form'>
+  <form bindsubmit="add_Address">
   <view class='list cf'>
     <text class='fl text'>收件人</text>
-    <view class='fl input'><input type='text' placeholder="收件人"></input></view>
+    <view class='fl input'><input type='text' placeholder="收件人" name="userName" value="{{name}}"/></view>
   </view>
   <view class='list cf'>
     <text class='fl text'>联系电话</text>
-    <view class='fl input'><input type='number' maxlength="11" placeholder="联系电话"></input></view>
+    <view class='fl input'><input type='number' maxlength="11" placeholder="联系电话" name="phone" value="{{phone}}"/></view>
   </view> 
   
   <view class='list cf' bindtap="open">
@@ -19,11 +21,12 @@
   </view>
   <view class='list cf'>
     <text class='fl text'>详细地址</text>
-    <view class='fl input'><input type='text' placeholder="街道，楼牌号等"></input></view>
+    <view class='fl input'><input type='text' placeholder="街道，楼牌号等" name="address_value" value="{{address_val}}"/></view>
   </view>
   <view class='down'>
-    <button class='big_bnt'>保存地址</button>
+    <button class='big_bnt' formType="submit">{{address_id==''?'保存':'保存修改'}}地址</button>
   </view>
+  </form>
 </view>
 <view wx:if="{{condition}}" class="citypicker">
   <picker-view indicator-style="height: 50px;" style="width: 100%; height: 300px;" value="{{value}}" bindchange="bindChange" class="citybody">
