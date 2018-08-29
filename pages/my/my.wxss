@@ -89,10 +89,10 @@
   position: absolute;
   top:-15rpx;
   right:53rpx;
-  display: none;
+  /* display: none; */
 }
 .row_lists navigator text.show{
-  display: block;
+  /* display: block; */
 }
 
 /*mys*/

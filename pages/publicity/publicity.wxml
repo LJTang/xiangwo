@@ -13,28 +13,29 @@
     <!--</view>-->
   <!--</view>-->
   <!--<view class='mask' wx:if="{{showfilter}}" bindtap="hideFilter"></view>-->
-
-
   <view class='publicity'>
+    <block wx:for="{{brochure}}" wx:key="{{index}}">
     <view class='list p3 db'>
       <view class='list_top cf'>
-        <image class='fl logo' src='../../img/logo.png'></image>
+        <image class='fl logo' src='{{xwURL}}{{item.image}}'></image>
         <view class='fl names'>
-          <view class='name'>管理员</view>
-          <view class='time'>2018-07-04</view>
+          <view class='name'>{{item.username}}</view>
+          <view class='time'>{{item.create_time}}</view>
         </view>
-        <view class='fr fenx'>
-          <image src='../../img/fenx.png'></image>
-          <view>分享</view>
-        </view>
+        <!--<view class='fr fenx'>-->
+          <!--<image src='../../img/fenx.png'></image>-->
+          <!--<view>分享</view>-->
+        <!--</view>-->
       </view>
       <view class='concent'>
-        <view class='topic'>#关于佣金#</view>
+        <view class='topic'>#{{item.title}}#</view>
         <view class='img_box'>
           <image src='../../img/xc.png'></image>
         </view>
       </view>
     </view>
+    </block>
+
     <view class='list p3 db'>
       <view class='list_top cf'>
         <image class='fl logo' src='../../img/logo.png'></image>
@@ -42,16 +43,14 @@
           <view class='name'>管理员</view>
           <view class='time'>2018-07-04</view>
         </view>
-        <view class='fr fenx'>
-          <image src='../../img/fenx.png'></image>
-          <view>分享</view>
-        </view>
+        <!--<view class='fr fenx'>-->
+          <!--<image src='../../img/fenx.png'></image>-->
+          <!--<view>分享</view>-->
+        <!--</view>-->
       </view>
       <view class='concent'>
         <view class='topic'>#共享产品#</view>
         <view class='img_box img_boxs container between'>
-          <image src='../../img/xc1.png'></image>
-          <image src='../../img/xc2.png'></image>
           <image src='../../img/xc3.png'></image>
           <image src='../../img/xc4.png'></image>
           <image src='../../img/xc5.png'></image>

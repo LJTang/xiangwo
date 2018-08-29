@@ -55,10 +55,10 @@ Page({
         });
     },
     onAddress:function (e) {
-        // wx.setStorage({
-        //     key: 'getLocation',
-        //     data: {lon:e.currentTarget.dataset.lon,lat:e.currentTarget.dataset.lat}
-        // });
+        wx.setStorage({
+            key: 'getLocation',
+            data: {lon:e.currentTarget.dataset.lon,lat:e.currentTarget.dataset.lat}
+        });
         wx.navigateBack({
             delta: 1
         })

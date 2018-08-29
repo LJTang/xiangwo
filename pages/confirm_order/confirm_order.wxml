@@ -1,46 +1,58 @@
-<navigator hover-class='none' url='/pages/select_address/select_address' class='address db cf'>
+<navigator hover-class='none' url='/pages/select_address/select_address?status=1' class='address db cf' wx:if="{{data.addr==''}}">
   <view class='add fl'>
     <text>+</text>
     <text>添加收货地址</text>
   </view>
   <image class='myr fr' src='../../img/myr.png'></image>
 </navigator>
+<navigator hover-class='none' url='/pages/select_address/select_address?status=1' wx:else>
+<view class="centerByContent">
+  <!--<view class="title">{{data.addr.username}},{{data.addr.phone}}</view>-->
+  <view class="centeredContent">
+    <view style="font-size:32rpx;">{{data.addr.username}},{{data.addr.phone}}</view>
+    <view style="font-size:30rpx;color:#999;">{{data.addr.province_value}}{{data.addr.city_value}}{{data.addr.address_value}}</view>
+  </view>
+  <view class="display_F"><image src="../../img/myr.png" mode=""></image></view>
+</view>
+</navigator>
 <view class="cart-box p3 db">
-  <view class='head cf'><image class='fl' src='../../img/nav1.png'></image><text class='fl'>东圃旗舰店</text></view>
-  <view class="cart_box cf" wx:for="{{carts}}" wx:key="{{index}}">
-    <image class="img fl" src="{{item.image}}"></image>
+  <!--<view class='head cf'><image class='fl' src='../../img/nav1.png'></image><text class='fl'>东圃旗舰店</text></view>-->
+  <view class="cart_box cf">
+    <image class="img fl" src="{{wxURL}}{{data.goods.image}}"></image>
     <view class='right fl'>
       <view class='top fl'>
-        <text class="cart-pro-name omit">{{item.title}}</text>
+        <text class="cart-pro-name omit">{{data.goods.title}}</text>
       </view>
       <view class='down fr'>
-        <text class="cart-pro-price">￥{{item.price}}</text>
+        <text class="cart-pro-price">￥{{data.goods.price}}</text>
         <view class="cart-count-box">
-          <text class="cart-count-down" bindtap="minusCount" data-index="{{index}}">-</text>
-          <text class="cart-count-num">{{item.num}}</text>
-          <text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>
+          <!--<text class="cart-count-down" bindtap="minusCount" data-index="{{index}}">-</text>-->
+          <text class="cart-count-down" bindtap="jian_Count">-</text>
+          <text class="cart-count-num">{{numb}}</text>
+          <!--<text class="cart-count-add" bindtap="addCount" data-index="{{index}}">+</text>-->
+          <text class="cart-count-add" bindtap="count">+</text>
         </view>
       </view>
     </view>
   </view>
 </view>
-<view class='db cf leave'>
-  <text class='fl left'>买家留言</text>
-  <view class='fl input'>
-    <input type='text' placeholder="50字以内（选填）" maxlength="50"></input>
-  </view>
-</view>
+<!--<view class='db cf leave'>-->
+  <!--<text class='fl left'>买家留言</text>-->
+  <!--<view class='fl input'>-->
+    <!--<input type='text' placeholder="50字以内（选填）" maxlength="50"></input>-->
+  <!--</view>-->
+<!--</view>-->
 <view class='cf leave'>
   <text class='fl left'>商品小计</text>
   <text class='price fr'>￥{{totalPrice}}</text>
 </view>
 
-<view class='cf leave'>
-  <text class='fl left'>运费</text>
-  <text class='price fr'>￥0</text>
-</view>
+<!--<view class='cf leave'>-->
+  <!--<text class='fl left'>运费</text>-->
+  <!--<text class='price fr'>￥0</text>-->
+<!--</view>-->
 <view class="cart-footer cf">
-  <navigator class="order-icon fr" url="" hover-class='none'>去结算</navigator>
+  <view class="order-icon fr" bindtap="placeAnOrder">去结算</view>
   <text class="cart-toatl-price fr">需付：<text>{{totalPrice}}元</text></text>
 </view>
 

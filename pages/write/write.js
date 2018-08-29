@@ -142,7 +142,6 @@ Page({
         GMAPI.doSendMsg('api/merchants/merchantsList',{seach_name:that.data.search_Text}, 'GET',that.onMsgCallBack_BusinessList);
     },
     onMsgCallBack_BusinessList: function (jsonBack) {
-        console.log(jsonBack.data);
         var data=jsonBack.data;
         if(data.code==200){
             var list=data.data;
@@ -164,7 +163,6 @@ Page({
                 duration: 2000
             });
         }
-
     },
     //选择位置位置
     chooseLocation:function(e){
@@ -258,4 +256,33 @@ Page({
             });
         }
     },
+
+    //  审核 审核中
+    onAudit :function(e){
+        var that=this;
+        GMAPI.doSendMsg('api/verification/merchantSearch',{uid:wx.getStorageSync('strWXID').strUserID,id:e.currentTarget.dataset.id,m_product_id:that.data.goods_id}, 'POST',that.onMsgCallBack_Audit);
+    },
+    onMsgCallBack_Audit: function (jsonBack) {
+        var data=jsonBack.data;
+        if(data.code==200){
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+
+            setTimeout(function () {
+                wx.reLaunch({
+                    url: '/pages/my/my'
+                })
+            },2000)
+        }else{
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+        }
+
+    }
 })

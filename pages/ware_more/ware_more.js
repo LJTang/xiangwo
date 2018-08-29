@@ -1,6 +1,6 @@
 import GMAPI from "../../utils/api";
 var WxParse = require('../../wxParse/wxParse.js');
-var app = getApp()
+var app = getApp();
 
 Page({
   data: {
@@ -75,6 +75,7 @@ Page({
     GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.details.id,num:that.data.numb}, 'POST', that.jiarugo);
 
   },
+
   jiarugo: function (jsonBack){
     var that = this;
     console.log(jsonBack.data);
@@ -92,20 +93,24 @@ Page({
       }
   },
 
+    onShow:function(){
+      this.setData({
+          buy_box:false
+      })
+    },
   //  下单
-    placeAnOrder:function(){
+    placeAnOrder:function(e){
         var that = this;
         // GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.details.id,num:that.data.numb}, 'POST', that.onMsgCallBack_PlaceAnOrder);
         this.setData({
             share_box: false,
         });
         wx.navigateTo({
-            url:'/pages/confirm_order/confirm_order?numb='+that.data.numb
+            url:'/pages/confirm_order/confirm_order?id='+e.currentTarget.dataset.id+'&numb='+that.data.numb
         })
     },
     onMsgCallBack_PlaceAnOrder: function (jsonBack){
         var that = this;
-        console.log(jsonBack.data);
         var data=jsonBack.data;
         if(data.code==200){
             wx.navigateTo({

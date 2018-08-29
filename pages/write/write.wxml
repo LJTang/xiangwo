@@ -24,20 +24,23 @@
   </form>
   <view class="layout_LR_Box">
 
-    <block wx:for="{{goods}}" wx:key="{{index}}">
-      <view class="layout_LR">
-        <view class="layout_Left">{{item.m_store_name}}</view>
-        <view class="layout_Right" wx:if="{{item.m_status==1}}"><image src="/img/limg.png"></image></view>
-        <view class="layout_Right" wx:else>
-          <view class="import_Btn" bindtap="onToggle">立即输入</view></view>
-      </view>
-    </block>
-
     <view class="layout_LR" wx:if="{{goods.length==0}}">
-      <view class="layout_Left">改商家还未入驻</view>
+      <view class="layout_Left">该商家还未入驻</view>
       <view class="layout_Right">
         <view class="import_Btn" bindtap="onToggle">立即入驻</view></view>
     </view>
+    <view wx:else>
+      <block wx:for="{{goods}}" wx:key="{{index}}">
+        <view class="layout_LR">
+          <view class="layout_Left">{{item.m_store_name}}</view>
+          <view class="layout_Right" wx:if="{{item.m_status==1}}" bindtap="onAudit" data-id="{{item.id}}"><image src="/img/gou.png"></image></view>
+          <view class="layout_Right" wx:else bindtap="onAudit" data-id="{{item.id}}">
+            <!--<view class="import_Btn" bindtap="onToggle">该商家正在审核中</view></view>-->
+            <view class="import_Btn">该商家正在审核中</view></view>
+        </view>
+      </block>
+    </view>
+
   </view>
 </view>
 

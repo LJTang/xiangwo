@@ -21,6 +21,7 @@
     "pages/my/my",
     "pages/write/write",
     "pages/order_more/order_more",
+    "pages/sale_list/sale_list",
     "pages/my_order_more/my_order_more",
     "pages/contact_service/contact_service",
     "pages/modify/modify",

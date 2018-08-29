@@ -76,7 +76,7 @@
 }
 
 .layout_LR_Box{
-  width:92%;
+  /* width:92%; */
   margin:20rpx auto;
   font-size:28rpx;
   }
@@ -87,9 +87,16 @@
   border-bottom: 1rpx solid #d9d9d9;
   display: flex;
 }
-.layout_LR .layout_Left{width:500rpx;padding-left:20rpx;
+.layout_LR .layout_Left{
+  width:500rpx;
+  padding-left:20rpx;
+  margin-left:3%;
 }
-.layout_LR .layout_Right{width:210rpx;text-align: right;}
+.layout_LR .layout_Right{
+  width:210rpx;
+  text-align: right;
+  margin-right:20rpx;
+  }
 .layout_LR .layout_Right .import_Btn{
   width:180rpx;
   height:60rpx;

@@ -1,4 +1,4 @@
-.swiper-tab {
+/*.swiper-tab {
   width: 100%;
   text-align: center;
   height: 80rpx;
@@ -93,4 +93,151 @@
   border-radius: 3px;
   margin-top: 20rpx;
 }
+*/
+
+.swiper-tab {
+  width: 100%;
+  text-align: center;
+  height: 80rpx;
+  line-height: 80rpx;
+  background-color:#709EF4;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 22;
+}
+.swiper-tab-list {
+  font-size: 28rpx;
+  width: 25%;
+  color: #fff;
+}
+.on {
+  color: #fff;
+  border-bottom: 5px solid #fff;
+}
+.concent{
+  margin-top: 80rpx;
+}
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+.swiper-box view {
+  text-align: center;
+}
+.superior .list_box{
+  padding-bottom: 20rpx;
+}
+.superior .list_box image{
+  width: 94rpx;
+  height: 100rpx;
+  border: 1px solid #ddd;
+}
+.superior .list_box .right{
+  margin-left: 30rpx;
+  width: 54%;
+}
+.superior .list_box .name{
+  color: #333;
+  font-size: 32rpx;
+  padding-left: 8rpx;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.superior .list_box .time{
+  color: #999;
+  font-size: 24rpx;
+  padding-left: 8rpx;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 30rpx;
+}
+.superior .list{
+  position: relative;
+  padding:5% 3% 3% 3%;
+  border-bottom: 5px solid #f1f1f1;
+}
+.cancel{
+  width: 150rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  border: 1px solid #F47070;
+  color: #F47070;
+  text-align: center;
+  font-size: 24rpx;
+  border-radius: 3px;
+  margin-top: 20rpx;
+}
+.lower .list_box{
+  padding-bottom: 40rpx;
+  border-bottom: 1px solid #f1f1f1;
+}
+.lower .list_box image{
+  width: 94rpx;
+  height: 100rpx;
+  border: 1px solid #ddd;
+}
+.lower .list_box .right{
+  margin-left: 30rpx;
+  width: 54%;
+}
+.lower .list_box .name{
+  color: #333;
+  font-size: 32rpx;
+  padding-left: 8rpx;
+  display: block;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.lower .list_box .tel{
+  color: #999;
+  font-size: 24rpx;
+  padding-left: 8rpx;
+  display: block;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  margin-top: 28rpx;
+}
+.lower .map{
+  color: #999;
+  font-size: 28rpx;
+  position: absolute;
+  right: 3%;
+  top: 13%;
+}
+.lower .names{
+  color: #999;
+  font-size: 24rpx;
+  position: absolute;
+  right: 3%;
+  bottom: 47%;
+}
+.lower .list{
+  position: relative;
+  padding:5% 3% 3% 3%;
+  border-bottom: 5px solid #f1f1f1;
+}
+.lower .list .down{
+  padding-top: 3%;
+}
+.lower .list .down .price{
+  font-size: 28rpx;
+  color: #F47070;
+}
+.lower .list .down .time{
+  font-size: 28rpx;
+  color: #999;
+}
+
 

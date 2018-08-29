@@ -50,4 +50,65 @@ Page({
         }
 
     },
+    //收货
+    confirmReceipt:function (e) {
+        var order_id = e.currentTarget.dataset.id;
+        var that=this;
+        GMAPI.doSendMsg('api/Order/order_shouhuo',{uid:wx.getStorageSync('strWXID').strUserID,order_id:order_id},'POST',that.onMsgCallBack_Receipt);
+    },
+    onMsgCallBack_Receipt:function (jsonBack){
+        var data=jsonBack.data;
+        console.log(data);
+        if(data.code==200){
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+            this.data.all_Order=[];
+            GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:that.data.menuTapCurrent,type:1},'POST',that.onMsgCallBack_Order);
+        }else{
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+        }
+    },
+    //支付
+    orderPay:function (e) {
+        var order_id = e.currentTarget.dataset.id;
+        var that=this;
+        GMAPI.doSendMsg('api/Order/order_pay',{uid:wx.getStorageSync('strWXID').strUserID,order_id:661},'POST',that.onMsgCallBack_OrderPay);
+    },
+    onMsgCallBack_OrderPay:function (jsonBack){
+        var data=jsonBack.data;
+        console.log(jsonBack);
+        if(jsonBack!=''){
+            wx.requestPayment({
+                'timeStamp': data.timeStamp,
+                'nonceStr': data.nonceStr,
+                'package':data.package,
+                'signType': 'MD5',
+                'paySign': data.paySign,
+                'success':function(res){
+                    if(res.errMsg='requestPayment:ok'){
+
+                    }else{
+                    }
+                },
+                'fail':function(res){
+
+                },
+                'complete':function(res){
+                }
+            });
+        }else{
+            wx.showToast({
+                title:'请联系客服人员',
+                icon:'none',
+                duration: 2000
+            });
+        }
+    }
 })

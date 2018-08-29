@@ -18,14 +18,14 @@
         <text wx:else>未知</text>
       </view>
 
-      <view class='right' wx:if="{{order_D.order_status==0}}">去付款</view>
-      <view class='right' wx:elif="{{order_D.order_status==1}}">确认收货</view>
-      <view class='right' wx:elif="{{order_D.order_status==2}}">已发货</view>
-      <view class='right' wx:elif="{{order_D.order_status==3}}">已完成</view>
-      <view class='right' wx:elif="{{order_D.order_status==4}}">已完成</view>
-      <view class='right' wx:elif="{{order_D.order_status==5}}">已完成</view>
-      <view class='right' wx:elif="{{order_D.order_status==6}}">已关闭</view>
-      <view class='right' wx:else>未知</view>
+      <view class='right' wx:if="{{order_D.order_status==0}}" bindtap="orderPay" data-id="{{item.order_id}}">去付款</view>
+      <view class='right' wx:elif="{{order_D.order_status==1}}" bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
+      <view class='right bor_N' wx:elif="{{order_D.order_status==2}}">已发货</view>
+      <view class='right bor_N' wx:elif="{{order_D.order_status==3}}">已完成</view>
+      <view class='right bor_N' wx:elif="{{order_D.order_status==4}}">已完成</view>
+      <view class='right bor_N' wx:elif="{{order_D.order_status==5}}">已完成</view>
+      <view class='right bor_N' wx:elif="{{order_D.order_status==6}}">已关闭</view>
+      <view class='right bor_N' wx:else>未知</view>
     </view>
     <view class='list'>规格：<text>{{item.spec_name}}</text></view>
     <view class='list'>描述：<text>{{item.goods_desc}}</text></view>

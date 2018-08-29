@@ -196,3 +196,28 @@ picker-view-column view{
   white-space:nowrap;
   text-overflow:ellipsis;
 }
+.centerByContent{
+  height: auto;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+}
+.centerByContent .title{
+  margin:auto 0 auto 0;
+  width: 160rpx;
+  color: #7c7c7c;
+}
+.centerByContent .centeredContent{margin-left:20rpx;width:690rpx;}
+.centerByContent image{
+  margin:auto 0 auto 0;
+  width: 20rpx;
+  height:30rpx;
+  vertical-align:bottom;
+
+}
+
+.centerByContent .title image{
+  width:100rpx;
+  height:100rpx;
+}
+.centerByContent_Right{margin: auto;}

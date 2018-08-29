@@ -2,8 +2,16 @@ import GMAPI from "../../utils/api";
 
 Page({
   data: {
-    address_list:[]
+    address_list:[],
+      status:0,
   },
+    onLoad:function(option){
+      if(option.status==1){
+          this.setData({status:1})
+      }else{
+          this.setData({status:1})
+      }
+    },
     onShow:function(){
         var that=this;
         GMAPI.doSendMsg('api/user/userAddressList',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_Address);
@@ -43,8 +51,13 @@ Page({
         var that=this;
         var data=jsonBack.data;
         if(data.code==200){
-
-            GMAPI.doSendMsg('api/user/userAddressList',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_Address);
+            if( this.data.status==1){
+                wx.navigateBack({
+                    delta:1
+                })
+            }else{
+                GMAPI.doSendMsg('api/user/userAddressList',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_Address);
+            }
             wx.showToast({
                 title:data.msg,
                 icon:'none',
@@ -57,5 +70,5 @@ Page({
                 duration: 2000
             });
         }
-    },
+    }
 })

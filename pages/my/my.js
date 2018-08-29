@@ -14,10 +14,10 @@ Page({
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
 
     my_list:[
-      { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
-      { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order" },
+      // { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
+      { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order?status=100" },
       { limg: "../../img/my6.png", text: "联系客服", rimg: "../../img/myr.png", url: "/pages/contact_service/contact_service" },
-      { limg: "../../img/my6.png", text: "我的地址", rimg: "../../img/myr.png", url: "/pages/select_address/select_address" },
+      { limg: "../../img/my6.png", text: "我的地址", rimg: "../../img/myr.png", url: "/pages/select_address/select_address?status=0" },
 
     ],
     nav: [
@@ -75,9 +75,11 @@ Page({
     onShow:function(){
       var that=this;
       GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
+      // console.log(wx.getStorageSync('strWXID').strUserID)
     },
     onMsgCallBack_UserInfo:function (jsonBack){
         var data=jsonBack.data;
+        // console.log(jsonBack)
         var that=this;
         if(data.code==200){
             if(data.data.type==0){
@@ -182,24 +184,24 @@ Page({
                 wx.authorize({
                     scope: 'scope.writePhotosAlbum',
                     success: function (res) {
-                        var imgUrl ='/img/ewm.png';//图片地址
+                        var imgUrl ='https://xiao.guangzhoubaidu.com/uploads/qrcode/12341.png';//图片地址
                             wx.downloadFile({//下载文件资源到本地，客户端直接发起一个 HTTP GET 请求，返回文件的本地临时路径
                                 url: imgUrl,
                                 success: function (res) {
-                                    console.log(res);
+                                    // console.log(res);
                                     // 下载成功后再保存到本地
                                     wx.saveImageToPhotosAlbum({
                                         filePath: res.tempFilePath,//返回的临时文件路径，下载后的文件会存储到一个临时文件
                                         success: function(res){
                                             wx.showToast({
-                                                title:'成功',
+                                                title:'保存成功',
                                                 icon:'none',
                                                 duration: 2000
                                             });
                                         },
                                         fail(){
                                             wx.showToast({
-                                                title:'失败',
+                                                title:'保存失败',
                                                 icon:'none',
                                                 duration: 2000
                                             });

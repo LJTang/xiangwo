@@ -52,7 +52,8 @@
 </view>
 <view class='fixed_nav container'>
   <view class='left cf'><button open-type="contact" class="btn"><image class='fl' src='../../img/kefu.png'></image><text class='fl'>客服</text></button></view>
-  <view class='center' bindtap='jiaru'>加入购物车</view>
+  <!--<view class='center' bindtap='jiaru'>加入购物车</view>-->
+  <view class='center' style="background: #fff;"></view>
   <view class='right' bindtap='buy'>立即购买</view>
 </view>
 
@@ -80,6 +81,6 @@
         </view>
       <!--</block>-->
     </view>
-    <view class='bnt big_bnt' bindtap="placeAnOrder">确定</view>
+    <view class='bnt big_bnt' bindtap="placeAnOrder" data-id="{{details.id}}">确定</view>
   </view>
 </view>

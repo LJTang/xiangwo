@@ -15,7 +15,8 @@ Page({
     area: [
       { name: "共享产品" }, { name: "非共享产品" }
     ],
-      brochure:[]
+    brochure:[],
+    xwURL:''
   },
   setFilterPanel: function (e) { //展开筛选面板
     const d = this.data;
@@ -57,7 +58,7 @@ Page({
   },
     onShow:function(){
         var that=this;
-        GMAPI.doSendMsg('api/exhibition/index',{},'GET',that.onMsgCallBack_Train);
+        GMAPI.doSendMsg('api/exhibition/index',{type:1,share:''},'GET',that.onMsgCallBack_Train);
     },
     onMsgCallBack_Train:function (jsonBack){
         var data=jsonBack.data;
@@ -79,8 +80,6 @@ Page({
                     xwURL:jsonBack.data.Https
                 })
             }
-
-
         }else{
             wx.showToast({
                 title:data.msg,
@@ -90,4 +89,4 @@ Page({
         }
     }
 
-})
+});

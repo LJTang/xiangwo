@@ -14,32 +14,32 @@
 
   <view class='row_lists container db'>
     <!--<block wx:for="{{row_list}}" wx:key="{{index}}">-->
-      <navigator hover-class='none' url='{{item.url}}'>
+      <navigator hover-class='none' url='/pages/all_order/all_order?status=0'>
         <view>
           <image src='/img/my.png'></image>
           <view>待付款</view>
-          <text class='show'>{{info.stay_pay}}</text>
+          <text class='show' hidden="{{info.stay_pay==0}}">{{info.stay_pay}}</text>
         </view>
       </navigator>
-    <navigator hover-class='none' url='{{item.url}}'>
+    <navigator hover-class='none' url='/pages/all_order/all_order?status=1'>
       <view>
         <image src='/img/my2.png'></image>
         <view>待发货</view>
-        <text class='show'>{{info.fa_pay}}</text>
+        <text class='show' hidden="{{info.fa_pay==0}}">{{info.fa_pay}}</text>
       </view>
     </navigator>
-    <navigator hover-class='none' url='{{item.url}}'>
+    <navigator hover-class='none' url='/pages/all_order/all_order?status=2'>
       <view>
         <image src='/img/my3.png'></image>
         <view>待收货</view>
-        <text class='show'>{{info.fa_pay}}</text>
+        <text class='show' hidden="{{info.huo_pay==0}}">{{info.huo_pay}}</text>
       </view>
     </navigator>
-    <navigator hover-class='none' url='{{item.url}}'>
+    <navigator hover-class='none' url='/pages/all_order/all_order?status=100'>
       <view>
         <image src='/img/my4.png'></image>
         <view>售后</view>
-        <text class='show'>{{info.shou_pay}}</text>
+        <text class='show' hidden="{{info.shou_pay==0}}">{{info.shou_pay}}</text>
       </view>
     </navigator>
     <!--</block>-->
@@ -76,7 +76,6 @@
     </view>
   </view>
   <view class='row_list container db'>
-    <!--<block wx:for="{{row_lists}}" wx:key="">-->
       <navigator hover-class='none' url=''>
         <view class='price'>{{info.commission}}</view>
         <view class='text'>累计佣金</view>
@@ -89,7 +88,6 @@
       <view class='price'>{{info.commission_no}}</view>
       <view class='text'>未结算佣金</view>
     </navigator>
-    <!--</block>-->
   </view>
   <view class="my_list pb">
     <view class='first'>
@@ -133,7 +131,7 @@
       </view>
     </view>
 
-    <view class='ewm'><image src='../../img/ewm.png'></image></view>
+    <view class='ewm'><image src='https://xiao.guangzhoubaidu.com/uploads/qrcode/12341.png'></image></view>
     <view class='copy_box cf'>
       <!--<view class='conents fl'selectable='true' bindlongtap='copyBtn'>{{code_ids}}</view>-->
       <!--<view class='copy_bnt fl' bindtap='copyBtn'>复制邀请码</view>-->

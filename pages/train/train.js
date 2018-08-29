@@ -26,10 +26,14 @@ Page({
   },
     onLoad:function(){
         var that=this;
-        // GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
     },
     onShow:function(){
         var that=this;
+        this.setData({
+            cateindex:that.data.cateindex,
+            areaindex:that.data.areaindex
+        });
+
         GMAPI.doSendMsg('api/exhibition/index',{type:that.data.cateindex,share:that.data.areaindex},'GET',that.onMsgCallBack_Train);
     },
     onMsgCallBack_Train:function (jsonBack){
@@ -49,14 +53,11 @@ Page({
                     // console.log(list)
                     goods.push(list[i]);
                 }
-                console.log(goods)
                 this.setData({
                     article :goods,
                     xwURL:jsonBack.data.Https
                 })
             }
-
-
         }else{
             wx.showToast({
                 title:data.msg,
@@ -79,7 +80,6 @@ Page({
         showfilterindex: i,
       })
     }
-    console.log('显示第几个筛选类别：' + d.showfilterindex);
   },
   setCateIndex: function (e) { //分类一级索引
     const dataset = e.currentTarget.dataset;
@@ -88,7 +88,7 @@ Page({
       showfilter: false,
       showfilterindex: null
     });
-    console.log(dataset.cateindex)
+
       var that=this;
       GMAPI.doSendMsg('api/exhibition/index',{type:dataset.cateindex,share:that.data.areaindex},'GET',that.onMsgCallBack_Train);
   },

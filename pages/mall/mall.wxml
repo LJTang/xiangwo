@@ -46,7 +46,7 @@
 </view>
 
 <!--wx:if="{{!hasUserInfo && canIUse}}"-->
-<view class="popUp_Box" wx:if="{{popUp_Bool}}">
+<view class="popUp_Box" wx:if="{{!hasUserInfo && canIUse}}">
   <view class="shadow"></view>
   <view class="show_Layer authorized_Box">
     <view class="">

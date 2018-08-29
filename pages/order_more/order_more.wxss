@@ -58,3 +58,4 @@
 .list text{
   color: #666;
 }
+.list .bor_N{border-color:#fff;}

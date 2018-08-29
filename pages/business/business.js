@@ -3,44 +3,7 @@ Page({
   data: {
     height: 0,
     center: [],
-    markers: [
-      {
-        iconPath: "../../img/dwei.png",
-        id: 0,
-        latitude: 23.111380,
-        longitude: 113.403800,
-        width: 18,
-        height: 27,
-        callout: {
-          content: "广州市铁一中学 \n 距离12km" ,
-          color: "#ffffff",
-          fontSize: 12,
-          borderRadius: 7,
-          bgColor: "#000000",
-          textAlign:"center",
-          padding: 10,
-          display: 'BYCLICK',
-        }
-      },
-      {
-        iconPath: "../../img/dwei.png",
-        id: 1,
-        latitude: 23.110790,
-        longitude: 113.402010,
-        width: 18,
-        height: 27,
-        callout: {
-          content: "广州市铁一中学 \n 距离12km",
-          color: "#ffffff",
-          fontSize: 12,
-          borderRadius: 7,
-          bgColor: "#000000",
-          textAlign: "center",
-          padding: 10,
-          display: 'BYCLICK',
-        }
-      },
-    ],
+    markers:[],
     nav: [
       { img: "../../img/nav.png", url: "/pages/mall/mall", text: "商城", on: false  },
       { img: "../../img/nav1_1.png", url: "/pages/business/business", text: "商家", on: true },
@@ -59,7 +22,6 @@ Page({
     onMap: function () {
   },
     onLoad() {
-
         var that=this;
         const system = wx.getSystemInfoSync();
         this.setData({
@@ -81,6 +43,7 @@ Page({
             }
         });
       },
+
     onShow:function(){
         var that = this;
         this.setData({

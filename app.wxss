@@ -87,6 +87,7 @@ list-style: none;
   z-index: 999;
   height: 100rpx;
   line-height: 100rpx;
+  background:#fff;
 }
 .big_bnt{
   width: 100%;
