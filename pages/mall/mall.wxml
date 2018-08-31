@@ -3,28 +3,34 @@
   <view class="{{active==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">非共享商品</view>
 </view>
 <view class='pb'>
-  <view class='sp_list' hidden="{{active!='1'}}">
+  <view  hidden="{{active!='1'}}">
     <view class='container title'>
       <image src='../../img/left.png'></image>
       <view class='text'>共享商品</view>
       <image src='../../img/right.png'></image>
     </view>
-    <block wx:for="{{gx_list}}" wx:key="">
-      <navigator hover-class='none' id="{{item.id}}" url='/pages/wares_more/wares_more?id={{item.id}}'>
-        <image src="{{xwURL}}{{item.image}}"></image>
-        <view class='cf name'>
-          <text class='fl left'>{{item.title}}</text><text class='fr right'>免费</text>
-        </view> 
-        <view class='concent'>{{item.goods_desc}}</view>
-      </navigator>
-    </block>
+    <view class='sp_list'>
+
+      <block wx:for="{{gx_list}}" wx:key="">
+        <navigator hover-class='none' id="{{item.id}}" url='/pages/wares_more/wares_more?id={{item.id}}'>
+          <image src="{{xwURL}}{{item.image}}"></image>
+          <view class='cf name'>
+            <text class='fl left'>{{item.title}}</text><text class='fr right'>免费</text>
+          </view>
+          <view class='concent'>{{item.goods_desc}}</view>
+        </navigator>
+      </block>
+    </view>
   </view>
-  <view class='sp_list' hidden="{{active!='2'}}">
+
+
+  <view hidden="{{active!='2'}}">
     <view class='container title'>
       <image src='../../img/left.png'></image>
       <view class='text'>非共享商品</view>
       <image src='../../img/right.png'></image>
     </view>
+  <view class='sp_list'>
     <block wx:for="{{fgx_list}}" wx:key="{{index}}">
       <navigator hover-class='none' url='/pages/ware_more/ware_more?id={{item.id}}'>
         <image src="{{xwURL}}{{item.image}}"></image>
@@ -35,18 +41,20 @@
       </navigator>
     </block>
   </view>
+  </view>
 </view> 
-<view class='fix_nav container'>
-  <block wx:for="{{nav}}" wx:for-item="list" wx:key="">
-    <view class='fnav_list' bindtap="jump" data-url='{{list.url}}'>
-      <image src='{{list.img}}'></image>
-      <text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>
-    </view>
-  </block>
-</view>
+<!--<view class='fix_nav container'>-->
+  <!--<block wx:for="{{nav}}" wx:for-item="list" wx:key="">-->
+    <!--<view class='fnav_list' bindtap="jump" data-url='{{list.url}}'>-->
+      <!--<image src='{{list.img}}'></image>-->
+      <!--<text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>-->
+    <!--</view>-->
+  <!--</block>-->
+<!--</view>-->
 
 <!--wx:if="{{!hasUserInfo && canIUse}}"-->
-<view class="popUp_Box" wx:if="{{!hasUserInfo && canIUse}}">
+<!--<view class="popUp_Box" wx:if="{{!hasUserInfo && canIUse}}">-->
+<view class="popUp_Box" wx:if="{{hasUserInfo}}">
   <view class="shadow"></view>
   <view class="show_Layer authorized_Box">
     <view class="">

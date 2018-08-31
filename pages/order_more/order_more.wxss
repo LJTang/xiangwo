@@ -1,3 +1,9 @@
+.centeredContent{
+  border-bottom: 1px solid #f1f1f1;
+}
+.centeredContent view{
+  margin-bottom:10rpx;
+}
 .top{
   padding: 39rpx 0;
   border-bottom: 1px solid #f1f1f1;
@@ -59,3 +65,66 @@
   color: #666;
 }
 .list .bor_N{border-color:#fff;}
+
+
+
+.leave{
+  height: 100rpx;
+  line-height: 100rpx;
+  padding: 0 3%;
+  border-top: 1px solid #f1f1f1;
+}
+.leave .left{
+  font-size: 28rpx;
+  color:#999;
+}
+.leave .input{
+  width: 80%;
+  margin-left: 20rpx;
+}
+.leave .input input{
+  width: 100%;
+  font-size: 28rpx;
+  color: #999;
+  height: 100rpx;
+  line-height: 100rpx;
+}
+.leave .price{
+  font-size: 28rpx;
+}
+.leave .myr{
+  width: 14rpx;
+  height: 28rpx;
+  margin-top: 40rpx;
+}
+.cart-footer{
+  height: 100rpx;
+  line-height: 100rpx;
+  width: 100%;
+  margin-top: 100rpx;
+}
+.cart-footer .order-icon{
+  width: 30%;
+  height: 100rpx;
+  line-height: 100rpx;
+  text-align: center;
+  background-color: #F46366;
+  font-size: 28rpx;
+  color: #fff;
+}
+.cart-footer .cart-toatl-price{
+  font-size: 28rpx;
+  width: 70%;
+  border-top: 1px solid #ddd;
+  text-align: right;
+
+}
+.cart-footer .cart-toatl-price text{
+  color: #F46366;
+  padding-right: 30rpx;
+}
+
+.h10{
+  height:10rpx;
+  background:#f1f1f1;
+}

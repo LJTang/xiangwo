@@ -4,6 +4,7 @@ var app = getApp();
 Page({
   data: {
     active: 1,
+      pid: '',
     xwURL:'',
     gx_list:[],
     fgx_list: [],
@@ -17,7 +18,7 @@ Page({
       userInfo: {},
       hasUserInfo: false,
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      popUp_Bool:(wx.getStorageSync('getUserInfo')==''?true:false)
+      popUp_Bool:true
     
   },
   //tab
@@ -34,43 +35,81 @@ Page({
   // 接口
   onLoad: function (option) {
     var that = this;
-      if(option.pid==undefined){}else{
-          GMAPI.doSendMsg('api/verification/savePid',{savePid:option.pid}, 'POST');
-      }
-      if (app.globalData.userInfo) {
+      if(option.pid==undefined){
           this.setData({
-              userInfo: app.globalData.userInfo,
-              hasUserInfo: true
-          })
-      } else if (this.data.canIUse) {
-          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-          // 所以此处加入 callback 以防止这种情况
-          app.userInfoReadyCallback = res =>{
-              // console.log(app.globalData.userInfo)
-              app.globalData.userInfo=res.userInfo;
-              this.setData({
-                  userInfo: res.userInfo,
-                  hasUserInfo: true
-              })
-          }
-      } else {
-          // 在没有 open-type=getUserInfo 版本的兼容处理
-          wx.getUserInfo({
-              success: res => {
-                  app.globalData.userInfo = res.userInfo;
-                  this.setData({
-                      userInfo: res.userInfo,
-                      hasUserInfo: true
-                  })
-              }
-          })
+              pid: ''
+          });
+      }else{
+          this.setData({
+              pid: option.pid
+          });
+          GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_P);
       }
+
+      // if (app.globalData.userInfo) {
+      //     this.setData({
+      //         userInfo: app.globalData.userInfo,
+      //         hasUserInfo: true
+      //     })
+      // } else if (this.data.canIUse) {
+      //     // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      //     // 所以此处加入 callback 以防止这种情况
+      //     app.userInfoReadyCallback = res =>{
+      //         // console.log(app.globalData.userInfo)
+      //         app.globalData.userInfo=res.userInfo;
+      //         this.setData({
+      //             userInfo: res.userInfo,
+      //             hasUserInfo: true
+      //         })
+      //     }
+      // } else {
+      //     // 在没有 open-type=getUserInfo 版本的兼容处理
+      //     wx.getUserInfo({
+      //         success: res => {
+      //             app.globalData.userInfo = res.userInfo;
+      //             this.setData({
+      //                 userInfo: res.userInfo,
+      //                 hasUserInfo: true
+      //             })
+      //         }
+      //     })
+      // }
+
+
+      wx.getSetting({
+          success: res => {
+              if (res.authSetting['scope.userInfo']){
+                  // 已经授权，可以直接调用 getUserInfo 获取头像昵称，不会弹框
+                  wx.getUserInfo({
+                      success: res => {
+                          // 可以将 res 发送给后台解码出 unionId
+                          // this.globalData.userInfo = res.userInfo;
+                          that.setData({
+                              userInfo:res.userInfo,
+                              hasUserInfo:false
+                          });
+
+                          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+                          // 所以此处加入 callback 以防止这种情况
+                          if (this.userInfoReadyCallback) {
+                              this.userInfoReadyCallback(res)
+
+                          }
+                      }
+                  })
+              }else{
+                  that.setData({
+                      hasUserInfo:true
+                  });
+              }
+          }
+      })
   },
     onShow:function(){
         var that = this;
         this.setData({
             popUp_Bool:(wx.getStorageSync('getUserInfo')==''?true:false)
-        })
+        });
         GMAPI.doSendMsg('api/Goods/goods_list',{type:that.data.active}, 'POST', that.onMsgCallBack_Home);
     },
 
@@ -128,7 +167,7 @@ Page({
                 my_UserInfo:false,
                 imgURL:e.detail.userInfo.avatarUrl,
                 userInfo: e.detail.userInfo,
-                hasUserInfo: true
+                hasUserInfo: false
             });
             wx.login({
                 success: res => {
@@ -141,19 +180,22 @@ Page({
             });
 
         }else{
+
             this.setData({
-                popUp_Bool:false
+                popUp_Bool:false,
+                hasUserInfo: true
             });
         }
     },
     onMsgCallBack:function (jsonBack){
+      var that=this;
         var strData=jsonBack.data;
-
         if(jsonBack.data.code==200){
             wx.setStorage({
                 key: 'strWXID',
                 data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid}
             });
+            GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
         }else{
             wx.showToast({
                 title:jsonBack.data.msg,
@@ -162,6 +204,7 @@ Page({
             });
         }
     },
+    onMsgCallBack_P:function (jsonBack){},
     popClose:function () {
         this.setData({
             canIUse:false,

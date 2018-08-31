@@ -7,10 +7,10 @@
 </navigator>
 <navigator hover-class='none' url='/pages/select_address/select_address?status=1' wx:else>
 <view class="centerByContent">
-  <!--<view class="title">{{data.addr.username}},{{data.addr.phone}}</view>-->
+
   <view class="centeredContent">
     <view style="font-size:32rpx;">{{data.addr.username}},{{data.addr.phone}}</view>
-    <view style="font-size:30rpx;color:#999;">{{data.addr.province_value}}{{data.addr.city_value}}{{data.addr.address_value}}</view>
+    <view style="font-size:28rpx;color:#999;">{{data.addr.province_value==''?'':data.addr.province_value+','}}{{data.addr.city_name==''?'':data.addr.city_name+','}}{{data.addr.district_name==''?'':data.addr.district_name+','}}{{data.addr.address_value}}</view>
   </view>
   <view class="display_F"><image src="../../img/myr.png" mode=""></image></view>
 </view>
@@ -22,6 +22,7 @@
     <view class='right fl'>
       <view class='top fl'>
         <text class="cart-pro-name omit">{{data.goods.title}}</text>
+        <text class="omit" style="font-size:28rpx;color:#999;">{{data.goods.goods_spc}}</text>
       </view>
       <view class='down fr'>
         <text class="cart-pro-price">￥{{data.goods.price}}</text>

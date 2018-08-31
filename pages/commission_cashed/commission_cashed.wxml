@@ -7,9 +7,9 @@
     <view class='title'>提现金额</view>
     <view class='input cf'>
       <text class='fl'>￥</text>
-      <input class='fl' type='number'></input>
+      <input class='fl' type='number' placeholder="请输入提现的金额" bindinput='getFocus'/>
     </view>
-    <view class='text'>当前可提现金额<text>299.00</text>元</view>
+    <view class='text'>当前可提现金额<text>{{money}}</text>元</view>
   </view>
-  <navigator hover-class='none' class='big_bnt'>下一步</navigator>
+  <view class='big_bnt' bindtap="onWithdrawDeposit">下一步</view>
 </view>

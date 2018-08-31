@@ -296,18 +296,17 @@ Page({
     onMsgCallBack_Register:function (jsonBack){
         var data=jsonBack.data;
         if(data.code==200){
-            wx.setStorage({
-                key: 'xiangwo',
-                data:true
-            });
+
             wx.showToast({
                 title:data.msg,
                 icon:'none',
                 duration: 2000
             });
-            wx.navigateBack({
-                delta: 1
-            })
+            setTimeout(function (){
+                wx.reLaunch({
+                    url: '/pages/mall/mall'
+                });
+            },2000);
         }else{
             wx.showToast({
                 title:data.msg,
@@ -316,4 +315,4 @@ Page({
             });
         }
     }
-})
+});

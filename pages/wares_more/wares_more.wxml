@@ -10,10 +10,10 @@
     <text class='state'>{{details.goods_cat==1?'免费':details.price}}</text>
     <text class="mat10R">{{details.title}}</text>
   </view>
-  <view class='cf fr header_r' bindtap='open_share'>
-    <image class='fl' src='../../img/fenx.png'></image>
-    <text class='fl'>分享</text>
-  </view>
+  <!--<view class='cf fr header_r' bindtap='open_share'>-->
+    <!--<image class='fl' src='../../img/fenx.png'></image>-->
+    <!--<text class='fl'>分享</text>-->
+  <!--</view>-->
 </view>
 <view class='share container' wx:if="{{share_box}}">
   <view class='mask' bindtap="down_share"></view>
@@ -50,4 +50,17 @@
 </view>
 <view class='fixed_nav'>
   <navigator hover-class='none' url='/pages/write/write?id={{details.id}}' class='free'>免费领取</navigator>
+</view>
+
+<view class="popUp_Box" wx:if="{{hasUserInfo}}">
+  <view class="shadow"></view>
+  <view class="show_Layer authorized_Box">
+    <view class="">
+      <view class="authorized_Describe">授权</view>
+      <view class="authorized_Btn">
+        <view class="btn_Cancel" bindtap="popClose">取消</view>
+        <view class="btn_OK"><button open-type="getUserInfo" bindgetuserinfo="getUserInfo">确定</button></view>
+      </view>
+    </view>
+  </view>
 </view>

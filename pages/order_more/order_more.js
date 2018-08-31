@@ -1,6 +1,6 @@
 import GMAPI from "../../utils/api";
 
-var app = getApp()
+var app = getApp();
 Page({
   data: {
     order_id:'',
@@ -52,21 +52,19 @@ Page({
     },
     //收货
     confirmReceipt:function (e) {
-        var order_id = e.currentTarget.dataset.id;
         var that=this;
-        GMAPI.doSendMsg('api/Order/order_shouhuo',{uid:wx.getStorageSync('strWXID').strUserID,order_id:order_id},'POST',that.onMsgCallBack_Receipt);
+        GMAPI.doSendMsg('api/Order/order_shouhuo',{uid:wx.getStorageSync('strWXID').strUserID,order_id:that.data.order_D.order_id},'POST',that.onMsgCallBack_Receipt);
     },
     onMsgCallBack_Receipt:function (jsonBack){
+      let that=this;
         var data=jsonBack.data;
-        console.log(data);
         if(data.code==200){
             wx.showToast({
                 title:data.msg,
                 icon:'none',
                 duration: 2000
             });
-            this.data.all_Order=[];
-            GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:that.data.menuTapCurrent,type:1},'POST',that.onMsgCallBack_Order);
+            GMAPI.doSendMsg('api/Order/order_detail',{uid:wx.getStorageSync('strWXID').strUserID,order_id:that.data.order_id},'POST',that.onMsgCallBack_Order_D);
         }else{
             wx.showToast({
                 title:data.msg,
@@ -77,9 +75,8 @@ Page({
     },
     //支付
     orderPay:function (e) {
-        var order_id = e.currentTarget.dataset.id;
         var that=this;
-        GMAPI.doSendMsg('api/Order/order_pay',{uid:wx.getStorageSync('strWXID').strUserID,order_id:661},'POST',that.onMsgCallBack_OrderPay);
+        GMAPI.doSendMsg('api/Order/order_pay',{uid:wx.getStorageSync('strWXID').strUserID,order_id:that.data.order_D.order_id},'POST',that.onMsgCallBack_OrderPay);
     },
     onMsgCallBack_OrderPay:function (jsonBack){
         var data=jsonBack.data;

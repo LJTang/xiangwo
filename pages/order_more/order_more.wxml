@@ -1,4 +1,9 @@
 <view class='p3'>
+  <view class="centeredContent">
+    <view style="font-size:32rpx;">{{order_D.consignee}},{{order_D.mobile}}</view>
+    <view style="font-size:28rpx;color:#999;margin-bottom:30rpx;">{{order_D.province==''?'':order_D.province+','}}{{order_D.city==''?'':order_D.city+','}}{{order_D.district==''?'':order_D.district+','}}{{order_D.address}}</view>
+  </view>
+
   <block wx:for-items="{{goods}}" wx:key="{{index}}">
     <view class='top cf'>
       <image class='fl' src='{{wxURL}}{{item.goods_img}}'></image>
@@ -6,29 +11,52 @@
         <view class='name'>{{item.goods_name}}</view><view class='price'>￥{{item.goods_price}}</view>
       </view>
     </view>
-    <view class='list'>
-      <view class='left'>订单状态：
-        <text wx:if="{{order_D.order_status==0}}">待付款</text>
-        <text wx:elif="{{order_D.order_status==1}}">待收货</text>
-        <text wx:elif="{{order_D.order_status==2}}">已发货</text>
-        <text wx:elif="{{order_D.order_status==3}}">已完成</text>
-        <text wx:elif="{{order_D.order_status==4}}">已完成</text>
-        <text wx:elif="{{order_D.order_status==5}}">已完成</text>
-        <text wx:elif="{{order_D.order_status==6}}">已关闭</text>
-        <text wx:else>未知</text>
-      </view>
+    <!--<view class='list'>-->
+      <!--<view class='left'>订单状态：-->
+        <!--<text wx:if="{{order_D.order_status==0}}">待付款</text>-->
+        <!--<text wx:elif="{{order_D.order_status==1}}">待收货</text>-->
+        <!--<text wx:elif="{{order_D.order_status==2}}">已发货</text>-->
+        <!--<text wx:elif="{{order_D.order_status==3}}">已完成</text>-->
+        <!--<text wx:elif="{{order_D.order_status==4}}">已完成</text>-->
+        <!--<text wx:elif="{{order_D.order_status==5}}">已完成</text>-->
+        <!--<text wx:elif="{{order_D.order_status==6}}">已关闭</text>-->
+        <!--<text wx:else>未知</text>-->
+      <!--</view>-->
 
-      <view class='right' wx:if="{{order_D.order_status==0}}" bindtap="orderPay" data-id="{{item.order_id}}">去付款</view>
-      <view class='right' wx:elif="{{order_D.order_status==1}}" bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
-      <view class='right bor_N' wx:elif="{{order_D.order_status==2}}">已发货</view>
-      <view class='right bor_N' wx:elif="{{order_D.order_status==3}}">已完成</view>
-      <view class='right bor_N' wx:elif="{{order_D.order_status==4}}">已完成</view>
-      <view class='right bor_N' wx:elif="{{order_D.order_status==5}}">已完成</view>
-      <view class='right bor_N' wx:elif="{{order_D.order_status==6}}">已关闭</view>
-      <view class='right bor_N' wx:else>未知</view>
-    </view>
+      <!--<view class='right' wx:if="{{order_D.order_status==0}}" bindtap="orderPay" data-id="{{item.order_id}}">去付款</view>-->
+      <!--<view class='right' wx:elif="{{order_D.order_status==1}}" bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>-->
+      <!--<view class='right bor_N' wx:elif="{{order_D.order_status==2}}">已发货</view>-->
+      <!--<view class='right bor_N' wx:elif="{{order_D.order_status==3}}">已完成</view>-->
+      <!--<view class='right bor_N' wx:elif="{{order_D.order_status==4}}">已完成</view>-->
+      <!--<view class='right bor_N' wx:elif="{{order_D.order_status==5}}">已完成</view>-->
+      <!--<view class='right bor_N' wx:elif="{{order_D.order_status==6}}">已关闭</view>-->
+      <!--<view class='right bor_N' wx:else>未知</view>-->
+    <!--</view>-->
     <view class='list'>规格：<text>{{item.spec_name}}</text></view>
     <view class='list'>描述：<text>{{item.goods_desc}}</text></view>
     <view class='list'>实付款：<text>￥{{item.final_price}}</text></view>
+    <view class="h10"></view>
   </block>
+
+  <view class='list' style="margin-top:40rpx;border:none;">
+    <view class='left'>订单状态：
+      <text wx:if="{{order_D.order_status==0}}">待付款</text>
+      <text wx:elif="{{order_D.order_status==1}}">待收货</text>
+      <text wx:elif="{{order_D.order_status==2}}">已发货</text>
+      <text wx:elif="{{order_D.order_status==3}}">已完成</text>
+      <text wx:elif="{{order_D.order_status==4}}">已完成</text>
+      <text wx:elif="{{order_D.order_status==5}}">已完成</text>
+      <text wx:elif="{{order_D.order_status==6}}">已关闭</text>
+      <text wx:else>未知</text>
+    </view>
+
+    <view class='right' wx:if="{{order_D.order_status==0}}" bindtap="orderPay">去付款</view>
+    <view class='right' wx:elif="{{order_D.order_status==1}}" bindtap="confirmReceipt">确认收货</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==2}}">已发货</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==3}}">已完成</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==4}}">已完成</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==5}}">已完成</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==6}}">已关闭</view>
+    <view class='right bor_N' wx:else>未知</view>
+  </view>
 </view>

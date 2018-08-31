@@ -28,6 +28,7 @@
     "pages/commission/commission",
     "pages/commission_cashed/commission_cashed",
     "pages/my_commission/my_commission",
+    "pages/cart_confirm/cart_confirm",
     "pages/generalize/generalize"
   ],
   "window":{
@@ -35,5 +36,34 @@
     "navigationBarBackgroundColor": "#709EF4",
     "navigationBarTitleText": "享沃科技",
     "navigationBarTextStyle":"#fff"
+  },
+  "tabBar": {
+    "color": "#6e6d6b",
+    "selectedColor": "#709EF4",
+    "borderStyle": "#999",
+    "backgroundColor": "#fff",
+    "box-shadow":"0 0 6px 0",
+    "list": [{
+      "pagePath": "pages/mall/mall",
+      "iconPath": "img/nav.png",
+      "selectedIconPath": "img/nav_1.png",
+      "text": "商城"
+    },{
+      "pagePath": "pages/business/business",
+      "iconPath": "img/nav1.png",
+      "selectedIconPath": "img/nav1_1.png",
+      "text": "商家"
+    }, {
+      "pagePath": "pages/login/login",
+      "iconPath": "img/nav2.png",
+      "selectedIconPath": "img/nav2_1.png",
+      "text": "发布"
+    },
+      {
+        "pagePath": "pages/my/my",
+        "iconPath": "img/nav3.png",
+        "selectedIconPath": "img/nav3_1.png",
+        "text": "我的"
+      }]
   }
 }

@@ -68,7 +68,7 @@ Page({
     },
     onMsgCallBack_Receipt:function (jsonBack){
         var data=jsonBack.data;
-        console.log(data);
+        let that=this;
         if(data.code==200){
             wx.showToast({
                 title:data.msg,
@@ -89,7 +89,7 @@ Page({
     orderPay:function (e) {
         var order_id = e.currentTarget.dataset.id;
         var that=this;
-        GMAPI.doSendMsg('api/Order/order_pay',{uid:wx.getStorageSync('strWXID').strUserID,order_id:661},'POST',that.onMsgCallBack_OrderPay);
+        GMAPI.doSendMsg('api/Order/order_pay',{uid:wx.getStorageSync('strWXID').strUserID,order_id:order_id},'POST',that.onMsgCallBack_OrderPay);
     },
     onMsgCallBack_OrderPay:function (jsonBack){
         var data=jsonBack.data;

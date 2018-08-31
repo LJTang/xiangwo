@@ -11,13 +11,10 @@ Page({
       { id: 2, title: '体重秤', concent: "规格和描述，免费测量体重机，可放在商城或者大型购物广场内。【高1.2米】", image: '../../img/gouwu.png', num: 1, price: 100, selected: false },
       { id: 3, title: '体重秤', concent: "规格和描述，免费测量体重机，可放在商城或者大型购物广场内。【高1.2米】", image: '../../img/gouwu.png', num: 1, price: 100, selected: false }
     ],
-    imgURL:app.data.imgURL
-  },
-  onShow() {
-    this.setData({
-      hasList: true,
-    });
-    this.getTotalPrice();
+    imgURL:app.data.imgURL,
+    xwURL:'',
+      selectedAllStatus:true,
+      cart_arr:''
   },
   /**
    * 当前商品选中事件
@@ -103,33 +100,24 @@ Page({
       })
     }
   },
-  /**
-   * 删除购物车当前商品
-   */
-  deleteList(e) {
-    var id = e.currentTarget.dataset.id
-    this.setData({
-      key: e.currentTarget.dataset.index,
-    })
-
-    //请求
-    var that = this;
-    GMAPI.doSendMsg('clear_shopping', {shopping_id:id}, 'POST', that.onMsgCallBack_Home2);
-  },
 
   /**
    * 绑定加数量事件
    */
   addCount(e) {
     const index = e.currentTarget.dataset.index;
+    const id = e.currentTarget.dataset.id;
+    let that=this;
     let carts = this.data.carts;
-    let num = carts[index].num;
+    let num = carts[index].goods_num;
     num = num + 1;
-    carts[index].num = num;
+    carts[index].goods_num = num;
     this.setData({
       carts: carts
     });
     this.getTotalPrice();
+
+      GMAPI.doSendMsg('api/Order/cart_num' ,{uid:wx.getStorageSync('strWXID').strUserID,goods_id:id,num:num}, 'POST', that.onMsgCallBack_Cart);
   },
 
   /**
@@ -137,17 +125,20 @@ Page({
    */
   minusCount(e) {
     const index = e.currentTarget.dataset.index;
+      const id = e.currentTarget.dataset.id;
+      let that=this;
     let carts = this.data.carts;
-    let num = carts[index].num;
+    let num = carts[index].goods_num;
     if(num <= 1){
       return false;
     }
     num = num - 1;
-    carts[index].num = num;
+    carts[index].goods_num = num;
     this.setData({
       carts: carts
     });
     this.getTotalPrice();
+      GMAPI.doSendMsg('api/Order/cart_num' ,{uid:wx.getStorageSync('strWXID').strUserID,goods_id:id,num:num}, 'POST', that.onMsgCallBack_Cart);
   },
 
   /**
@@ -158,31 +149,119 @@ Page({
     let total = 0;
     for(let i = 0; i<carts.length; i++) {         // 循环列表得到每个数据
       if(carts[i].selected) {                     // 判断选中才会计算价格
-        total += carts[i].num * carts[i].price;   // 所有价格加起来
+        total += carts[i].goods_num * carts[i].goods_price;   // 所有价格加起来
       }
     }
     this.setData({                                // 最后赋值到data中渲染到页面
       carts: carts,
-      totalPrice: total.toFixed(2)
+      totalPrice: Math.floor(total * 100) / 100
     });
   },
   onLoad: function (option) {
     var that = this;
-    // GMAPI.doSendMsg('see_shopping' , '', 'GET', that.onMsgCallBack_Home);
+    // GMAPI.doSendMsg('api/Order/cart_list' ,{uid:wx.getStorageSync('strWXID').strUserID}, 'POST', that.onMsgCallBack_Cart);
   },
-  onMsgCallBack_Home: function (jsonBack) {
+    onShow() {
+        this.setData({
+            hasList: true,
+        });
+
+        var that = this;
+        GMAPI.doSendMsg('api/Order/cart_list' ,{uid:wx.getStorageSync('strWXID').strUserID}, 'POST', that.onMsgCallBack_Cart);
+    },
+    onMsgCallBack_Cart: function (jsonBack) {
     var that = this;
     console.log(jsonBack.data)
-    // var data = JSON.parse(jsonBack.data);
     var data = jsonBack.data;
-    if(data.code==1){
+    if(data.code==200){
       that.setData({
-        carts: data.data
-      })
-    } else if (data.code == 2){
+        carts: data.data,
+        wxURL: data.url,
+          hasList: true
+      });
+        this.getTotalPrice();
+    }else{
       that.setData({
         hasList: false
-      })
+      });
+        wx.showToast({
+            title: jsonBack.data.msg,
+            icon: 'none',
+            duration:2000
+        });
     }
-  }
-})
+  },
+    /**
+     * 删除购物车当前商品
+     */
+    onDelete(e) {
+        var that = this;
+        GMAPI.doSendMsg('api/Order/cart_del' ,{uid:wx.getStorageSync('strWXID').strUserID,goods_id:e.currentTarget.dataset.id}, 'POST', that.onMsgCallBack_Delete);
+    },
+    onMsgCallBack_Delete: function (jsonBack) {
+        var that = this;
+        var data = jsonBack.data;
+        if(data.code==200){
+            wx.showToast({
+                title: jsonBack.data.msg,
+                icon: 'none',
+                duration:2000
+            });
+
+            GMAPI.doSendMsg('api/Order/cart_list' ,{uid:wx.getStorageSync('strWXID').strUserID}, 'POST', that.onMsgCallBack_Cart);
+
+        }else{
+            wx.showToast({
+                title: jsonBack.data.msg,
+                icon: 'none',
+                duration:2000
+            });
+        }
+    },
+
+    /**
+     * 结算
+     * **/
+    onShoppingCart:function (){
+      let that=this;
+        let carts = this.data.carts;
+        let total = 0;
+        let numb = 0;
+        let cart_arr ='';
+        for(let i = 0; i<carts.length; i++) {
+            if(carts[i].selected) {
+                total += carts[i].goods_num * carts[i].goods_price;
+                numb++;
+                cart_arr=carts[i].goods_id+','+cart_arr
+            }
+        }
+        this.setData({
+            cart_arr:cart_arr
+        });
+        if(numb==0){
+            wx.showToast({
+                title:'请选择购买的商品',
+                icon: 'none',
+                duration:2000
+            });
+        }else{
+            GMAPI.doSendMsg('api/Order/cart_confirm',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:cart_arr}, 'POST', that.onMsgCallBack_ShoppingCart);
+        }
+  },
+    onMsgCallBack_ShoppingCart: function (jsonBack) {
+        var that = this;
+        var data = jsonBack.data;
+        if(data.code==200){
+          wx.navigateTo({
+              url:'/pages/cart_confirm/cart_confirm?id='+that.data.cart_arr
+          })
+
+        }else{
+            wx.showToast({
+                title: jsonBack.data.msg,
+                icon: 'none',
+                duration:2000
+            });
+        }
+    },
+});

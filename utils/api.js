@@ -81,6 +81,8 @@ function formatTime(number,format) {
     }
     return format;
 }
+
+// Math.floor(15.7784514000 * 100) / 100
 module.exports = {
     doSendMsg: doSendMsg,
     checkPhone: checkPhone,

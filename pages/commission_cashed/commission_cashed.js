@@ -1,11 +1,14 @@
 // pages/commission_cashed/commission_cashed.js
+import GMAPI from "../../utils/api";
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-  
+      money:0,
+      total:0
   },
 
   /**
@@ -15,6 +18,9 @@ Page({
     wx.setNavigationBarTitle({
       title: '佣金提现'
     });
+    this.setData({
+        money:options.id
+    })
   },
 
   /**
@@ -58,11 +64,46 @@ Page({
   onReachBottom: function () {
   
   },
+    getFocus: function (e) {
+        this.setData({
+            total: e.detail.value
+        });
+    },
+    onWithdrawDeposit :function (e) {
+    var that=this;
+    if(that.data.money<that.data.total){
+        wx.showToast({
+            title:'输入的提现金额不能大于可提现金额',
+            icon:'none',
+            duration: 2000
+        });
+    }else if(that.data.total==0) {
+        wx.showToast({
+            title:'输入的提现金额不能大于可提现金额',
+            icon:'none',
+            duration: 2000
+        });
+    }else{
+        GMAPI.doSendMsg('api/cash/cashAdd',{uid:wx.getStorageSync('strWXID').strUserID, cash_value:that.data.total}, 'POST',that.onMsgCallBack_WithdrawDeposit);
+    }
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
-  }
-})
+    },
+    onMsgCallBack_WithdrawDeposit:function (jsonBack){
+        var data=jsonBack.data;
+        // console.log(jsonBack)
+        var that=this;
+        if(data.code==200){
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+        }else{
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+        }
+    },
+});

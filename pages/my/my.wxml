@@ -4,7 +4,7 @@
   <view class="tops">
     <image class='back' src='../../img/myback.png'></image>
     <view class="userinfo">
-      <button class='button-hover' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
+      <button class='button-hover' wx:if="{{hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
       <block wx:else>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -57,10 +57,11 @@
 
 <view hidden="{{business_View}}">
 <!--<view hidden="true">-->
+
   <view class="top">
     <image class='back' src='../../img/myback.png'></image>
     <view class="userinfo">
-      <button class='button-hover' wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
+      <button class='button-hover' wx:if="{{hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
       <block wx:else>
         <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
         <text class="userinfo-nickname">{{userInfo.nickName}}</text>
@@ -80,7 +81,7 @@
         <view class='price'>{{info.commission}}</view>
         <view class='text'>累计佣金</view>
       </navigator>
-    <navigator hover-class='none' url='/pages/my_commission/my_commission'>
+    <navigator hover-class='none' url='/pages/my_commission/my_commission?id={{info.commission}}'>
       <view class='price'>{{info.commission}}</view>
       <view class='text'>可提现佣金</view>
     </navigator>
@@ -110,15 +111,14 @@
   </view>
 </view>
 
-<view class='fix_nav container'>
-  <block wx:for="{{nav}}" wx:for-item="list" wx:key="">
-    <view class='fnav_list' bindtap="jump" data-url='{{list.url}}'>
-      <image src='{{list.img}}'></image>
-      <text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>
-    </view>
-  </block>
-
-</view>
+<!--<view class='fix_nav container'>-->
+  <!--<block wx:for="{{nav}}" wx:for-item="list" wx:key="">-->
+    <!--<view class='fnav_list' bindtap="jump" data-url='{{list.url}}'>-->
+      <!--<image src='{{list.img}}'></image>-->
+      <!--<text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>-->
+    <!--</view>-->
+  <!--</block>-->
+<!--</view>-->
 
 <view class='spread container' wx:if="{{spread_box}}">
   <view class='mask' bindtap="down_spread"></view>
@@ -139,3 +139,19 @@
     <view class='hold' bindtap="download">保存图片</view>
   </view>
 </view>
+
+
+<view class="popUp_Box" wx:if="{{hasUserInfo}}">
+  <view class="shadow"></view>
+  <view class="show_Layer authorized_Box">
+    <view class="">
+      <view class="authorized_Describe">授权</view>
+      <view class="authorized_Btn">
+        <view class="btn_Cancel" bindtap="popClose">取消</view>
+        <view class="btn_OK"><button open-type="getUserInfo" bindgetuserinfo="getUserInfo">确定</button></view>
+      </view>
+    </view>
+  </view>
+</view>
+
+

@@ -97,6 +97,8 @@ background:#fff;
   color: #666;
   margin-left: 10rpx;
   line-height:100rpx;
+  display:inline-block;
+  vertical-align:top;
 }
 .fixed_nav .center,.fixed_nav .right{
   width: 40%;

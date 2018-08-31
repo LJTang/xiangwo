@@ -14,12 +14,15 @@ Page({
     interval: 5000,
     duration: 1000,
     id:'',
+    pid:'',
     carts: [
       { id: 1, title: '体重秤', image: '../../img/gouwu.png', num: 1, price: 100, },],
     imgURL: app.data.imgURL,
       details:'',
       wxURL: '',
-      numb:1
+      numb:1,
+      hasUserInfo:false,
+      userInfo: {}
   },
   buy: function () { //立即购买
     this.setData({
@@ -72,18 +75,19 @@ Page({
   },
   jiaru:function(){
     var that = this;
-    GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.details.id,num:that.data.numb}, 'POST', that.jiarugo);
+    GMAPI.doSendMsg('api/Order/cart_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.details.id}, 'POST', that.jiarugo);
 
   },
 
   jiarugo: function (jsonBack){
     var that = this;
-    console.log(jsonBack.data);
       var data=jsonBack.data;
       if(data.code==200){
-          wx.navigateTo({
-              url:'/pages/my/my'
-          })
+          wx.showToast({
+              title: jsonBack.data.msg,
+              icon: 'none',
+              duration:2000
+          });
       }else{
           wx.showToast({
               title: jsonBack.data.msg,
@@ -127,13 +131,44 @@ Page({
   // 接口
   onLoad: function (option) {
       var that = this;
-      if(option.pid==undefined){}else{
-          GMAPI.doSendMsg('api/verification/savePid',{savePid:option.pid}, 'POST');
+      if(option.pid==undefined){
+          this.setData({
+              pid: ''
+          });
+      }else{
+          this.setData({
+              pid: option.pid
+          });
+          GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_P);
       }
       GMAPI.doSendMsg('api/Goods/goods_detail', { id: option.id }, 'POST', that.onMsgCallBack_Details);
     this.setData({
       id: option.id,
-    })
+    });
+
+      wx.getSetting({
+          success: res => {
+              if (res.authSetting['scope.userInfo']){
+                  wx.getUserInfo({
+                      success: res => {
+                          that.setData({
+                              userInfo:res.userInfo,
+                              hasUserInfo:false
+                          });
+
+                          if (this.userInfoReadyCallback) {
+                              this.userInfoReadyCallback(res)
+
+                          }
+                      }
+                  })
+              }else{
+                  that.setData({
+                      hasUserInfo:true
+                  });
+              }
+          }
+      });
   },
     onMsgCallBack_Details: function (jsonBack) {
         var that = this;
@@ -153,9 +188,10 @@ Page({
         }
     },
     onShareAppMessage: function (res) {
+      var that=this;
         return {
             title: '享沃测试2',
-            path: '/pages/ware_more/ware_more?pid='+wx.getStorageSync('strWXID').strUserID,
+            path: '/pages/ware_more/ware_more?pid='+wx.getStorageSync('strWXID').strUserID+'&id='+that.data.id,
             success: function(res) {
                 // 转发成功
             },
@@ -163,5 +199,55 @@ Page({
                 // 转发失败
             }
         }
-    }
-})
+    },
+    // 授权
+    getUserInfo: function (e) {
+        var that=this;
+        this.setData({
+            popUp_Bool:false
+        });
+        if(e.detail.errMsg=='getUserInfo:ok'){
+            app.globalData.userInfo = e.detail.userInfo;
+            wx.setStorage({
+                key: 'getUserInfo',
+                data: true
+            });
+            this.setData({
+                userInfo: e.detail.userInfo,
+                hasUserInfo: false
+            });
+            wx.login({
+                success: res => {
+                    wx.setStorage({
+                        key: 'log',
+                        data:{code:res.code}
+                    });
+                    GMAPI.doSendMsg('api/verification/login',{code:res.code,rawData:e.detail.rawData,signature:e.detail.signature,iv:e.detail.iv,encryptedData:e.detail.encryptedData},'POST',that.onMsgCallBack);
+                }
+            });
+
+        }else{
+            this.setData({
+                popUp_Bool:false,
+                hasUserInfo: true
+            });
+        }
+    },
+    onMsgCallBack:function (jsonBack){
+        var strData=jsonBack.data;
+        if(jsonBack.data.code==200){
+            wx.setStorage({
+                key: 'strWXID',
+                data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid}
+            });
+            GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
+        }else{
+            wx.showToast({
+                title:jsonBack.data.msg,
+                icon:'none',
+                duration: 2000
+            });
+        }
+    },
+    onMsgCallBack_P:function (jsonBack){},
+});

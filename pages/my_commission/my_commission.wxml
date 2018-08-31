@@ -2,7 +2,7 @@
   <view class='top'>
     <image src='../../img/money.png'></image>
     <view class='deposit'>我的佣金</view>
-    <view class='money'>299.00元</view>
+    <view class='money'>{{money}}元</view>
   </view>
-  <navigator class='big_bnt' hover-class='none' url='/pages/commission_cashed/commission_cashed'>提现</navigator>
+  <navigator class='big_bnt' hover-class='none' url='/pages/commission_cashed/commission_cashed?id={{money}}'>提现</navigator>
 </view>

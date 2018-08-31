@@ -123,7 +123,17 @@ Page({
     //  下单
     placeAnOrder:function(e){
         var that = this;
-        GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.goodsID,num:that.data.numb,address_id:that.data.data.addr.id}, 'POST', that.onMsgCallBack_PlaceAnOrder);
+        console.log(that.data.data.addr=='')
+        if(that.data.data.addr==''){
+            wx.showToast({
+                title: '收货地址不能为空',
+                icon: 'none',
+                duration:2000
+            });
+        }else{
+            GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.goodsID,num:that.data.numb,address_id:that.data.data.addr.id}, 'POST', that.onMsgCallBack_PlaceAnOrder);
+        }
+
     },
     onMsgCallBack_PlaceAnOrder: function (jsonBack){
         var that = this;

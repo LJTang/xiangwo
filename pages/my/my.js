@@ -6,15 +6,15 @@ const app = getApp();
 
 Page({
   data: {
+      pid:'',
     userInfo: {},
     hasUserInfo: false,
     user_View:true,
     business_View: true,
       strGoods:'',
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-
     my_list:[
-      // { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
+      { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
       { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order?status=100" },
       { limg: "../../img/my6.png", text: "联系客服", rimg: "../../img/myr.png", url: "/pages/contact_service/contact_service" },
       { limg: "../../img/my6.png", text: "我的地址", rimg: "../../img/myr.png", url: "/pages/select_address/select_address?status=0" },
@@ -28,6 +28,8 @@ Page({
     ],
     row_list:[],
       my_lists:[
+          { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
+          { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order?status=100" },
           { limg: "../../img/my12.png", text: "佣金明细", rimg: "../../img/myr.png", url: "/pages/commission/commission" },
           { limg: "../../img/my5.png", text: "分销订单", rimg: "../../img/myr.png", url: "/pages/sale_order/sale_order" },
           { limg: "../../img/my8.png", text: "我的团队", rimg: "../../img/myr.png", url: "/pages/team_superior/team_superior" },
@@ -44,33 +46,41 @@ Page({
       info:''
   },
 
-    onLoad: function () {
-        if (app.globalData.userInfo) {
-          this.setData({
-            userInfo: app.globalData.userInfo,
-            hasUserInfo: true
-          })
-        } else if (this.data.canIUse) {
-          // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-          // 所以此处加入 callback 以防止这种情况
-          app.userInfoReadyCallback = res => {
+    onLoad: function (option) {
+        var that = this;
+        if(option.pid==undefined){
             this.setData({
-              userInfo: res.userInfo,
-              hasUserInfo: true
-            })
-          }
-        } else {
-          // 在没有 open-type=getUserInfo 版本的兼容处理
-          wx.getUserInfo({
-            success: res => {
-              app.globalData.userInfo = res.userInfo;
-              this.setData({
-                userInfo: res.userInfo,
-                hasUserInfo: true
-              })
-            }
-          })
+                pid: ''
+            });
+        }else{
+            this.setData({
+                pid: option.pid
+            });
+            GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_P);
         }
+        wx.getSetting({
+            success: res => {
+                if (res.authSetting['scope.userInfo']){
+                    wx.getUserInfo({
+                        success: res => {
+                            that.setData({
+                                userInfo:res.userInfo,
+                                hasUserInfo:false
+                            });
+
+                            if (this.userInfoReadyCallback) {
+                                this.userInfoReadyCallback(res)
+
+                            }
+                        }
+                    })
+                }else{
+                    that.setData({
+                        hasUserInfo:true
+                    });
+                }
+            }
+        });
       },
     onShow:function(){
       var that=this;
@@ -124,7 +134,7 @@ Page({
               my_UserInfo:false,
               imgURL:e.detail.userInfo.avatarUrl,
               userInfo: e.detail.userInfo,
-              hasUserInfo: true
+              hasUserInfo: false
           });
           wx.login({
               success: res => {
@@ -135,17 +145,24 @@ Page({
                   GMAPI.doSendMsg('api/verification/login',{code:res.code,rawData:e.detail.rawData,signature:e.detail.signature,iv:e.detail.iv,encryptedData:e.detail.encryptedData},'POST',that.onMsgCallBack);
               }
           });
-          // this.globalData.userInfo = e.detail.userInfo;
+      }else{
+          this.setData({
+              my_UserInfo:true,
+              imgURL:'',
+              userInfo:[],
+              hasUserInfo: true
+          });
       }
   },
     onMsgCallBack:function (jsonBack){
+      var that=this;
         var strData=jsonBack.data;
-
         if(strData.code==200){
             wx.setStorage({
                 key: 'strWXID',
                 data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid}
             });
+            GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
         }else{
             wx.showToast({
                 title:data.msg,
@@ -232,12 +249,27 @@ Page({
     //         }
     //     })
     },
+
+    onShareAppMessage: function (res) {
+        var that=this;
+        return {
+            title: '享沃测试2',
+            path: '/pages/my/my?pid='+wx.getStorageSync('strWXID').strUserID,
+            success: function(res) {
+                // 转发成功
+            },
+            fail: function(res) {
+                // 转发失败
+            }
+        }
+    },
     jump:function (e) {
         var url=e.currentTarget.dataset.url;
         wx.reLaunch({
             url: url
         })
-    }
+    },
+    onMsgCallBack_P:function (jsonBack){},
 
 
 });

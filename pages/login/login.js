@@ -82,17 +82,24 @@ Page({
     onMsgCallBack_Logon:function (jsonBack){
         var data=jsonBack.data;
         if(data.code==200){
-            wx.setNavigationBarTitle({
-                title: '发布'
+            // wx.setNavigationBarTitle({
+            //     title: '发布'
+            // });
+
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
             });
-            wx.setStorage({
-                key: 'xiangwo',
-                data:true
-            });
-            this.setData({
-                login_Bool:true,
-                fabu_Bool:false,
-            });
+            setTimeout(function (){
+                wx.reLaunch({
+                    url: '/pages/mall/mall'
+                });
+            },2000)
+            // this.setData({
+            //     login_Bool:true,
+            //     fabu_Bool:false,
+            // });
 
         }else{
             wx.showToast({
@@ -212,6 +219,11 @@ Page({
                 icon:'none',
                 duration: 2000
             });
+            setTimeout(function (){
+                wx.reLaunch({
+                    url: '/pages/index/index'
+                });
+            },2000)
         }else{
             wx.showToast({
                 title:data.msg,
