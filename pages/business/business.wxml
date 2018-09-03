@@ -1,9 +1,9 @@
 <map id='map' longitude="{{center[0]}}" latitude="{{center[1]}}" scale="10" markers="{{markers}}" bindcallouttap="onMap" bindmarkertap="onMap" show-location style="width: 100%; height: {{height}}px;">
-  <cover-view class='search_box' bindtap="golist">
+  <cover-view class='search_box' bindtap="golist" data-index="0">
     <cover-image src='../../img/kuang.png'></cover-image>
   </cover-view>
   <cover-view class='img_bnt'>
-    <cover-image src="../../img/list.png" bindtap="golist" />
+    <cover-image src="../../img/list.png" bindtap="golist" data-index="1"/>
     <cover-image src="../../img/map.png" bindtap="moveToLocation"/>
   </cover-view>
 </map>

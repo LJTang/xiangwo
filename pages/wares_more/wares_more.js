@@ -19,7 +19,9 @@ Page({
     wxURL:'',
     details:'',
     hasUserInfo:false,
-    userInfo: {}
+    userInfo: {},
+      text:'',
+      setting:{}
   },
   open_share: function () { //打开
     this.setData({
@@ -46,6 +48,7 @@ Page({
           });
           GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_P);
       }
+
     GMAPI.doSendMsg('api/Goods/goods_detail', { id: option.id }, 'POST', that.onMsgCallBack_Details);
 
       wx.getSetting({
@@ -62,6 +65,7 @@ Page({
                               this.userInfoReadyCallback(res)
 
                           }
+                          GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
                       }
                   })
               }else{
@@ -72,8 +76,11 @@ Page({
           }
       });
   },
+    onShow:function(){
+        var that = this;
+        GMAPI.doSendMsg('api/index/setting',{}, 'POST',that.onMsgCallBack_Setting);
+    },
   onMsgCallBack_Details: function (jsonBack) {
-    console.log(jsonBack)
     var that = this;
     var article = jsonBack.data.data.content;
     WxParse.wxParse('article', 'html', article, that, 5);
@@ -82,6 +89,29 @@ Page({
         wxURL: jsonBack.data.url
     })
   },
+    onMsgCallBack_Setting:function (jsonBack){
+        var data=jsonBack.data;
+        if(data.code==200){
+            this.setData({
+                setting:data.data.config
+            })
+        }
+    },
+    onMsgCallBack_BusinessTips:function (jsonBack){
+        var data=jsonBack.data;
+        var that=this;
+        if(data.code==200){
+            if(data.data.type==2&&data.data.type_status==2){
+                this.setData({
+                    text: '填写商家信息'
+                });
+            }else{
+                this.setData({
+                    text: '免费领取'
+                });
+            }
+        }
+    },
     onShareAppMessage: function (res) {
       var that=this;
         return {
@@ -134,9 +164,10 @@ Page({
         if(jsonBack.data.code==200){
             wx.setStorage({
                 key: 'strWXID',
-                data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid}
+                data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid,userType:(strData.data.type==2&&strData.data.type_status==2)}
             });
             GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
+            GMAPI.doSendMsg('api/user/userInfo',{uid:strData.data.uid},'GET',that.onMsgCallBack_BusinessTips);
         }else{
             wx.showToast({
                 title:jsonBack.data.msg,

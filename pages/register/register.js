@@ -296,7 +296,6 @@ Page({
     onMsgCallBack_Register:function (jsonBack){
         var data=jsonBack.data;
         if(data.code==200){
-
             wx.showToast({
                 title:data.msg,
                 icon:'none',

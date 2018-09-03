@@ -1,5 +1,5 @@
 <view class="main">
-  <view wx:if="{{hasList}}">
+  <view wx:if="{{len_Bool}}">
     <view class="cart-box">
       <view class="cart-list" wx:for="{{carts}}" wx:key="{{index}}">
         <icon  wx:if="{{item.selected}}" data-type="success_circle" type="success_circle" size="20" bindtap="bindCheckbox" data-index="{{index}}" class="cart-pro-select" color="#F47070"/>
@@ -34,6 +34,8 @@
     </view>
   </view>
   <view wx:else>
-      <view class="cart-no-data">购物车是空的哦~</view>
+    <!--<view class="cart-no-data">购物车是空的哦~</view>-->
+    <view class="data_suggest">购物车是空的哦~</view>
+
   </view>
 </view>

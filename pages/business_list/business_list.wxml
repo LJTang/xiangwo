@@ -2,7 +2,7 @@
 <view class="list_box">
   <view class="search-box">
     <form>
-      <input class="search-input" type="search" name="searchKey" placeholder="搜索城市或产品名称" placeholder-class='color' value="{{searchName}}" bindinput='getFocus'/>
+      <input class="search-input" type="search" name="searchKey" placeholder="搜索城市或产品名称" placeholder-class='color' value="{{searchName}}" bindinput='getFocus' bindconfirm="onSearch"/>
       <view class="search-btn" form-type="submit" bindtap="onSearch"><image src='../../img/zoom.png'></image></view>
     </form>
   </view>
@@ -14,6 +14,9 @@
       </view>
       <view class='right fr'><image src='../../img/dwei.png'></image><text>{{item.count}}</text></view>
     </view>
+
+    <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+
   </view>
 </view>
   

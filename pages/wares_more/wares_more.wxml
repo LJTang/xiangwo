@@ -5,6 +5,7 @@
     </swiper-item>
   </block>
 </swiper>
+<view class="announcement">{{setting.notice_now}}</view>
 <view class='header db'>
   <view class='cf fl header_l'>
     <text class='state'>{{details.goods_cat==1?'免费':details.price}}</text>
@@ -49,7 +50,7 @@
   </view>
 </view>
 <view class='fixed_nav'>
-  <navigator hover-class='none' url='/pages/write/write?id={{details.id}}' class='free'>免费领取</navigator>
+  <navigator hover-class='none' url='/pages/write/write?id={{details.id}}' class='free'>{{text}}</navigator>
 </view>
 
 <view class="popUp_Box" wx:if="{{hasUserInfo}}">

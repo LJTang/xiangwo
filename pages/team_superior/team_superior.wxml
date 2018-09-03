@@ -17,6 +17,8 @@
             </navigator>
           </view>
         </block>
+        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+
       </view>
     </view>
   </view>

@@ -11,5 +11,6 @@
       <navigator class='right fr' hover-class='none' url='/pages/add_address/add_address?id={{item.id}}&name={{item.username}}&phone={{item.phone}}&province={{item.province_value}}&city={{item.city_name}}&district={{item.district_name}}&value={{item.address_value}}'><image src='../../img/tianxie.png'></image></navigator>
     </view>
   </block>
+  <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
 </view>
 <navigator hover-class='none' class='big_bnt bnt' url='/pages/add_address/add_address?id='>+ 新增地址</navigator>

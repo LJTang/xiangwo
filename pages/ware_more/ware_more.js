@@ -22,7 +22,8 @@ Page({
       wxURL: '',
       numb:1,
       hasUserInfo:false,
-      userInfo: {}
+      userInfo: {},
+      setting: {}
   },
   buy: function () { //立即购买
     this.setData({
@@ -142,6 +143,7 @@ Page({
           GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_P);
       }
       GMAPI.doSendMsg('api/Goods/goods_detail', { id: option.id }, 'POST', that.onMsgCallBack_Details);
+      GMAPI.doSendMsg('api/index/setting',{}, 'POST',that.onMsgCallBack_Setting);
     this.setData({
       id: option.id,
     });
@@ -249,5 +251,24 @@ Page({
             });
         }
     },
+    onMsgCallBack_Setting:function (jsonBack){
+        var data=jsonBack.data;
+        if(data.code==200){
+            this.setData({
+                setting:data.data.config
+            })
+        }
+     },
     onMsgCallBack_P:function (jsonBack){},
+    onMakePhoneCall:function (){
+      var that=this;
+        wx.makePhoneCall({
+            phoneNumber:that.data.setting.customer_service
+        })
+    },
+    jump_Cart:function () {
+        wx.navigateTo({
+            url: '/pages/cart/cart'
+        });
+    }
 });

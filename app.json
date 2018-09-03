@@ -8,9 +8,10 @@
     "pages/train/train",
     "pages/business/business",
     "pages/business_list/business_list",
+    "pages/business_list_s/business_list_s",
     "pages/wares_more/wares_more",
-    "pages/mys/mys",
     "pages/publicity/publicity",
+    "pages/review_details/review_details",
     "pages/released/released",
     "pages/register/register",
     "pages/login/login",
@@ -57,7 +58,7 @@
       "pagePath": "pages/login/login",
       "iconPath": "img/nav2.png",
       "selectedIconPath": "img/nav2_1.png",
-      "text": "发布"
+      "text": "推广"
     },
       {
         "pagePath": "pages/my/my",

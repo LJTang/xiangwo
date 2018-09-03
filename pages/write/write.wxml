@@ -31,13 +31,25 @@
     </view>
     <view wx:else>
       <block wx:for="{{goods}}" wx:key="{{index}}">
-        <view class="layout_LR">
+        <view class="layout_LR" wx:if="{{item.m_status==1}}" bindtap="onAudit" data-id="{{item.id}}">
           <view class="layout_Left">{{item.m_store_name}}</view>
-          <view class="layout_Right" wx:if="{{item.m_status==1}}" bindtap="onAudit" data-id="{{item.id}}"><image src="/img/gou.png"></image></view>
-          <view class="layout_Right" wx:else bindtap="onAudit" data-id="{{item.id}}">
-            <!--<view class="import_Btn" bindtap="onToggle">该商家正在审核中</view></view>-->
-            <view class="import_Btn">该商家正在审核中</view></view>
+          <view class="layout_Right"><image src="/img/gou.png"></image></view>
         </view>
+
+        <view class="layout_LR" wx:elif="{{item.m_status==2}}" bindtap="onAuditFail" data-id="{{item.id}}">
+          <view class="layout_Left">{{item.m_store_name}}</view>
+          <view class="layout_Right">
+            <view class="import_Btn" style="background:#F47070;">该商家审核不通过</view>
+          </view>
+        </view>
+
+        <view class="layout_LR" wx:else bindtap="onAudit" data-id="{{item.id}}">
+          <view class="layout_Left">{{item.m_store_name}}</view>
+          <view class="layout_Right">
+            <view class="import_Btn">该商家正在审核中</view>
+          </view>
+        </view>
+
       </block>
     </view>
 
@@ -64,10 +76,10 @@
       <text class='fl text'>微信号</text>
       <view class='fl input'><input type='text' name="m_openid" placeholder="请输入微信号"/></view>
     </view>
-    <view class='list cf'>
-      <text class='fl text'>产品名称</text>
-      <view class='fl input'><input type='text' name="m_product_id" placeholder="请输入产品名称" maxlength="20"/></view>
-    </view>
+    <!--<view class='list cf'>-->
+      <!--<text class='fl text'>产品名称</text>-->
+      <!--<view class='fl input'><input type='text' name="m_product_id" placeholder="请输入产品名称" maxlength="20"/></view>-->
+    <!--</view>-->
     <view class='list cf'>
       <text class='fl text'>店名</text>
       <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名"/></view>

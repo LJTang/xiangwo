@@ -1,5 +1,5 @@
 import GMAPI from "../../utils/api";
-var app = getApp()
+var app = getApp();
 Page({
   data: {
     // carts:[],               // 购物车列表
@@ -14,8 +14,15 @@ Page({
     imgURL:app.data.imgURL,
     xwURL:'',
       selectedAllStatus:true,
-      cart_arr:''
+      cart_arr:'',
+      len_Bool :true
   },
+
+    onUnload:function () {
+        wx.switchTab({
+            url: '/pages/my/my'
+        })
+    },
   /**
    * 当前商品选中事件
    */
@@ -79,7 +86,6 @@ Page({
    * 请求删除  回调
    */
   onMsgCallBack_Home2: function (jsonBack){
-    console.log(jsonBack)
     if (jsonBack.code==1){
       let carts = this.data.carts;
       carts.splice(index, 1);
@@ -88,7 +94,8 @@ Page({
       });
       if (!carts.length) {
         this.setData({
-          hasList: false
+          hasList: false,
+            len_Bool:true
         });
       } else {
         this.getTotalPrice();
@@ -164,6 +171,7 @@ Page({
     onShow() {
         this.setData({
             hasList: true,
+            len_Bool :true
         });
 
         var that = this;
@@ -171,9 +179,18 @@ Page({
     },
     onMsgCallBack_Cart: function (jsonBack) {
     var that = this;
-    console.log(jsonBack.data)
     var data = jsonBack.data;
     if(data.code==200){
+        var list=data.data;
+        if(list.length>0){
+            this.setData({
+                len_Bool:true
+            });
+        }else{
+            this.setData({
+                len_Bool:false
+            });
+        }
       that.setData({
         carts: data.data,
         wxURL: data.url,
@@ -182,7 +199,8 @@ Page({
         this.getTotalPrice();
     }else{
       that.setData({
-        hasList: false
+          hasList: false,
+          len_Bool:false
       });
         wx.showToast({
             title: jsonBack.data.msg,

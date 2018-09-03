@@ -58,7 +58,7 @@ Page({
   },
     onShow:function(){
         var that=this;
-        GMAPI.doSendMsg('api/exhibition/index',{type:1,share:''},'GET',that.onMsgCallBack_Train);
+        GMAPI.doSendMsg('api/exhibition/index',{type:4,share:''},'GET',that.onMsgCallBack_Train);
     },
     onMsgCallBack_Train:function (jsonBack){
         var data=jsonBack.data;

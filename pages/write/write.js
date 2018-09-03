@@ -20,7 +20,7 @@ Page({
 
   },
   bindChange: function (e) {
-    //console.log(e);
+
     var val = e.detail.value
     var t = this.data.values;
     var cityData = this.data.cityData;
@@ -99,11 +99,11 @@ Page({
     for (let i = 0; i < cityData.length; i++) {
       provinces.push(cityData[i].name);
     }
-    console.log('省份完成');
+    // console.log('省份完成');
     for (let i = 0; i < cityData[0].sub.length; i++) {
       citys.push(cityData[0].sub[i].name)
     }
-    console.log('city完成');
+    // console.log('city完成');
     for (let i = 0; i < cityData[0].sub[0].sub.length; i++) {
       countys.push(cityData[0].sub[0].sub[i].name)
     }
@@ -128,7 +128,6 @@ Page({
             search_Text: e.detail.value
         });
         var that=this;
-        console.log(e.detail.value)
         // GMAPI.doSendMsg('api/merchants/merchantsList',{seach_name:e.detail.value}, 'GET',that.onMsgCallBack_BusinessList);
     },
     clearInput: function (){
@@ -246,7 +245,7 @@ Page({
             setTimeout(function () {
                 wx.navigateBack({
                     delta:1
-                })
+                });
             },2000)
         }else{
             wx.showToast({
@@ -284,5 +283,12 @@ Page({
             });
         }
 
+    },
+
+    onAuditFail:function () {
+       this.setData({
+           search_Bool:true,
+           form_Bool:false
+       })
     }
 });

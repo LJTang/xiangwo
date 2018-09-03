@@ -1,6 +1,6 @@
 <!--index.wxml-->
-<view hidden="{{user_View}}">
-<!--<view>-->
+<!--<view hidden="{{user_View}}">-->
+<view hidden="true">
   <view class="tops">
     <image class='back' src='../../img/myback.png'></image>
     <view class="userinfo">
@@ -55,8 +55,8 @@
   </view>
 </view>
 
-<view hidden="{{business_View}}">
-<!--<view hidden="true">-->
+<!--<view hidden="{{business_View}}">-->
+<view >
 
   <view class="top">
     <image class='back' src='../../img/myback.png'></image>
@@ -96,6 +96,18 @@
       <text class='fl my_text'>团队累计佣金</text>
       <text class='price fr'>￥{{info.commission_count}}</text>
     </view>
+
+    <navigator hover-class='none' url='/pages/train/train'>
+      <image class='fl my_left' src='../../img/my10.png'></image>
+      <text class='fl my_text'>培训</text>
+      <image class='fr my_right' src='../../img/myr.png'></image>
+    </navigator>
+    <navigator hover-class='none' url='/pages/publicity/publicity'>
+      <image class='fl my_left' src='../../img/my11.png'></image>
+      <text class='fl my_text'>宣传册</text>
+      <image class='fr my_right' src='../../img/myr.png'></image>
+    </navigator>
+
     <view class='first' bindtap='open_spread'>
       <image class='fl my_left' src='../../img/my9.png'></image>
       <text class='fl my_text'>推广二维码</text>

@@ -13,14 +13,16 @@
 
       <block wx:for="{{gx_list}}" wx:key="">
         <navigator hover-class='none' id="{{item.id}}" url='/pages/wares_more/wares_more?id={{item.id}}'>
-          <image src="{{xwURL}}{{item.image}}"></image>
+          <image src="{{xwURL}}{{item.image}}" mode="widthFix"></image>
           <view class='cf name'>
             <text class='fl left'>{{item.title}}</text><text class='fr right'>免费</text>
           </view>
           <view class='concent'>{{item.goods_desc}}</view>
         </navigator>
       </block>
+
     </view>
+    <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
   </view>
 
 
@@ -30,17 +32,19 @@
       <view class='text'>非共享商品</view>
       <image src='../../img/right.png'></image>
     </view>
-  <view class='sp_list'>
-    <block wx:for="{{fgx_list}}" wx:key="{{index}}">
-      <navigator hover-class='none' url='/pages/ware_more/ware_more?id={{item.id}}'>
-        <image src="{{xwURL}}{{item.image}}"></image>
-        <view class='cf name'>
-          <text class='fl left'>{{item.title}}</text><text class='fr right'>￥{{item.price}}</text>
-        </view> 
-        <view class='concent'>{{item.goods_desc}}</view>
-      </navigator>
-    </block>
-  </view>
+    <view class='sp_list'>
+      <block wx:for="{{fgx_list}}" wx:key="{{index}}">
+        <navigator hover-class='none' url='/pages/ware_more/ware_more?id={{item.id}}'>
+          <image src="{{xwURL}}{{item.image}}" mode="widthFix"></image>
+          <view class='cf name'>
+            <text class='fl left'>{{item.title}}</text><text class='fr right'>￥{{item.price}}</text>
+          </view>
+          <view class='concent'>{{item.goods_desc}}</view>
+        </navigator>
+      </block>
+
+    </view>
+    <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
   </view>
 </view> 
 <!--<view class='fix_nav container'>-->

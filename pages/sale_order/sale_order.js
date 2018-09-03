@@ -4,7 +4,8 @@ Page({
     data: {
         menuTapCurrent:3,
         teams:[],
-        vipArray:[]
+        vipArray:[],
+        len_Bool:true
     },
 
     swichNav: function (e) {
@@ -19,24 +20,28 @@ Page({
     },
     onShow:function(){
         var that=this;
-        this.data.vipArray=[];
+        this.setData({
+            vipArray:[],
+            len_Bool:true
+        });
         GMAPI.doSendMsg('api/user/myTeam',{uid:wx.getStorageSync('strWXID').strUserID,level:that.data.menuTapCurrent},'GET',that.onMsgCallBack_myTeam);
     },
     onMsgCallBack_myTeam:function (jsonBack){
         var data=jsonBack.data;
         if(data.code==200){
-            // if(list.length==0){
-            //     this.setData({
-            //         address_list:[]
-            //     })
-            // }else{
+            var list=data.data.vipArray;
+            if(list.length==0){
+                this.setData({
+                    len_Bool:false
+                })
+            }else{
             //     for(var i=0;i<list.length;i++){
             //         goods.push(list[i])
             //     }
-            //     this.setData({
-            //         address_list:goods
-            //     })
-            // }
+                this.setData({
+                    len_Bool:true
+                })
+            }
             this.setData({
                 teams:data.data,
                 vipArray:data.data.vipArray

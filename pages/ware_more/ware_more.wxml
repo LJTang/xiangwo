@@ -5,6 +5,7 @@
     </swiper-item>
   </block>
 </swiper>
+
 <view class='header db'>
   <block>
   <view class='cf fl header_l'>
@@ -53,9 +54,11 @@
 <view class='fixed_nav container'>
   <view class='left cf'>
     <button open-type="contact" class="btn">
-    <image class='' src='../../img/kefu.png'></image><text class=''>客服</text>
+    <image class='' src='../../img/kefu.png'></image><text class=''></text>
     </button>
   </view>
+  <view class='left cf' bindtap="onMakePhoneCall"><image src="../../img/limg.png"></image></view>
+  <view class='left cf' bindtap="jump_Cart"><image src="../../img/s_cart.png"></image></view>
   <view class='center' bindtap='jiaru'>加入购物车</view>
   <!--<view class='center' style="background: #fff;"></view>-->
   <view class='right' bindtap='buy'>立即购买</view>

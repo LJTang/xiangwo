@@ -10,7 +10,8 @@ Page({
       { map: "广州天河区东圃二马路45号 ", name: "海王星辰大药房东圃店", juli: "距离12km", img: "../../img/dwei.png" },
       { map: "广州天河区东圃二马路45号 ", name: "海王星辰大药房东圃店", juli: "距离12km", img: "../../img/dwei.png" }
     ],
-      goods:[]
+      goods:[],
+      len_Bool:true
   },
     onLoad:function () {
       var that=this;
@@ -20,7 +21,8 @@ Page({
     onSearch:function(){
         var that=this;
         this.setData({
-            goods:[]
+            goods:[],
+            len_Bool:true
         });
         GMAPI.doSendMsg('api/merchants/searchs',{searchs:that.data.searchName}, 'GET',that.onMsgCallBack_BusinessList);
     },
@@ -31,11 +33,17 @@ Page({
             var list=data.data;
             var goods=[];
             if(list.length==0){
-                goods=[]
+                goods=[];
+                this.setData({
+                    len_Bool:false
+                });
             }else{
                 for(var i=0;i<list.length;i++){
                     goods.push(list[i]);
                 }
+                this.setData({
+                    len_Bool:true
+                });
             }
             this.setData({
                 goods:goods
@@ -63,4 +71,4 @@ Page({
             delta: 1
         })
     }
-})
+});

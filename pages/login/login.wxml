@@ -1,69 +1,131 @@
-<view>
-<view class='login' hidden="{{login_Bool}}">
-  <!--<view class='login'>-->
+<view class="bgF5" style="height:{{height}}px;">
+<!--<view class='login' hidden="{{login_Bool}}">-->
+  <view class='login' hidden="true">
     <image class='logo' src='../../img/gslogo.png'></image>
-    <image class='back' src='../../img/denglu.png'></image>
+    <image class='back' src='../../img/denglu.jpg' mode="widthFix"></image>
     <form bindsubmit="logon">
-
       <view class='input'><text class='fl'>账号：</text><input name="user" class='fl' type="number" value="{{inputVal}}" placeholder="请输入11位的手机号码" maxlength="11" bindinput='getFocus'></input></view>
       <view class='input'><text class='fl'>密码：</text><input name="password" class='fl' type="password" value="{{passwordVal}}" placeholder="请输入6-20位的密码" maxlength="20" bindinput='getPassword'></input></view>
       <button class='login_bnt' formType="submit">登录</button>
       <!--<button class='login_tel' bindtap="verification">手机号短信验证登录</button>-->
-
       <navigator class='go' url='/pages/register/register' hover-class='none'>还没账号？去注册账号>></navigator>
-
     </form>
   </view>
 
-  <!--<view class='fix_nav container'>-->
-    <!--<block wx:for="{{nav}}" wx:for-item="list" wx:key="">-->
-      <!--<view class='fnav_list' bindtap="jump" data-url='{{list.url}}'>-->
-        <!--<image src='{{list.img}}'></image>-->
-        <!--<text class='{{ list.on ==  true ? "on" : ""}}'>{{list.text}}</text>-->
-      <!--</view>-->
-    <!--</block>-->
-  <!--</view>-->
-
-</view>
-
-
-<view hidden="{{fabu_Bool}}">
-  <form bindsubmit="submitData">
-    <view class='form'>
+<!--<view class='form' hidden="{{salesman_Bool}}">-->
+  <view class='form'>
+    <form bindsubmit="submitData">
       <view class='list cf'>
-        <text class='fl text'>店铺老板姓名</text>
+        <text class='fl text'>姓名</text>
         <view class='fl input'><input type='text' name="m_name" placeholder="请输入姓名"/></view>
       </view>
       <view class='list cf'>
         <text class='fl text'>手机号</text>
         <view class='fl input'><input type='number' name="m_phone" placeholder="请输入手机号" maxlength="11"/></view>
       </view>
+      <!--<view class='list  cf'>-->
+      <!--<text class='fl text'>验证码</text>-->
+      <!--<view class='fl input'><input type='number'/></view>-->
+      <!--<view class='bnt fr'>获取手机验证码</view>-->
+      <!--</view>-->
       <view class='list cf'>
-        <text class='fl text'>店铺老板微信号</text>
-        <view class='fl input'><input type='text' name="m_openid" placeholder="请输入微信号" maxlength="20"/></view>
+        <text class='fl text'>店铺老板微信</text>
+        <view class='fl input'><input type='text' name="m_openid" placeholder="请输入微信号"/></view>
       </view>
+
       <view class='list cf'>
-        <text class='fl text'>产品名称</text>
-        <view class='fl input'><input type='text' name="m_product_id" placeholder="请输入产品名称" maxlength="20"/></view>
+      <text class='fl text'>产品名称</text>
+      <view class='fl input'>
+
+        <picker bindchange="bindPickerChange" value="{{objectIndex}}" range="{{gx_list}}" range-key="title">
+          <view class="picker">
+            <input type='text' name="m_product_id" placeholder="点击选择产品" value="{{m_product}}" disabled="true"/>
+          </view>
+        </picker>
       </view>
+      </view>
+
       <view class='list cf'>
         <text class='fl text'>店名</text>
-        <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名" maxlength="20"/></view>
+        <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名"/></view>
       </view>
-        <view class='list cf' bindtap="chooseLocation">
-          <text class='fl text'>店铺地址</text>
-          <view class="fl input" >
-            <input type='text' name="m_address" placeholder="点击选择位置" value="{{d_address}}" disabled="true"/>
-          </view>
+
+      <view class='list cf' bindtap="chooseLocation">
+        <text class='fl text'>店铺地址</text>
+        <view class="fl input" >
+          <input type='text' name="m_address" placeholder="请输入详细地址" value="{{d_address}}"/>
         </view>
+        <!--<view class="province cf fl" focus="{{focus}}" bindtap="open">-->
+        <!--<view class='province_list'>{{province}}</view>-->
+        <!--<view class='province_list'>{{city}}</view>-->
+        <!--<view class='province_list'>{{county}}</view>-->
+        <!--</view>-->
+        <!--<image class='fr xl' src='../../img/xl.png'></image>-->
+      </view>
       <view class='list cf'>
         <text class='fl text'>详细地址</text>
         <view class='fl input'><input type='text' name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
       </view>
       <view class='down'>
         <button class='big_bnt' formType="submit">提交资料审核</button>
+        <!--<view>（验证后立即发货）</view>-->
       </view>
+    </form>
   </view>
-  </form>
+
+</view>
+<!--<view hidden="{{salesman_Bool}}">-->
+<view hidden="true">
+  <view class="top">
+    <image class='back' src='../../img/myback.png'></image>
+    <view class="userinfo">
+      <button class='button-hover' wx:if="{{hasUserInfo}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 点击登录 </button>
+      <block wx:else>
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </block>
+    </view>
+    <view class='sign cf fl'>
+      <text class='v fl'>等级</text>
+      <text class='text fl' wx:if="{{info.level==0}}">推广员</text>
+      <text class='text fl' wx:elif="{{info.level==1}}">VIP1</text>
+      <text class='text fl' wx:elif="{{info.level==2}}">VIP2</text>
+      <text class='text fl' wx:elif="{{info.level==3}}">TOP</text>
+      <text class='text fl' wx:else></text>
+    </view>
+  </view>
+  <view class='row_list container db'>
+    <navigator hover-class='none' url=''>
+      <view class='price'>{{info.commission}}</view>
+      <view class='text'>累计佣金</view>
+    </navigator>
+    <navigator hover-class='none' url='/pages/my_commission/my_commission?id={{info.commission}}'>
+      <view class='price'>{{info.commission}}</view>
+      <view class='text'>可提现佣金</view>
+    </navigator>
+    <navigator hover-class='none' url=''>
+      <view class='price'>{{info.commission_no}}</view>
+      <view class='text'>未结算佣金</view>
+    </navigator>
+  </view>
+  <view class="my_list pb">
+    <view class='first'>
+      <image class='fl my_left' src='../../img/my7.png'></image>
+      <text class='fl my_text'>团队累计佣金</text>
+      <text class='price fr'>￥{{info.commission_count}}</text>
+    </view>
+    <view class='first' bindtap='open_spread'>
+      <image class='fl my_left' src='../../img/my9.png'></image>
+      <text class='fl my_text'>推广二维码</text>
+      <image class='fr my_right' src='../../img/myr.png'></image>
+    </view>
+    <block wx:for="{{my_lists}}" wx:key="">
+      <navigator hover-class='none' url='{{item.url}}'>
+        <image class='fl my_left' src='{{item.limg}}'></image>
+        <text class='fl my_text'>{{item.text}}</text>
+        <image class='fr my_right' src='{{item.rimg}}'></image>
+      </navigator>
+    </block>
+  </view>
 
 </view>

@@ -28,14 +28,15 @@ Page({
     ],
     row_list:[],
       my_lists:[
+          // { limg: "../../img/my10.png", text: "培训", rimg: "../../img/myr.png", url: "/pages/train/train" },
+          // { limg: "../../img/my11.png", text: "宣传册", rimg: "../../img/myr.png", url: "/pages/publicity/publicity" },
           { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
           { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order?status=100" },
           { limg: "../../img/my12.png", text: "佣金明细", rimg: "../../img/myr.png", url: "/pages/commission/commission" },
           { limg: "../../img/my5.png", text: "分销订单", rimg: "../../img/myr.png", url: "/pages/sale_order/sale_order" },
           { limg: "../../img/my8.png", text: "我的团队", rimg: "../../img/myr.png", url: "/pages/team_superior/team_superior" },
           { limg: "../../img/my8.png", text: "我的推广", rimg: "../../img/myr.png", url: "/pages/generalize/generalize" },
-          { limg: "../../img/my10.png", text: "培训", rimg: "../../img/myr.png", url: "/pages/train/train" },
-          { limg: "../../img/my11.png", text: "宣传册", rimg: "../../img/myr.png", url: "/pages/publicity/publicity" },
+
           { limg: "../../img/my6.png", text: "联系客服", rimg: "../../img/myr.png", url: "/pages/contact_service/contact_service" },
       ],
       row_lists:[
@@ -85,13 +86,15 @@ Page({
     onShow:function(){
       var that=this;
       GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
-      // console.log(wx.getStorageSync('strWXID').strUserID)
     },
     onMsgCallBack_UserInfo:function (jsonBack){
         var data=jsonBack.data;
-        // console.log(jsonBack)
         var that=this;
         if(data.code==200){
+            this.setData({
+                info:data.data
+            })
+            /*
             if(data.data.type==0){
                 this.setData({
                     info:data.data,
@@ -112,6 +115,7 @@ Page({
                     business_View: true
                 })
             }
+            */
 
         }else{
             wx.showToast({
@@ -160,7 +164,7 @@ Page({
         if(strData.code==200){
             wx.setStorage({
                 key: 'strWXID',
-                data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid}
+                data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid,userType:(strData.data.type==2&&strData.data.type_status==2)}
             });
             GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
         }else{
@@ -268,6 +272,7 @@ Page({
         wx.reLaunch({
             url: url
         })
+
     },
     onMsgCallBack_P:function (jsonBack){},
 

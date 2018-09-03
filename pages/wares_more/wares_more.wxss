@@ -161,3 +161,7 @@ swiper image {
 .xq_concent image{
   width: 100%;
 }
+.announcement{
+  text-align: center;
+  padding:20rpx 0;
+}

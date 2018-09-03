@@ -83,14 +83,15 @@ background:#fff;
   line-height: 100rpx;
 }
 .fixed_nav .left{
-  width: 20%;
+  width:18%;
   background-color: #fff;
   text-align: center;
+  height:100rpx;
 }
 .fixed_nav .left image{
-  width: 35rpx;
-  height: 35rpx;
-  margin:34rpx 0 0 25rpx;
+  width:50rpx;
+  height:50rpx;
+  margin:25rpx 0 0 25rpx;
 }
 .fixed_nav .left text{
   font-size: 28rpx;
@@ -101,13 +102,13 @@ background:#fff;
   vertical-align:top;
 }
 .fixed_nav .center,.fixed_nav .right{
-  width: 40%;
+  width:23%;
   background-color: #f47070;
   font-size: 28rpx;
   color: #fff;
   text-align: center;
 }
-.fixed_nav .right{
+.fixed_nav .center{
   background-color: #709df4;
 }
 .share{
@@ -287,3 +288,7 @@ background:#fff;
   bottom: 0;
 }
 
+.announcement{
+  text-align: center;
+  padding:20rpx 0;
+}

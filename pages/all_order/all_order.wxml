@@ -12,7 +12,7 @@
         <block wx:for="{{all_Order}}" wx:key="{{index}}">
           <view class='list cf'>
             <navigator class="list_box cf" url="/pages/order_more/order_more?id={{item.order_id}}" hover-class="none" data-typeid="{{sell.typeId}}">
-              <image src="{{wxURL}}{{item.goods_img}}" class="left fl"/>
+              <image src="{{wxURL}}{{item.goods_img}}" class="left fl" mode="widthFix"/>
               <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
             </navigator>
             <view class='price'>￥{{item.goods_price}}</view>
@@ -27,6 +27,8 @@
             <view class='cancel fr bor_N' wx:else>未知</view>
           </view>
         </block>
+        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+
       </view>
     </view>
   </view>
@@ -37,7 +39,7 @@
         <block wx:for="{{all_Order}}" wx:key="{{index}}">
           <view class='list cf'>
             <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none">
-              <image src="{{wxURL}}{{item.goods_img}}" class="left fl"/>
+              <image src="{{wxURL}}{{item.goods_img}}" class="left fl" mode="widthFix"/>
               <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
             </navigator>
             <view class='price'>￥{{item.goods_price}}</view>
@@ -45,6 +47,7 @@
             <view class='cancel fr'>去付款</view>
           </view>
         </block>
+        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
       </view>
     </view>
   </view>
@@ -55,7 +58,7 @@
         <block wx:for="{{all_Order}}" wx:key="{{index}}">
           <view class='list  cf'>
             <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none">
-              <image src="{{wxURL}}{{item.goods_img}}" class="left fl"/>
+              <image src="{{wxURL}}{{item.goods_img}}" class="left fl" mode="widthFix"/>
               <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
             </navigator>
             <view class='price'>￥{{item.goods_price}}</view>
@@ -63,6 +66,9 @@
             <view class='cancel fr'>等待发货</view>
           </view>
         </block>
+
+        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+
       </view>
     </view>
   </view>
@@ -70,10 +76,11 @@
   <view class="weui-cells__title" hidden="{{menuTapCurrent!='2'}}">
     <view class='broker'>
       <view class="my_keep_list">
+
         <block wx:for="{{all_Order}}" wx:key="{{index}}">
           <view class='list cf'>
             <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none">
-              <image src="{{wxURL}}{{item.goods_img}}" class="left fl"/>
+              <image src="{{wxURL}}{{item.goods_img}}" class="left fl" mode="widthFix"/>
               <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
             </navigator>
             <view class='price'>￥{{item.goods_price}}</view>
@@ -81,6 +88,7 @@
             <view class='cancel fr'>确认收货</view>
           </view>
         </block>
+        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
       </view>
     </view>
   </view>

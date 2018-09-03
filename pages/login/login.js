@@ -2,45 +2,106 @@ import GMAPI from "../../utils/api";
 var app = getApp();
 Page({
   data: {
+      height:null,
       inputVal:'',
       login_Bool:true,
-      fabu_Bool:true,
+      salesman_Bool:true,
       passwordVal:'',
-    nav: [
-      { img: "../../img/nav.png", url: "/pages/mall/mall", text: "商城", on: false },
-      { img: "../../img/nav1.png", url: "/pages/business/business", text: "商家", on: false },
-      { img: "../../img/nav2_1.png", url: "/pages/login/login", text: "发布 ", on: true },
-      { img: "../../img/nav3.png", url: "/pages/my/my", text: "我的", on: false },
-    ],
       address:'',
       d_address:'',
-      location:''
+      location:{},
+      userInfo: {},
+      info:{},
+      gx_list:[],
+      m_product_id:'',
+      m_product:''
   },
     onLoad:function (){
-        this.setData({
-            login_Bool:false,
-            fabu_Bool:true,
+      var that=this;
+        wx.getSetting({
+            success: res => {
+                if (res.authSetting['scope.userInfo']){
+                    wx.getUserInfo({
+                        success: res => {
+                            that.setData({
+                                userInfo:res.userInfo,
+                                hasUserInfo:false
+                            });
+
+                            if (this.userInfoReadyCallback) {
+                                this.userInfoReadyCallback(res)
+
+                            }
+                        }
+                    })
+                }else{
+                    that.setData({
+                        hasUserInfo:true
+                    });
+                }
+            }
+        });
+        wx.setNavigationBarTitle({
+            title: '推广'
+        });
+        wx.getSystemInfo({
+            success: function (res) {
+                that.setData({
+                    height: res.windowHeight
+                });
+
+            }
         });
     },
     onShow:function(e){
-      console.log(wx.getStorageSync('xiangwo'));
-        if(wx.getStorageSync('xiangwo')=='') {
-            wx.setNavigationBarTitle({
-                title: '登录'
-            });
-            this.setData({
-                login_Bool:false,
-                fabu_Bool:true,
-            });
+        var that=this;
+        GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
+        GMAPI.doSendMsg('api/Goods/goods_list',{type:1}, 'POST', that.onMsgCallBack_Goods);
+        },
+    onMsgCallBack_UserInfo:function (jsonBack){
+        var data=jsonBack.data;
+        var that=this;
+        if(data.code==200){
+
+            if(data.data.type==0){
+                this.setData({
+                    info:data.data,
+                    login_Bool:false,
+                    salesman_Bool:true,
+                })
+            }else if(data.data.type==2&&data.data.type_status==2){
+                this.setData({
+                    info:data.data,
+                    login_Bool:true,
+                    salesman_Bool:false,
+                });
+            }else{
+                this.setData({
+                    info:data.data,
+                    login_Bool:false,
+                    salesman_Bool:true,
+                })
+            }
+
+
         }else{
-            this.setData({
-                login_Bool:true,
-                fabu_Bool:false,
-            });
-            wx.setNavigationBarTitle({
-                title: '发布'
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
             });
         }
+    },
+
+    onMsgCallBack_Goods: function (jsonBack) {
+        var goods=[];
+        var list=jsonBack.data.data;
+        for(var i=0;i<list.length;i++){
+            goods.push(list[i]);
+        }
+        this.setData({
+            gx_list:goods,
+        });
     },
     clearInput: function (){
         this.setData({
@@ -61,6 +122,7 @@ Page({
         });
     },
     searchBtn:function (e){},
+
     logon:function (e) {
       var that=this;
         if(e.detail.value.user.length!=11||e.detail.value.user==''||GMAPI.checkPhone(e.detail.value.user)==false){
@@ -82,24 +144,16 @@ Page({
     onMsgCallBack_Logon:function (jsonBack){
         var data=jsonBack.data;
         if(data.code==200){
-            // wx.setNavigationBarTitle({
-            //     title: '发布'
-            // });
-
             wx.showToast({
                 title:data.msg,
                 icon:'none',
                 duration: 2000
             });
-            setTimeout(function (){
-                wx.reLaunch({
-                    url: '/pages/mall/mall'
-                });
-            },2000)
-            // this.setData({
-            //     login_Bool:true,
-            //     fabu_Bool:false,
-            // });
+
+            this.setData({
+                login_Bool:true,
+                salesman_Bool:false,
+            });
 
         }else{
             wx.showToast({
@@ -118,7 +172,6 @@ Page({
 
     //获取经纬度
     getLocation:function(e){
-        console.log(e)
         var that=this
         wx.getLocation({
             success: function(res){
@@ -167,7 +220,15 @@ Page({
         })
     },
 
-
+    bindPickerChange: function(e) {
+        var that=this;
+        var index=parseInt(e.detail.value);
+        var list=this.data.gx_list;
+        this.setData({
+            m_product_id:list[index].id,
+            m_product:list[index].title
+        });
+    },
     submitData:function (e) {
         var that=this;
         if(e.detail.value.m_name==''){
@@ -185,6 +246,12 @@ Page({
         }else if(e.detail.value.m_openid==''){
             wx.showToast({
                 title: '店铺老板微信不能为空',
+                icon: 'none',
+                duration: 2000
+            });
+        }else if(that.data.m_product==''){
+            wx.showToast({
+                title: '产品名称不能为空',
                 icon: 'none',
                 duration: 2000
             });
@@ -207,7 +274,8 @@ Page({
                 duration: 2000
             });
         }else{
-            var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:1,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_xy:that.data.location.longitude,m_address_y:that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed};
+            var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:that.data.m_product_id,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_x:that.data.location.longitude,m_address_y:that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed};
+            console.log(json)
             GMAPI.doSendMsg('api/verification/merchantRegister',json,'POST',that.onMsgCallBack_SubmitData);
         }
     },
@@ -220,8 +288,8 @@ Page({
                 duration: 2000
             });
             setTimeout(function (){
-                wx.reLaunch({
-                    url: '/pages/index/index'
+                wx.switchTab({
+                    url: '/pages/mall/mall'
                 });
             },2000)
         }else{
@@ -232,6 +300,7 @@ Page({
             });
         }
     },
+
 
     jump:function (e) {
         var url=e.currentTarget.dataset.url;

@@ -12,6 +12,7 @@
 }
 .sp_list{
   display:flex;
+  flex-wrap:wrap;
 }
 .sp_list navigator{
   width: 45.5%;
@@ -21,7 +22,7 @@
 }
 .sp_list navigator image{
   width: 100%;
-  height: 416rpx;
+  /* height: 416rpx; */
   border: 1px solid #ddd;
 }
 .sp_list navigator .name{

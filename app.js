@@ -55,7 +55,7 @@ App({
                           if (strData.code == 200) {
                               wx.setStorage({
                                   key: 'strWXID',
-                                  data: {strWXOpenID: strData.data.openid, strUserID: strData.data.uid}
+                                  data: {strWXOpenID: strData.data.openid, strUserID: strData.data.uid,userType:(strData.data.type==2&&strData.data.type_status==2)}
                               });
                           } else {
                               wx.showToast({

@@ -1,8 +1,10 @@
+.bgF5{background:#f5f5f5;}
 .login{
   position: fixed;
   width: 100%;
   top: 0;
   bottom: 0;
+  background:#fff;
 }
 .login .back{
   width: 100%;
@@ -76,9 +78,10 @@
   border-bottom: 1px solid #f1f1f1;
   padding-left: 4%;
   position: relative;
+  background:#fff;
 }
 .form .list .text{
-  font-size: 28rpx;
+  font-size: 32rpx;
   color: #999;
 }
 .form .list .input{
@@ -149,7 +152,7 @@ picker-view-column view{
   text-align: center;
 }
 .down{
-  padding: 272rpx 3% 44rpx 3%;
+  padding:100rpx 3% 100rpx 3%;
 }
 .down view{
   font-size: 24rpx;
@@ -163,3 +166,5 @@ picker-view-column view{
   border:none;
   text-align: left;
 }
+
+.big_bnt{font-size: 34rpx;}

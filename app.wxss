@@ -192,3 +192,13 @@ list-style: none;
 button::after{
   border:none;
 }
+/*数据提示 没有更多*/
+.data_suggest{
+  text-align:center;
+  padding:40rpx 0;
+  color: #999;
+}
+
+button::after{
+  border:none;
+}

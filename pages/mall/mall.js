@@ -18,8 +18,9 @@ Page({
       userInfo: {},
       hasUserInfo: false,
       canIUse: wx.canIUse('button.open-type.getUserInfo'),
-      popUp_Bool:true
-    
+      popUp_Bool:true,
+      len_Bool:true
+
   },
   //tab
   swichNav: function (e) {
@@ -28,7 +29,8 @@ Page({
     this.setData({
       active: current,
         gx_list:[],
-        fgx_list:[]
+        fgx_list:[],
+        len_Bool:true
     });
     GMAPI.doSendMsg('api/Goods/goods_list',{type:that.data.active}, 'POST', that.onMsgCallBack_Home);
   },
@@ -95,6 +97,8 @@ Page({
                               this.userInfoReadyCallback(res)
 
                           }
+                          GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
+
                       }
                   })
               }else{
@@ -103,7 +107,16 @@ Page({
                   });
               }
           }
-      })
+      });
+      //   console.log(wx.getStorageSync('strWXID').userType)
+      // if(wx.getStorageSync('strWXID').userType==true){
+      //     wx.showToast({
+      //         title:'您是业务员，请选择对应的产品发布',
+      //         icon:'none',
+      //         duration: 3000
+      //     });
+      // }
+      // GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
   },
     onShow:function(){
         var that = this;
@@ -113,21 +126,7 @@ Page({
         GMAPI.doSendMsg('api/Goods/goods_list',{type:that.data.active}, 'POST', that.onMsgCallBack_Home);
     },
 
-    onShareAppMessage: function (res) {
-        if (res.from === 'button') {
-            // 来自页面内转发按钮
-            // console.log(res.target)
-            return {
-                title: '享沃测试',
-                path: '/pages/mall/mall?pid='+wx.getStorageSync('strWXID').strUserID,
-                success: function(res) {
-                    // 转发成功
-                },
-                fail: function(res) {
-                    // 转发失败
-                }
-            }
-        }
+    onShareAppMessage: function (res){
         return {
             title: '享沃测试2',
             path: '/pages/mall/mall?pid='+wx.getStorageSync('strWXID').strUserID,
@@ -145,12 +144,34 @@ Page({
       for(var i=0;i<list.length;i++){
           goods.push(list[i]);
       }
+      if(list.length>0){
+          this.setData({
+              len_Bool:true
+          });
+      }else{
+          this.setData({
+              len_Bool:false
+          });
+      }
     this.setData({
         xwURL:jsonBack.data.url,
       gx_list:goods,
       fgx_list:goods
     })
   },
+    onMsgCallBack_BusinessTips:function (jsonBack){
+        var data=jsonBack.data;
+        var that=this;
+        if(data.code==200){
+            if(data.data.type==2&&data.data.type_status==2){
+                wx.showToast({
+                    title:'您是业务员，请选择对应的产品发布',
+                    icon:'none',
+                    duration: 3000
+                });
+            }
+        }
+    },
     // 授权
     getUserInfo: function (e) {
         var that=this;
@@ -193,9 +214,11 @@ Page({
         if(jsonBack.data.code==200){
             wx.setStorage({
                 key: 'strWXID',
-                data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid}
+                data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid,userType:(strData.data.type==2&&strData.data.type_status==2)}
             });
             GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
+            GMAPI.doSendMsg('api/user/userInfo',{uid:strData.data.uid},'GET',that.onMsgCallBack_BusinessTips);
+
         }else{
             wx.showToast({
                 title:jsonBack.data.msg,

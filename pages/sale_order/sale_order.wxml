@@ -94,6 +94,7 @@
             </navigator>
           </view>
         </block>
+        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
       </view>
     </view>
   </view>
@@ -101,6 +102,7 @@
   <view class="weui-cells__title" hidden="true">
     <view class='broker'>
       <view class="lower">
+
         <block wx:for="{{vipArray}}"  wx:key="{{index}}">
           <view class='list cf'>
             <navigator class="list_box cf" url="" hover-class="none" data-typeid="{{sell.typeId}}">
@@ -115,6 +117,7 @@
             </view>
           </view>
         </block>
+
       </view>
     </view>
   </view>

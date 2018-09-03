@@ -94,10 +94,18 @@ Page({
     },
 
 
-  golist: function () {
-    wx.navigateTo({
-      url: '/pages/business_list/business_list'
-    })
+  golist: function (e) {
+      var index=e.currentTarget.dataset.index;
+      if(parseInt(index)==0){
+          wx.navigateTo({
+              url: '/pages/business_list_s/business_list_s'
+          })
+      }else{
+          wx.navigateTo({
+              url: '/pages/business_list/business_list'
+          })
+      }
+
   },
     jump:function (e) {
         var url=e.currentTarget.dataset.url;

@@ -4,16 +4,21 @@ Page({
   data: {
     address_list:[],
       status:0,
+      len_Bool:true
   },
     onLoad:function(option){
       if(option.status==1){
           this.setData({status:1})
       }else{
-          this.setData({status:1})
+          this.setData({status:0})
       }
     },
     onShow:function(){
         var that=this;
+        this.setData({
+            address_list:[],
+            len_Bool:false
+        });
         GMAPI.doSendMsg('api/user/userAddressList',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_Address);
     },
     onMsgCallBack_Address:function (jsonBack){
@@ -24,14 +29,16 @@ Page({
         if(data.code==200){
             if(list.length==0){
                 this.setData({
-                    address_list:[]
+                    address_list:[],
+                    len_Bool:false
                 })
             }else{
                 for(var i=0;i<list.length;i++){
                     goods.push(list[i])
                 }
                 this.setData({
-                    address_list:goods
+                    address_list:goods,
+                    len_Bool:true
                 })
             }
 
@@ -56,13 +63,14 @@ Page({
                     delta:1
                 })
             }else{
+                wx.showToast({
+                    title:data.msg,
+                    icon:'none',
+                    duration: 2000
+                });
                 GMAPI.doSendMsg('api/user/userAddressList',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_Address);
             }
-            wx.showToast({
-                title:data.msg,
-                icon:'none',
-                duration: 2000
-            });
+
         }else{
             wx.showToast({
                 title:data.msg,

@@ -23,6 +23,7 @@ Page({
 
       cateindex:'',
       areaindex:'',
+      len_Bool:true
   },
     onLoad:function(){
         var that=this;
@@ -31,7 +32,9 @@ Page({
         var that=this;
         this.setData({
             cateindex:that.data.cateindex,
-            areaindex:that.data.areaindex
+            areaindex:that.data.areaindex,
+            article :[],
+            len_Bool:true
         });
 
         GMAPI.doSendMsg('api/exhibition/index',{type:that.data.cateindex,share:that.data.areaindex},'GET',that.onMsgCallBack_Train);
@@ -42,20 +45,19 @@ Page({
         if(data.code==200){
             if(data.data.length==0){
                 this.setData({
-                    article :[]
+                    article :[],
+                    len_Bool:false
                 })
             }else{
                 var goods=[];
                 var list=data.data;
-                var arr='';
                 for(var i=0;i<list.length;i++){
-                    // list[i].splice(i,0,{selected:true});
-                    // console.log(list)
                     goods.push(list[i]);
                 }
                 this.setData({
                     article :goods,
-                    xwURL:jsonBack.data.Https
+                    xwURL:jsonBack.data.Https,
+                    len_Bool:true
                 })
             }
         }else{
@@ -150,7 +152,8 @@ Page({
 
         this.data.article=[];
         this.setData({
-            article:list
+            article:list,
+            len_Bool :true
         });
     }
-})
+});
