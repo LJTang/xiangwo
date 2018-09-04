@@ -17,7 +17,7 @@
 <view class="list_box" hidden="{{search_Bool}}">
   <form>
   <view class="search-box">
-      <input class="search-input" type="search" name="searchKey" placeholder="搜索店铺名称" placeholder-class='color' value="{{search_Text}}" bindinput='getFocus'/>
+      <input class="search-input" type="search" confirm-type="search" name="searchKey" placeholder="搜索店铺名称" placeholder-class='color' value="{{search_Text}}" bindinput='getFocus' bindconfirm="onSearch"/>
       <view class="clear" bindtap="clearInput"><icon wx:if="{{search_Text.length>0}}" type="clear" size="10"></icon></view>
       <view class="search-btn" form-type="submit" bindtap="onSearch"><image src='../../img/zoom.png'></image></view>
   </view>

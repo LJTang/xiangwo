@@ -57,8 +57,8 @@
     <image class='' src='../../img/kefu.png'></image><text class=''></text>
     </button>
   </view>
-  <view class='left cf' bindtap="onMakePhoneCall"><image src="../../img/limg.png"></image></view>
-  <view class='left cf' bindtap="jump_Cart"><image src="../../img/s_cart.png"></image></view>
+  <view class='left cf' bindtap="onMakePhoneCall"><image src="../../img/h_phone.png"></image></view>
+  <view class='left cf p_Relative' bindtap="jump_Cart"><image src="../../img/s_cart.png"></image><span class="bg_Radio" hidden="{{cart_numb==0}}">{{cart_numb}}</span></view>
   <view class='center' bindtap='jiaru'>加入购物车</view>
   <!--<view class='center' style="background: #fff;"></view>-->
   <view class='right' bindtap='buy'>立即购买</view>

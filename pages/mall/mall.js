@@ -97,7 +97,7 @@ Page({
                               this.userInfoReadyCallback(res)
 
                           }
-                          GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
+                          // GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
 
                       }
                   })

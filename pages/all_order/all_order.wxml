@@ -27,7 +27,7 @@
             <view class='cancel fr bor_N' wx:else>未知</view>
           </view>
         </block>
-        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+        <!--<view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>-->
 
       </view>
     </view>
@@ -47,7 +47,6 @@
             <view class='cancel fr'>去付款</view>
           </view>
         </block>
-        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
       </view>
     </view>
   </view>
@@ -67,7 +66,7 @@
           </view>
         </block>
 
-        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+        <!--<view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>-->
 
       </view>
     </view>
@@ -85,12 +84,13 @@
             </navigator>
             <view class='price'>￥{{item.goods_price}}</view>
             <view class='numbers'>x{{item.goods_num}}</view>
-            <view class='cancel fr'>确认收货</view>
+            <view class='cancel fr' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
           </view>
         </block>
-        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+        <!--<view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>-->
       </view>
     </view>
   </view>
-  
+
+  <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
 </view>

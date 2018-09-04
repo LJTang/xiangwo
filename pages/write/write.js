@@ -199,7 +199,7 @@ Page({
             });
         }else if(e.detail.value.m_phone.length!=11||e.detail.value.m_phone==''||GMAPI.checkPhone(e.detail.value.m_phone)==false){
             wx.showToast({
-                title: '请输入正确的密码',
+                title: '请输入正确的手机号',
                 icon: 'none',
                 duration: 2000
             });
@@ -243,9 +243,9 @@ Page({
                 duration: 2000
             });
             setTimeout(function () {
-                wx.navigateBack({
-                    delta:1
-                });
+                wx.switchTab({
+                    url: '/pages/mall/mall'
+                })
             },2000)
         }else{
             wx.showToast({
@@ -271,7 +271,7 @@ Page({
             });
 
             setTimeout(function () {
-                wx.reLaunch({
+                wx.switchTab({
                     url: '/pages/my/my'
                 })
             },2000)

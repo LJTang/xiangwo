@@ -5,10 +5,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    carts: [
-      { id: 1, title: '体重秤',  image: '../../img/gouwu.png', num: 1, price: 100, },
-    ],
+    carts: [],
     totalPrice:0,
+    click_Bool:true,
     condition: false,
     provinces: ["要什么100", "100", "100", "100"],
     numb:1,
@@ -123,16 +122,23 @@ Page({
     //  下单
     placeAnOrder:function(e){
         var that = this;
-        console.log(that.data.data.addr=='')
-        if(that.data.data.addr==''){
-            wx.showToast({
-                title: '收货地址不能为空',
-                icon: 'none',
-                duration:2000
-            });
+        if(that.data.click_Bool==true){
+            if(that.data.data.addr==''){
+                wx.showToast({
+                    title: '收货地址不能为空',
+                    icon: 'none',
+                    duration:2000
+                });
+            }else{
+                this.setData({
+                    click_Bool:false
+                });
+                GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.goodsID,num:that.data.numb,address_id:that.data.data.addr.id}, 'POST', that.onMsgCallBack_PlaceAnOrder);
+            }
         }else{
-            GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.goodsID,num:that.data.numb,address_id:that.data.data.addr.id}, 'POST', that.onMsgCallBack_PlaceAnOrder);
+            return
         }
+
 
     },
     onMsgCallBack_PlaceAnOrder: function (jsonBack){
@@ -151,7 +157,7 @@ Page({
     //支付
     onMsgCallBack_OrderPay:function (jsonBack){
         var data=jsonBack.data;
-        console.log(jsonBack);
+        var that=this;
         if(jsonBack!=''){
             wx.requestPayment({
                 'timeStamp': data.timeStamp,

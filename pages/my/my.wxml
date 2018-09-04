@@ -1,6 +1,6 @@
 <!--index.wxml-->
-<!--<view hidden="{{user_View}}">-->
-<view hidden="true">
+<view hidden="{{user_View}}">
+<!--<view hidden="true">-->
   <view class="tops">
     <image class='back' src='../../img/myback.png'></image>
     <view class="userinfo">
@@ -55,9 +55,9 @@
   </view>
 </view>
 
-<!--<view hidden="{{business_View}}">-->
-<view >
 
+<view hidden="{{business_View}}">
+<!--<view >-->
   <view class="top">
     <image class='back' src='../../img/myback.png'></image>
     <view class="userinfo">

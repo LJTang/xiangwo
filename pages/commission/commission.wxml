@@ -13,12 +13,14 @@
   <block wx:for="{{yj_list}}" wx:key="">
     <view class='list cf'>
       <view class='left fl'>
-        <view class='name'>{{item.name}}</view>
-        <view class='time'>{{item.time}}</view>
+        <view class='name'>{{item.goods_name}}</view>
+        <view class='time'>{{item.confirm_time}}</view>
       </view>
-      <view class='fr right'>+{{item.price}}</view>
+      <view class='fr right'>+{{item.money}}</view>
     </view>
   </block>
+
+  <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
 </view>
 <!-- <view class='container daijin' wx:if="{{daijin}}">
   <view class='concent'>

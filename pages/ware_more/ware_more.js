@@ -21,6 +21,7 @@ Page({
       details:'',
       wxURL: '',
       numb:1,
+      cart_numb:0,
       hasUserInfo:false,
       userInfo: {},
       setting: {}
@@ -89,6 +90,7 @@ Page({
               icon: 'none',
               duration:2000
           });
+          GMAPI.doSendMsg('api/Order/cart_list' ,{uid:wx.getStorageSync('strWXID').strUserID}, 'POST', that.onMsgCallBack_CartNum);
       }else{
           wx.showToast({
               title: jsonBack.data.msg,
@@ -97,12 +99,6 @@ Page({
           });
       }
   },
-
-    onShow:function(){
-      this.setData({
-          buy_box:false
-      })
-    },
   //  下单
     placeAnOrder:function(e){
         var that = this;
@@ -172,6 +168,14 @@ Page({
           }
       });
   },
+    onShow:function(){
+      var that=this;
+        this.setData({
+            buy_box:false
+        });
+        GMAPI.doSendMsg('api/Order/cart_list' ,{uid:wx.getStorageSync('strWXID').strUserID}, 'POST', that.onMsgCallBack_CartNum);
+
+    },
     onMsgCallBack_Details: function (jsonBack) {
         var that = this;
         if(jsonBack.data.code==200){
@@ -186,6 +190,19 @@ Page({
                 title: jsonBack.data.msg,
                 icon: 'none',
                 duration:2000
+            });
+        }
+    },
+
+    onMsgCallBack_CartNum: function (jsonBack) {
+        var that = this;
+        if(jsonBack.data.code==200){
+            this.setData({
+                cart_numb:jsonBack.data.count
+            });
+        }else{
+            this.setData({
+                cart_numb:0
             });
         }
     },

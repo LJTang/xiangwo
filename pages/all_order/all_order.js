@@ -6,6 +6,7 @@ Page({
     menuTapCurrent:'',
     all_Order: [],
     wxURL: [],
+    orderID:'',
     len_Bool:true
   },
 
@@ -54,11 +55,14 @@ Page({
           });
 
         }else{
-            wx.showToast({
-                title:data.msg,
-                icon:'none',
-                duration: 2000
+            this.setData({
+                len_Bool:false
             });
+            // wx.showToast({
+            //     title:data.msg,
+            //     icon:'none',
+            //     duration: 2000
+            // });
         }
     },
     //收货
@@ -90,11 +94,12 @@ Page({
     orderPay:function (e) {
         var order_id = e.currentTarget.dataset.id;
         var that=this;
+        console.log(111)
         GMAPI.doSendMsg('api/Order/order_pay',{uid:wx.getStorageSync('strWXID').strUserID,order_id:order_id},'POST',that.onMsgCallBack_OrderPay);
     },
     onMsgCallBack_OrderPay:function (jsonBack){
+      var that=this;
         var data=jsonBack.data;
-        console.log(jsonBack);
         if(jsonBack!=''){
             wx.requestPayment({
                 'timeStamp': data.timeStamp,
@@ -104,12 +109,12 @@ Page({
                 'paySign': data.paySign,
                 'success':function(res){
                     if(res.errMsg='requestPayment:ok'){
-
+                        GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:(that.data.menuTapCurrent==100?'':that.data.menuTapCurrent),type:0},'POST',that.onMsgCallBack_Order);
                     }else{
                     }
                 },
                 'fail':function(res){
-
+                    GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:(that.data.menuTapCurrent==100?'':that.data.menuTapCurrent),type:0},'POST',that.onMsgCallBack_Order);
                 },
                 'complete':function(res){
                 }

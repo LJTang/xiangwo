@@ -4,7 +4,7 @@ Page({
   data: {
       height:null,
       inputVal:'',
-      login_Bool:true,
+      login_Bool:false,
       salesman_Bool:true,
       passwordVal:'',
       address:'',
@@ -52,10 +52,15 @@ Page({
 
             }
         });
+        this.setData({
+            login_Bool:app.data.loge_Bool,
+            salesman_Bool:true,
+        })
+
     },
     onShow:function(e){
         var that=this;
-        GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
+        // GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
         GMAPI.doSendMsg('api/Goods/goods_list',{type:1}, 'POST', that.onMsgCallBack_Goods);
         },
     onMsgCallBack_UserInfo:function (jsonBack){
@@ -82,8 +87,6 @@ Page({
                     salesman_Bool:true,
                 })
             }
-
-
         }else{
             wx.showToast({
                 title:data.msg,
@@ -149,7 +152,7 @@ Page({
                 icon:'none',
                 duration: 2000
             });
-
+            app.data.loge_Bool=true;
             this.setData({
                 login_Bool:true,
                 salesman_Bool:false,

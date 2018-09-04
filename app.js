@@ -4,7 +4,8 @@ import GMAPI from "./utils/api";
 App({
   data:{
     imgURL:'http://xiao.guangzhoubaidu.com/',
-      user_code:''
+      user_code:'',
+      loge_Bool:false
   },
   onLaunch: function () {
     // 展示本地存储能力

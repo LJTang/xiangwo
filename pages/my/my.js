@@ -59,6 +59,9 @@ Page({
             });
             GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_P);
         }
+        this.setData({
+            user_View:app.data.loge_Bool
+        });
         wx.getSetting({
             success: res => {
                 if (res.authSetting['scope.userInfo']){
@@ -83,8 +86,13 @@ Page({
             }
         });
       },
+
     onShow:function(){
       var that=this;
+      this.setData({
+          user_View:app.data.loge_Bool,
+          business_View:(app.data.loge_Bool==true?false:true),
+      });
       GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
     },
     onMsgCallBack_UserInfo:function (jsonBack){
@@ -93,7 +101,7 @@ Page({
         if(data.code==200){
             this.setData({
                 info:data.data
-            })
+            });
             /*
             if(data.data.type==0){
                 this.setData({
@@ -115,7 +123,7 @@ Page({
                     business_View: true
                 })
             }
-            */
+*/
 
         }else{
             wx.showToast({
