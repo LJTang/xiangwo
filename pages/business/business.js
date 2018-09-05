@@ -17,9 +17,6 @@ Page({
   },
   moveToLocation: function () {
     this.mapCtx.moveToLocation();
-    console.log(111)
-  },
-    onMap: function () {
   },
     onLoad() {
         var that=this;

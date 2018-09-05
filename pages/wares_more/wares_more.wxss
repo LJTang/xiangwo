@@ -162,6 +162,13 @@ swiper image {
   width: 100%;
 }
 .announcement{
+   position:fixed;
+  top:400rpx;
+  left:20rpx;
   text-align: center;
   padding:20rpx 0;
+  opacity:0.5;
+  filter:alpha(opacity=50);
+  color:#F46366;
+  font-size:30rpx;
 }

@@ -7,7 +7,7 @@
     </view>
     <view class='list cf'>
       <text class='fl text'>性别</text>
-      <view class="fr radio">
+      <view class="radio">
         <radio-group class="radio-group cf" bindchange="checkboxChange">
             <radio checked="true" value="1" color="#F47070"></radio><text>男</text>
             <radio color="#F47070" value="2"></radio><text>女</text>
@@ -51,6 +51,12 @@
         </picker>
        </view>
     </view>
+
+    <view class='list cf'>
+      <text class='fl text'>邀请码</text>
+      <view class='fl input'><input type='text' placeholder="请输入邀请码" value="{{major}}" maxlength="20" bindinput='getFocus' data-status="6" /></view>
+    </view>
+
     <view class='down'>
       <button class='big_bnt' formType="submit">注册</button>
       <!--<view>（注册成功后会有短信通知）</view>-->

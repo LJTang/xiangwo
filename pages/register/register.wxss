@@ -60,13 +60,13 @@
   margin-right: 4%;
 }
 .form .list .radio radio{
-  margin-left: 20rpx;
   display: inline-block;
   transform:scale(0.7);
 }
 .form .list .radio text{
   font-size: 28rpx;
   color: #cbcbcb;
+  margin-right: 20rpx;
 }
 
 .form .list .doNotOperate{

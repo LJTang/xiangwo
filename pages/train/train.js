@@ -1,8 +1,8 @@
 //index.js
 //获取应用实例
 import GMAPI from "../../utils/api";
-
-const app = getApp()
+var WxParse = require('../../wxParse/wxParse.js');
+const app = getApp();
 
 Page({
   data: {
@@ -19,14 +19,22 @@ Page({
       { name: "共享产品" }, { name: "非共享产品" }
     ],
       xwURL:'',
-      article:'',
-
+      article:[],
       cateindex:'',
       areaindex:'',
-      len_Bool:true
+      len_Bool:true,
+      height:null
   },
     onLoad:function(){
         var that=this;
+         wx.getSystemInfo({
+          success: function(res) {
+              var rpx=(res.windowWidth / 750);
+              that.setData({
+                  height:res.windowHeight-(rpx*60)
+              });
+          }
+      });
     },
     onShow:function(){
         var that=this;
@@ -58,7 +66,8 @@ Page({
                     article :goods,
                     xwURL:jsonBack.data.Https,
                     len_Bool:true
-                })
+                });
+               
             }
         }else{
             wx.showToast({
@@ -76,7 +85,7 @@ Page({
         showfilter: false,
         showfilterindex: null
       })
-    } else {
+    }else{
       this.setData({
         showfilter: true,
         showfilterindex: i,
@@ -155,5 +164,13 @@ Page({
             article:list,
             len_Bool :true
         });
-    }
+    },
+    onAll: function (e) { //分类一级索引
+        var that=this;
+        this.setData({
+            article :[],
+            len_Bool:true
+        });
+        GMAPI.doSendMsg('api/exhibition/index',{type:'',share:''},'GET',that.onMsgCallBack_Train);
+    },
 });

@@ -2,7 +2,7 @@
   <view class='login' hidden="{{login_Bool}}">
     <!--<view class='login' hidden="true">-->
       <image class='logo' src='../../img/gslogo.png'></image>
-      <image class='back' src='../../img/denglu.jpg' mode="widthFix"></image>
+      <image class='back' src='../../img/denglu.png' mode="widthFix"></image>
       <form bindsubmit="logon">
         <view class='input'><text class='fl'>账号：</text><input name="user" class='fl' type="number" value="{{inputVal}}" placeholder="请输入11位的手机号码" maxlength="11" bindinput='getFocus'></input></view>
         <view class='input'><text class='fl'>密码：</text><input name="password" class='fl' type="password" value="{{passwordVal}}" placeholder="请输入6-20位的密码" maxlength="20" bindinput='getPassword'></input></view>
@@ -55,6 +55,12 @@
           <text class='fl text'>详细地址</text>
           <view class='fl input'><input type='text' name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
         </view>
+
+        <view class='list cf'>
+          <text class='fl text'>邀请二维码</text>
+          <view class='fl input'><input type='text' name="er_code" placeholder="请输入邀请二维码" maxlength="20"/></view>
+        </view>
+
         <view class='down'>
           <button class='big_bnt' formType="submit">提交资料审核</button>
         </view>

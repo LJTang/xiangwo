@@ -120,6 +120,12 @@
         <image class='fr my_right' src='{{item.rimg}}'></image>
       </navigator>
     </block>
+
+    <view class='first' bindtap='open_spread'>
+      <image class='fl my_left' src='../../img/my9.png'></image>
+      <text class='fl my_text'>消费中心</text>
+      <image class='fr my_right' src='../../img/myr.png'></image>
+    </view>
   </view>
 </view>
 
@@ -145,8 +151,8 @@
 
     <view class='ewm'><image src='https://xiao.guangzhoubaidu.com/uploads/qrcode/12341.png'></image></view>
     <view class='copy_box cf'>
-      <!--<view class='conents fl'selectable='true' bindlongtap='copyBtn'>{{code_ids}}</view>-->
-      <!--<view class='copy_bnt fl' bindtap='copyBtn'>复制邀请码</view>-->
+      <view class='conents fl'selectable='true' bindlongtap='copyBtn'>{{code_ids}}</view>
+      <view class='copy_bnt fl' bindtap='copyBtn'>复制邀请码</view>
     </view>
     <view class='hold' bindtap="download">保存图片</view>
   </view>

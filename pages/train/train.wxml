@@ -1,9 +1,11 @@
 <view class=" {{(showfilter == true ) ? 'fixed' : ''}}">
   <view class='top_nav container'>
-    <view class='list'>全部</view>
+    <view class='list' bindtap='onAll'>全部</view>
     <view class='list' bindtap='setFilterPanel' data-findex="1"><text>类型</text><image src='../../img/xj.png'></image></view>
     <view class='list' bindtap='setFilterPanel' data-findex="2"><text>产品</text><image src='../../img/xj.png'></image></view>
   </view>
+
+
   <view class='screen' wx:if="{{showfilter}}">
     <view class='drop-down down1' wx:if="{{showfilterindex==1}}">
       <view wx:for="{{cate}}" wx:key="{{item.id}}" bindtap="setCateIndex" data-cateindex="{{index}}" class="{{cateindex==index?'active':''}}">{{item.title}}</view>
@@ -12,79 +14,49 @@
       <view wx:for="{{area}}" wx:key="{{item.id}}" bindtap="setAreaIndex" data-areaindex="{{index}}" class="{{areaindex==index?'active':''}}">{{item.name}}</view>
     </view>
   </view>
+
   <view class='mask' wx:if="{{showfilter}}" bindtap="hideFilter"></view>
-  <view class='publicity'>
+
+  <view class='publicity' style='height:{{height}}px;overflow:auto;'>
+
+    <!--<import src="../../wxParse/wxParse.wxml"/>-->
     <block wx:for="{{article}}" wx:key="{{index}}">
 
+      <!-- <view class='list p3 db' wx:for="{{article}}" wx:for-item="lists" wx:key="{{index}}"> -->
       <view class='list p3 db'>
         <view class='list_top cf'>
-          <!--<image class='fl logo' src='{{xwURL}}{{item.user_photo}}'></image>-->
-          <image class='fl logo' src='{{xwURL}}{{item.image}}'></image>
+    
+          <image class='fl logo' src='{{xwURL}}{{item.user_photo}}'></image>
           <view class='fl names'>
             <view class='name'>{{item.username}}</view>
             <view class='time'>{{item.create_time}}</view>
           </view>
-          <!--<view class='fr fenx'>-->
-            <!--<image src='../../img/fenx.png'></image>-->
-            <!--<view>分享</view>-->
-          <!--</view>-->
+    
         </view>
         <view class='concent'>
-          <view class='topic' hidden="{{item.selected}}">#{{item.title}}# <text>{{item.art}}</text> <span bindtap="full" data-index="{{index}}"><text>...</text>全文</span></view>
+            <!--<template is="wxParse" data="{{wxParseData:item}}"/>-->
+                <view class='topic' hidden="{{item.selected}}">#{{item.title}}# <text>{{item.art}}</text> <span bindtap="full" data-index="{{index}}"><text>...</text>全文</span></view>
 
-          <view class='topic' hidden="{{item.active}}">#{{item.title}}# <text>{{item.art}}{{item.art2}}</text> <span bindtap="fewer" data-index="{{index}}">收起</span></view>
-          <!--<view hidden="{{item.active}}" style="font-size:28rpx;">{{item.art2}}</view>-->
+            <view class='topic' hidden="{{item.active}}">#{{item.title}}# <text>{{item.art}}{{item.art2}}</text> <span bindtap="fewer" data-index="{{index}}">收起</span></view>
+
+
+          <view hidden="{{item.active}}" style="font-size:28rpx;">{{item.art2}}</view>
           <view class='video_box' wx:if="{{item.type==3}}">
-            <view class='zhegai' bindtap="bindPlay" wx:if="{{mask_box}}">
-              <image class='img1' src='../../img/zhegai.png'></image>
-              <image class='img2' src='../../img/zhu.png'></image>
-            </view>
-            <!--<video id='myVideo' class="video {{(mask_box == true ) ? 'goleft' : ''}}" controls="true" src='http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400'  bindpause="stop" bindended="stop">-->
-            <video id='myVideo' class="video {{(mask_box == true ) ? 'goleft' : ''}}" controls="true" src='{{item.video}}'  bindpause="stop" bindended="stop">
+            <video id='myVideo' class="video {{(mask_box == true ) ? 'goleft' : ''}}" controls="true" src='{{item.video}}' bindpause="stop" bindended="stop">
             </video>
           </view>
-          <view class='img_box img_boxs container between'wx:elif="{{item.type==2}}">
-            <image src='../../img/xc1.png'></image>
-            <image src='../../img/xc2.png'></image>
-            <image src='../../img/xc3.png'></image>
-            <image src='../../img/xc4.png'></image>
-            <image src='../../img/xc5.png'></image>
-            <image src='../../img/xc6.png'></image>
+          <view class='img_box img_boxs' wx:elif="{{item.type==2}}">
+
+            <block wx:for="{{item.photo}}" wx:for-item="photo" wx:key="{{index}}">
+              <image src='{{xwURL}}{{photo}}' mode="widthFix"></image>
+            </block>
           </view>
           <view wx:else></view>
-
         </view>
       </view>
-
-
-      <!--<view class='list p3 db'>-->
-        <!--<view class='list_top cf'>-->
-          <!--<image class='fl logo' src='../../img/logo.png'></image>-->
-          <!--<view class='fl names'>-->
-            <!--<view class='name'>管理员</view>-->
-            <!--<view class='time'>2018-07-04</view>-->
-          <!--</view>-->
-          <!--<view class='fr fenx'>-->
-            <!--<image src='../../img/fenx.png'></image>-->
-            <!--<view>分享</view>-->
-          <!--</view>-->
-        <!--</view>-->
-        <!--<view class='concent'>-->
-          <!--<view class='topic'>#共享产品# <text>譬如：该产品为共享充电宝，推广大使成交一个地30元，VIP1成交一个的50元，VIP2成交一个的70元，TOP成交一个90元，不同产品不同金额的佣金，以此类推。</text></view>-->
-          <!--<view class='img_box img_boxs container between'>-->
-            <!--<image src='../../img/xc1.png'></image>-->
-            <!--<image src='../../img/xc2.png'></image>-->
-            <!--<image src='../../img/xc3.png'></image>-->
-            <!--<image src='../../img/xc4.png'></image>-->
-            <!--<image src='../../img/xc5.png'></image>-->
-            <!--<image src='../../img/xc6.png'></image>-->
-          <!--</view>-->
-        <!--</view>-->
-      <!--</view>-->
-
     </block>
-
     <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
 
   </view>
 </view>
+ 

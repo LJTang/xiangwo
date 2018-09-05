@@ -154,7 +154,7 @@ Page({
             });
         }else if(e.detail.value.phone.length!=11||e.detail.value.phone==''||GMAPI.checkPhone(e.detail.value.phone)==false){
             wx.showToast({
-                title: '请输入正确的密码',
+                title: '请输入正确的手机号',
                 icon: 'none',
                 duration: 2000
             });

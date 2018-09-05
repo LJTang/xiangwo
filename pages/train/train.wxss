@@ -73,7 +73,8 @@
   font-size: 28rpx;
   color: #709EF4;
   margin: 31rpx 0 15rpx 0;
-  text-align: justify
+  text-align: justify;
+  overflow:hidden;
 }
 .publicity .concent .topic text{
   color: #666;
@@ -84,7 +85,7 @@
   border: 1px solid #ddd;
 }
 .publicity .concent .img_boxs image{
-  width: 219rpx;
+  width: 232rpx;
   height: 237rpx;
   margin-bottom: 20rpx;
 }
@@ -110,12 +111,12 @@
 .publicity .concent .video_box .video{
   width: 100%;
   height: 364rpx;
-
+  margin-top:20rpx;
 }
 .publicity .concent .video_box video.goleft{
   position: absolute;
   top: 0;
-  left: -10000px;
+  left:0;
 } 
 .mask{
   position: fixed;
@@ -125,3 +126,18 @@
   background-color: rgba(0, 0, 0, .5);
   z-index: 11;
 }
+
+.WxEmojiView{
+  font-size:28rpx;
+  padding:20rpx 0;
+}
+.wxParse-img{
+  width: 345rpx;
+}
+
+.wxParse-p{
+  display:flex;
+  flex-wrap:wrap;
+}
+
+@import "../../wxParse/wxParse.wxss";

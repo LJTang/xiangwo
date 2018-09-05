@@ -4,7 +4,7 @@ Page({
   data: {
       height:null,
       inputVal:'',
-      login_Bool:false,
+      login_Bool:true,
       salesman_Bool:true,
       passwordVal:'',
       address:'',
@@ -32,6 +32,7 @@ Page({
                                 this.userInfoReadyCallback(res)
 
                             }
+                            GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
                         }
                     })
                 }else{
@@ -52,10 +53,7 @@ Page({
 
             }
         });
-        this.setData({
-            login_Bool:app.data.loge_Bool,
-            salesman_Bool:true,
-        })
+
 
     },
     onShow:function(e){

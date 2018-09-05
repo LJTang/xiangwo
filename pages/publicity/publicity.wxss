@@ -43,6 +43,7 @@
   height: 11rpx;
   margin-left: 10rpx;
 }
+.list_top{padding-top:20rpx;}
 .publicity .list_top .logo{
   width: 86rpx;
   height: 86rpx;
@@ -71,17 +72,23 @@
 .publicity .concent .topic{
   font-size: 28rpx;
   color: #709EF4;
-  margin: 31rpx 0 15rpx 0;
+  margin-top:30rpx;
+  margin-bottom: 15rpx;
 }
 .publicity .concent .img_box image{
   width: 240rpx;
   height: 345rpx;
   border: 1px solid #ddd;
 }
+.publicity .concent .img_boxs{
+  display:flex;
+  flex-wrap:wrap;
+}
 .publicity .concent .img_boxs image{
-  width: 219rpx;
+  width: 223.33rpx;
   height: 237rpx;
   margin-bottom: 20rpx;
+  margin-left:20rpx;
 }
 .mask{
   position: fixed;
@@ -91,3 +98,6 @@
   background-color: rgba(0, 0, 0, .5);
   z-index: 11;
 }
+
+.mal20R{margin-left:20rpx;}
+.mar20R{margin-right:20rpx;}

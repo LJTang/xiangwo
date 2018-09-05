@@ -29,22 +29,24 @@ Page({
     row_list:[],
       my_lists:[
           // { limg: "../../img/my10.png", text: "培训", rimg: "../../img/myr.png", url: "/pages/train/train" },
-          // { limg: "../../img/my11.png", text: "宣传册", rimg: "../../img/myr.png", url: "/pages/publicity/publicity" },
+         // { limg: "../../img/my11.png", text: "宣传册", rimg: "../../img/myr.png", url: "/pages/publicity/publicity" },
+          { limg: "../../img/my8.png", text: "我的团队", rimg: "../../img/myr.png", url: "/pages/team_superior/team_superior" },
+          { limg: "../../img/my8.png", text: "我的推广", rimg: "../../img/myr.png", url: "/pages/generalize/generalize" },
           { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
           { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order?status=100" },
           { limg: "../../img/my12.png", text: "佣金明细", rimg: "../../img/myr.png", url: "/pages/commission/commission" },
           { limg: "../../img/my5.png", text: "分销订单", rimg: "../../img/myr.png", url: "/pages/sale_order/sale_order" },
-          { limg: "../../img/my8.png", text: "我的团队", rimg: "../../img/myr.png", url: "/pages/team_superior/team_superior" },
-          { limg: "../../img/my8.png", text: "我的推广", rimg: "../../img/myr.png", url: "/pages/generalize/generalize" },
 
           { limg: "../../img/my6.png", text: "联系客服", rimg: "../../img/myr.png", url: "/pages/contact_service/contact_service" },
       ],
+
       row_lists:[
           { price: "￥75.00", text: "累计佣金",},
           { price: "￥75.00", text: "可提现佣金",},
           { price: "￥7.00", text: "未结算佣金",},
       ],
-      info:''
+      info:'',
+      code_ids:''
   },
 
     onLoad: function (option) {

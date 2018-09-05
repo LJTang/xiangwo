@@ -1,8 +1,8 @@
 //index.js
 //获取应用实例
 import GMAPI from "../../utils/api";
-
-const app = getApp()
+var WxParse = require('../../wxParse/wxParse.js');
+const app = getApp();
 
 Page({
   data: {
@@ -16,6 +16,7 @@ Page({
       { name: "共享产品" }, { name: "非共享产品" }
     ],
     brochure:[],
+    replyTemArray:[],
     xwURL:''
   },
   setFilterPanel: function (e) { //展开筛选面板
@@ -59,6 +60,10 @@ Page({
     onShow:function(){
         var that=this;
         GMAPI.doSendMsg('api/exhibition/index',{type:4,share:''},'GET',that.onMsgCallBack_Train);
+/*********
+
+*********/
+
     },
     onMsgCallBack_Train:function (jsonBack){
         var data=jsonBack.data;
@@ -72,14 +77,23 @@ Page({
                 var goods=[];
                 var list=data.data;
                 var arr='';
+
                 for(var i=0;i<list.length;i++){
+
+                    // WxParse.wxParse('reply' + i, 'html', list[i].art, that);
+                    // if (i === list.length - 1) {
+                    //   WxParse.wxParseTemArray("replyTemArray",'reply', list.length, that)
+                    // }
+
                     goods.push(list[i]);
                 }
                 this.setData({
                     brochure :goods,
                     xwURL:jsonBack.data.Https
                 })
+
             }
+
         }else{
             wx.showToast({
                 title:data.msg,
