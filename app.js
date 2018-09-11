@@ -22,7 +22,7 @@ App({
           // GMAPI.doSendMsg('api/verification/login',{code:res.code,rawData:e.detail.rawData,signature:e.detail.signature,iv:e.detail.iv,encryptedData:e.detail.encryptedData},'POST',that.onMsgCallBack);
         // 发送 res.code 到后台换取 openId, sessionKey, unionId
       }
-    })
+    });
     // 获取用户信息
     wx.getSetting({
       success: res => {
@@ -31,12 +31,12 @@ App({
           wx.getUserInfo({
             success: res => {
               // 可以将 res 发送给后台解码出 unionId
-              this.globalData.userInfo = res.userInfo
+              this.globalData.userInfo = res.userInfo;
 
               // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
               // 所以此处加入 callback 以防止这种情况
               if (this.userInfoReadyCallback) {
-                this.userInfoReadyCallback(res)
+                this.userInfoReadyCallback(res);
                   wx.request({
                       url: 'https://xiao.guangzhoubaidu.com/api/verification/login',
                       data: {
@@ -75,8 +75,45 @@ App({
                           // wx.hideLoading();
                       }
                   })
-
-                  }
+              }
+              wx.request({
+                    url: 'https://xiao.guangzhoubaidu.com/api/verification/login',
+                    data: {
+                        code: code,
+                        rawData: res.rawData,
+                        signature: res.signature,
+                        iv: res.iv,
+                        encryptedData: res.encryptedData
+                    },
+                    responseType: 'text',
+                    header: {
+                        'content-type': 'application/json'
+                    },
+                    method: 'POST',
+                    success: function (res) {
+                        var strData = res.data;
+                        if (strData.code == 200) {
+                            wx.setStorage({
+                                key: 'strWXID',
+                                data: {strWXOpenID: strData.data.openid, strUserID: strData.data.uid,userType:(strData.data.type==2&&strData.data.type_status==2)}
+                            });
+                        } else {
+                            wx.showToast({
+                                title: strData.msg,
+                                icon: 'none',
+                                duration: 2000
+                            });
+                        }
+                    },
+                    fail: function (res) {
+                        wx.showToast({
+                            title: '网络请求错误，请稍后再重试',
+                            icon: 'none',
+                            duration: 2000
+                        });
+                        // wx.hideLoading();
+                    }
+                })
             }
           })
         }

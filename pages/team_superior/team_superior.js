@@ -11,7 +11,6 @@ Page({
 
   swichNav: function (e) {
     var current = e.currentTarget.dataset.current;//获取到绑定的数据
-    //改变menuTapCurrent的值为当前选中的menu所绑定的数据
     this.setData({
       menuTapCurrent: current,
         vipArray:[],
@@ -34,12 +33,9 @@ Page({
             var list=data.data.vipArray;
             if(list.length==0){
                 this.setData({
-                    len_Bool :true
+                    len_Bool :false
                 })
             }else{
-            //     for(var i=0;i<list.length;i++){
-            //         goods.push(list[i])
-            //     }
                 this.setData({
                     len_Bool :true
                 })

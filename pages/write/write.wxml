@@ -24,32 +24,42 @@
   </form>
   <view class="layout_LR_Box">
 
-    <view class="layout_LR" wx:if="{{goods.length==0}}">
+    <!--<view class="layout_LR" wx:if="{{goods.length==0}}">-->
+    <view class="layout_LR" wx:if="{{v_Bool}}">
       <view class="layout_Left">该商家还未入驻</view>
       <view class="layout_Right">
         <view class="import_Btn" bindtap="onToggle">立即入驻</view></view>
     </view>
     <view wx:else>
       <block wx:for="{{goods}}" wx:key="{{index}}">
-        <view class="layout_LR" wx:if="{{item.m_status==1}}" bindtap="onAudit" data-id="{{item.id}}">
-          <view class="layout_Left">{{item.m_store_name}}</view>
-          <view class="layout_Right"><image src="/img/gou.png"></image></view>
+
+        <view class="centeredContent" wx:if="{{item.m_status==1}}" bindtap="onAudit" data-id="{{item.id}}" data-mid="{{item.m_product_id}}">
+          <view class="centeredContent_Left mal20R" style="width:640rpx;">
+            <view>{{item.m_store_name}},{{item.m_phone}}</view>
+            <view>{{item.m_address}}</view>
+          </view>
+          <view class="centerByContent_Right"><image src="/img/gou.png"></image></view>
         </view>
 
-        <view class="layout_LR" wx:elif="{{item.m_status==2}}" bindtap="onAuditFail" data-id="{{item.id}}">
-          <view class="layout_Left">{{item.m_store_name}}</view>
-          <view class="layout_Right">
+        <view class="centeredContent" wx:elif="{{item.m_status==2}}" bindtap="onAuditFail" data-id="{{item.id}}">
+          <view class="centeredContent_Left mal20R">
+            <view>{{item.m_store_name}},{{item.m_phone}}</view>
+            <view>{{item.m_address}}</view>
+          </view>
+          <view class="centerByContent_Right">
             <view class="import_Btn" style="background:#F47070;">该商家审核不通过</view>
           </view>
         </view>
 
-        <view class="layout_LR" wx:else bindtap="onAudit" data-id="{{item.id}}">
-          <view class="layout_Left">{{item.m_store_name}}</view>
-          <view class="layout_Right">
+        <view class="centerByContent" wx:else bindtap="onAudit_Z" data-id="{{item.id}}">
+          <view class="centeredContent_Left mal20R">
+            <view>{{item.m_store_name}},{{item.m_phone}}</view>
+            <view>{{item.m_address}}</view>
+          </view>
+          <view class="centerByContent_Right">
             <view class="import_Btn">该商家正在审核中</view>
           </view>
         </view>
-
       </block>
     </view>
 
@@ -60,27 +70,6 @@
 <view class='form' hidden="{{form_Bool}}">
   <form bindsubmit="submitData">
     <view class='list cf'>
-      <text class='fl text'>姓名</text>
-      <view class='fl input'><input type='text' name="m_name" placeholder="请输入姓名"/></view>
-    </view>
-    <view class='list cf'>
-      <text class='fl text'>手机号</text>
-      <view class='fl input'><input type='number' name="m_phone" placeholder="请输入手机号" maxlength="11"/></view>
-    </view>
-    <!--<view class='list  cf'>-->
-      <!--<text class='fl text'>验证码</text>-->
-      <!--<view class='fl input'><input type='number'/></view>-->
-      <!--<view class='bnt fr'>获取手机验证码</view>-->
-    <!--</view>-->
-    <view class='list cf'>
-      <text class='fl text'>微信号</text>
-      <view class='fl input'><input type='text' name="m_openid" placeholder="请输入微信号"/></view>
-    </view>
-    <!--<view class='list cf'>-->
-      <!--<text class='fl text'>产品名称</text>-->
-      <!--<view class='fl input'><input type='text' name="m_product_id" placeholder="请输入产品名称" maxlength="20"/></view>-->
-    <!--</view>-->
-    <view class='list cf'>
       <text class='fl text'>店名</text>
       <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名"/></view>
     </view>
@@ -89,17 +78,31 @@
       <view class="fl input" >
         <input type='text' name="m_address" placeholder="点击选择位置" value="{{d_address}}" disabled="true"/>
       </view>
-      <!--<view class="province cf fl" focus="{{focus}}" bindtap="open">-->
-        <!--<view class='province_list'>{{province}}</view>-->
-        <!--<view class='province_list'>{{city}}</view>-->
-        <!--<view class='province_list'>{{county}}</view>-->
-      <!--</view>-->
-      <!--<image class='fr xl' src='../../img/xl.png'></image>-->
     </view>
     <view class='list cf'>
       <text class='fl text'>详细地址</text>
       <view class='fl input'><input type='text' name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
     </view>
+
+    <view class='list cf'>
+      <text class='fl text'>姓名</text>
+      <view class='fl input'><input type='text' name="m_name" placeholder="请输入姓名"/></view>
+    </view>
+    <view class='list cf'>
+      <text class='fl text'>手机号</text>
+      <view class='fl input'><input type='number' name="m_phone" placeholder="请输入手机号" maxlength="11"/></view>
+    </view>
+
+    <view class='list cf'>
+      <text class='fl text'>微信号</text>
+      <view class='fl input'><input type='text' name="m_openid" placeholder="请输入微信号"/></view>
+    </view>
+
+    <!--<view class='list cf'>-->
+      <!--<text class='fl text'>邀请码</text>-->
+      <!--<view class='fl input'><input type='text' name="invitation_code" placeholder="请输入邀请码（选填）" maxlength="20"/></view>-->
+    <!--</view>-->
+
     <view class='down'>
       <button class='big_bnt' formType="submit">免费获取</button>
       <!--<view>（验证后立即发货）</view>-->

@@ -287,8 +287,7 @@ Page({
                 duration: 2000
             });
         }else{
-            // GMAPI.doTurnTimestamp(e.detail.value)/1000
-            var json={uid:wx.getStorageSync('strWXID').strUserID,username:e.detail.value.user_name,phone:that.data.phone,password:e.detail.value.password,idc:that.data.idcard,school:that.data.school,school_major:that.data.major,school_time:GMAPI.doTurnTimestamp(that.data.date)/1000,sex:that.data.checkboxValue};
+            var json={uid:wx.getStorageSync('strWXID').strUserID,username:e.detail.value.user_name,phone:that.data.phone,password:e.detail.value.password,idc:that.data.idcard,school:that.data.school,school_major:that.data.major,school_time:GMAPI.doTurnTimestamp(that.data.date)/1000,sex:that.data.checkboxValue,invitation_code:e.detail.value.invitation_code};
             // console.log(json)
             GMAPI.doSendMsg('api/verification/register',json,'POST',that.onMsgCallBack_Register);
         }

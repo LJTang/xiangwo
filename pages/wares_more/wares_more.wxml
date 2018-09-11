@@ -1,3 +1,4 @@
+<view style="position: relative;">
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{details.photo}}" wx:key="{{index}}">
     <swiper-item>
@@ -5,12 +6,15 @@
     </swiper-item>
   </block>
 </swiper>
-<view class="announcement">{{setting.notice_now}}</view>
+  <!--<view class="announcement"><text class="mal20R">{{setting.notice_now}}</text></view>-->
+</view>
+
 <view class='header db'>
   <view class='cf fl header_l'>
-    <text class='state'>{{details.goods_cat==1?'免费':details.price}}</text>
+    <text class='state'>{{setting.notice_now}} <text class="fr"></text></text>
     <text class="mat10R">{{details.title}}</text>
   </view>
+  <!--<view class="fr state mat20R">{{setting.notice_now}}</view>-->
   <!--<view class='cf fr header_r' bindtap='open_share'>-->
     <!--<image class='fl' src='../../img/fenx.png'></image>-->
     <!--<text class='fl'>分享</text>-->
@@ -50,7 +54,7 @@
   </view>
 </view>
 <view class='fixed_nav'>
-  <navigator hover-class='none' url='/pages/write/write?id={{details.id}}' class='free'>{{text}}</navigator>
+  <navigator hover-class='none' url='/pages/write/write?id={{details.id}}' class='free'>免费领取</navigator>
 </view>
 
 <view class="popUp_Box" wx:if="{{hasUserInfo}}">

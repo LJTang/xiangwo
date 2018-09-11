@@ -50,12 +50,12 @@
   text-align: center;
   margin-top: 20rpx;
 }
-.form .list:nth-child(9) .text{
+/* .form .list:nth-child(9) .text{
   width: 35%;
 }
 .form .list:nth-child(9) .input{
   width: 60%;
-}
+} */
 .form .list .radio{
   margin-right: 4%;
 }

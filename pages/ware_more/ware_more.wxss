@@ -83,15 +83,16 @@ background:#fff;
   line-height: 100rpx;
 }
 .fixed_nav .left{
-  width:18%;
+  width:110rpx;
   background-color: #fff;
-  text-align: center;
+  /* text-align: center; */
   height:100rpx;
+  /* margin-left:60rpx */
 }
 .fixed_nav .left image{
   width:50rpx;
   height:50rpx;
-  margin:25rpx 0 0 25rpx;
+  margin:25rpx 0 0 60rpx;
 }
 .fixed_nav .left text{
   font-size: 28rpx;
@@ -102,14 +103,15 @@ background:#fff;
   vertical-align:top;
 }
 .fixed_nav .center,.fixed_nav .right{
-  width:23%;
-  background-color: #f47070;
+  width:180rpx;
+  background-color: #ff4e02;
   font-size: 28rpx;
   color: #fff;
   text-align: center;
 }
 .fixed_nav .center{
-  background-color: #709df4;
+  /* background-color: #709df4; */
+   background-color:#fead01;
 }
 .share{
   position: fixed;
@@ -270,10 +272,11 @@ background:#fff;
   width:60rpx;
   height:60rpx;
   line-height:60rpx;
-  border:1px solid #ddd;
+  /* border:1px solid #ddd; */
   text-align:center;
   color:#999;
   display: inline-block;
+  background:#f5f5f5;
 }
 .join .join_box .decrease .count-num {
   width:80rpx;
@@ -295,14 +298,16 @@ background:#fff;
 .p_Relative{position: relative;}
 .bg_Radio{
   display: inline-block;
-  width:40rpx;
-  height:40rpx;
-  line-height:40rpx;
+  width:36rpx;
+height:36rpx;
+line-height:36rpx;
   background:#F46366;
   color:#fff;
-  font-size:28rpx;
+  font-size:24rpx;
   border-radius:50%;
   position: absolute;
-  right:20rpx;
+  /* right:20rpx; */
+  right:-15rpx;
   top:5rpx;
+  text-align:center;
 }

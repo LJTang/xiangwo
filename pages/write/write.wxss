@@ -97,7 +97,7 @@
   text-align: right;
   margin-right:20rpx;
   }
-.layout_LR .layout_Right .import_Btn{
+.layout_LR .layout_Right .import_Btn,.centerByContent .centerByContent_Right .import_Btn{
   width:180rpx;
   height:60rpx;
   line-height:60rpx;
@@ -106,12 +106,14 @@
   color:#fff;
   border-radius: 5px;
   text-align: center;
+  margin-right: 20rpx;
 }
 .layout_LR .layout_Right image{
   width:30rpx;
   height:30rpx;
   margin-right:20rpx;
 }
+.mal20R{margin-left:20rpx;}
 /**
 **
 **/
@@ -213,4 +215,23 @@ picker-view-column view{
   color: #999;
   text-align: center;
   margin-top: 20rpx;
+}
+
+
+.centeredContent{
+  height: auto;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+}
+.centeredContent_Left .title{
+  margin:auto 0 auto 0;
+  width: 160rpx;
+  color: #7c7c7c;
+}
+.centeredContent_Left{width:560rpx;}
+
+.centerByContent_Right image{
+  width: 40rpx;
+  height: 40rpx;
 }

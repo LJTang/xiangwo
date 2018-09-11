@@ -67,7 +67,7 @@ Page({
                               this.userInfoReadyCallback(res)
 
                           }
-                          // GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
+                          GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
                       }
                   })
               }else{
@@ -81,7 +81,7 @@ Page({
     onShow:function(){
         var that = this;
         this.setData({
-            text: (app.data.loge_Bool==false?'免费领取':'填写商家信息')
+            // text: (app.data.loge_Bool==false?'免费领取':'填写商家信息')
         });
         GMAPI.doSendMsg('api/index/setting',{}, 'POST',that.onMsgCallBack_Setting);
     },
@@ -106,7 +106,9 @@ Page({
         var data=jsonBack.data;
         var that=this;
         if(data.code==200){
-
+            this.setData({
+                text: (data.data.type==0?'免费领取':'填写商家信息')
+            });
         }
     },
     onShareAppMessage: function (res) {

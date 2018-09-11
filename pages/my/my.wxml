@@ -52,6 +52,11 @@
         <image class='fr my_right' src='{{item.rimg}}'></image>
       </navigator>
     </block>
+    <view class='first' bindtap='onTrigger' hidden="{{info.type==0?true:false}}" data-index="0">
+      <image class='fl my_left' src='../../img/nav3_1.png'></image>
+      <text class='fl my_text'>业务中心</text>
+      <image class='fr my_right' src='../../img/myr.png'></image>
+    </view>
   </view>
 </view>
 
@@ -78,15 +83,15 @@
   </view>
   <view class='row_list container db'>
       <navigator hover-class='none' url=''>
-        <view class='price'>{{info.commission}}</view>
+        <view class='price'>{{info.commission==''?0:info.commission}}</view>
         <view class='text'>累计佣金</view>
       </navigator>
     <navigator hover-class='none' url='/pages/my_commission/my_commission?id={{info.commission}}'>
-      <view class='price'>{{info.commission}}</view>
+      <view class='price'>{{info.commission==''?0:info.commission}}</view>
       <view class='text'>可提现佣金</view>
     </navigator>
     <navigator hover-class='none' url=''>
-      <view class='price'>{{info.commission_no}}</view>
+      <view class='price'>{{info.commission_no==''?0:info.commission_no}}</view>
       <view class='text'>未结算佣金</view>
     </navigator>
   </view>
@@ -94,7 +99,7 @@
     <view class='first'>
       <image class='fl my_left' src='../../img/my7.png'></image>
       <text class='fl my_text'>团队累计佣金</text>
-      <text class='price fr'>￥{{info.commission_count}}</text>
+      <text class='price fr'>￥{{info.money}}</text>
     </view>
 
     <navigator hover-class='none' url='/pages/train/train'>
@@ -121,8 +126,8 @@
       </navigator>
     </block>
 
-    <view class='first' bindtap='open_spread'>
-      <image class='fl my_left' src='../../img/my9.png'></image>
+    <view class='first' bindtap='onTrigger' data-index="1">
+      <image class='fl my_left' src='../../img/user_c.png'></image>
       <text class='fl my_text'>消费中心</text>
       <image class='fr my_right' src='../../img/myr.png'></image>
     </view>

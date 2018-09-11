@@ -18,11 +18,11 @@ Page({
       len_Bool :true
   },
 
-    onUnload:function () {
-        wx.switchTab({
-            url: '/pages/my/my'
-        })
-    },
+    // onUnload:function () {
+    //     wx.switchTab({
+    //         url: '/pages/my/my'
+    //     })
+    // },
   /**
    * 当前商品选中事件
    */

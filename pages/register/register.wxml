@@ -54,7 +54,7 @@
 
     <view class='list cf'>
       <text class='fl text'>邀请码</text>
-      <view class='fl input'><input type='text' placeholder="请输入邀请码" value="{{major}}" maxlength="20" bindinput='getFocus' data-status="6" /></view>
+      <view class='fl input'><input type='text' name="invitation_code" placeholder="请输入邀请码（选填）" value="{{major}}" maxlength="20" bindinput='getFocus' data-status="6" /></view>
     </view>
 
     <view class='down'>

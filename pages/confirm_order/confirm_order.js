@@ -133,6 +133,9 @@ Page({
                 this.setData({
                     click_Bool:false
                 });
+                wx.showLoading({
+                    title: '加载中...',
+                });
                 GMAPI.doSendMsg('api/Order/order_add',{ uid:wx.getStorageSync('strWXID').strUserID,goods_id:that.data.goodsID,num:that.data.numb,address_id:that.data.data.addr.id}, 'POST', that.onMsgCallBack_PlaceAnOrder);
             }
         }else{
@@ -147,6 +150,7 @@ Page({
         if(data.code==200){
             GMAPI.doSendMsg('api/Order/order_pay',{uid:wx.getStorageSync('strWXID').strUserID,order_id:data.data.order_id},'POST',that.onMsgCallBack_OrderPay);
         }else{
+            wx.hideLoading();
             wx.showToast({
                 title: jsonBack.data.msg,
                 icon: 'none',
@@ -158,6 +162,7 @@ Page({
     onMsgCallBack_OrderPay:function (jsonBack){
         var data=jsonBack.data;
         var that=this;
+        wx.hideLoading();
         if(jsonBack!=''){
             wx.requestPayment({
                 'timeStamp': data.timeStamp,

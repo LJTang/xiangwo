@@ -240,7 +240,7 @@ Page({
             });
         }else if(e.detail.value.m_phone.length!=11||e.detail.value.m_phone==''||GMAPI.checkPhone(e.detail.value.m_phone)==false){
             wx.showToast({
-                title: '请输入正确的密码',
+                title: '请输入正确的手机号',
                 icon: 'none',
                 duration: 2000
             });
@@ -275,8 +275,9 @@ Page({
                 duration: 2000
             });
         }else{
+            // var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:that.data.m_product_id,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_x:that.data.location.longitude,m_address_y:that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed,invitation_code:e.detail.value.invitation_code};
             var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:that.data.m_product_id,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_x:that.data.location.longitude,m_address_y:that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed};
-            console.log(json)
+            console.log(json);
             GMAPI.doSendMsg('api/verification/merchantRegister',json,'POST',that.onMsgCallBack_SubmitData);
         }
     },

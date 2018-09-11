@@ -1,6 +1,6 @@
 <view class="bgF5" style="height:{{height}}px;">
   <view class='login' hidden="{{login_Bool}}">
-    <!--<view class='login' hidden="true">-->
+    <!--<view class='login'>-->
       <image class='logo' src='../../img/gslogo.png'></image>
       <image class='back' src='../../img/denglu.png' mode="widthFix"></image>
       <form bindsubmit="logon">
@@ -13,8 +13,25 @@
     </view>
 
   <view class='form' hidden="{{salesman_Bool}}">
+  <!--<view class='form' hidden="true">-->
     <view class='form'>
       <form bindsubmit="submitData">
+        <view class='list cf'>
+          <text class='fl text'>店名</text>
+          <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名"/></view>
+        </view>
+
+        <view class='list cf' bindtap="chooseLocation">
+          <text class='fl text'>店铺地址</text>
+          <view class="fl input" >
+            <input type='text' name="m_address" placeholder="请输入详细地址" value="{{d_address}}"/>
+          </view>
+        </view>
+        <view class='list cf'>
+          <text class='fl text'>详细地址</text>
+          <view class='fl input'><input type='text' name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
+        </view>
+
         <view class='list cf'>
           <text class='fl text'>姓名</text>
           <view class='fl input'><input type='text' name="m_name" placeholder="请输入姓名"/></view>
@@ -40,26 +57,10 @@
         </view>
         </view>
 
-        <view class='list cf'>
-          <text class='fl text'>店名</text>
-          <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名"/></view>
-        </view>
-
-        <view class='list cf' bindtap="chooseLocation">
-          <text class='fl text'>店铺地址</text>
-          <view class="fl input" >
-            <input type='text' name="m_address" placeholder="请输入详细地址" value="{{d_address}}"/>
-          </view>
-        </view>
-        <view class='list cf'>
-          <text class='fl text'>详细地址</text>
-          <view class='fl input'><input type='text' name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
-        </view>
-
-        <view class='list cf'>
-          <text class='fl text'>邀请二维码</text>
-          <view class='fl input'><input type='text' name="er_code" placeholder="请输入邀请二维码" maxlength="20"/></view>
-        </view>
+        <!--<view class='list cf'>-->
+          <!--<text class='fl text'>邀请码</text>-->
+          <!--<view class='fl input'><input type='text' name="invitation_code" placeholder="请输入邀请码（选填）" maxlength="20"/></view>-->
+        <!--</view>-->
 
         <view class='down'>
           <button class='big_bnt' formType="submit">提交资料审核</button>

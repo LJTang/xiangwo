@@ -1,6 +1,6 @@
 <view class="swiper-tab container">
     <view class="swiper-tab-list {{menuTapCurrent==3 ? 'on' : ''}}" data-current="3" bindtap="swichNav">TOP({{teams.top_count}})</view>
-    <view class="swiper-tab-list {{menuTapCurrent==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">VIP2({{teams.vip2}})</view>
+    <view class="swiper-tab-list {{menuTapCurrent==2 ? 'on' : ''}}" data-current="2" bindtap="swichNav">VIP2({{teams.vip2_count}})</view>
     <view class="swiper-tab-list {{menuTapCurrent==1 ? 'on' : ''}}" data-current="1" bindtap="swichNav">VIP1({{teams.vip1_count}})</view>
     <view class="swiper-tab-list {{menuTapCurrent==0 ? 'on' : ''}}" data-current="0" bindtap="swichNav">推广大使({{teams.extension_count}})</view>
 </view>
@@ -17,6 +17,7 @@
             </navigator>
           </view>
         </block>
+
         <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
 
       </view>

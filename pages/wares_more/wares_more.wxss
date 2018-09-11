@@ -2,6 +2,7 @@ swiper {
   display:block;
   height:490rpx;
   border-bottom: 1px solid #ddd;
+  position:relative;
 }
 swiper image {
   display:block;
@@ -21,6 +22,10 @@ swiper image {
 }
 .header .header_l .state{
   color: #F46366;
+}
+.state{
+  color: #F46366;
+  font-size:28rpx;
 }
 .header .header_r{
   height: 123rpx;
@@ -162,13 +167,22 @@ swiper image {
   width: 100%;
 }
 .announcement{
-   position:fixed;
-  top:400rpx;
-  left:20rpx;
-  text-align: center;
-  padding:20rpx 0;
-  opacity:0.5;
-  filter:alpha(opacity=50);
-  color:#F46366;
+   position:absolute;
+  top:420rpx;
+  left:0rpx;
+  /* text-align: center; */
+  /* padding:6rpx; */
+  opacity:0.7;
+  filter:alpha(opacity=70);
+  color:#000;
   font-size:30rpx;
+  background:rgba(0,0,0,0.3);
+  width:750px;
+  height:50rpx;
+  line-height:50rpx;
+}
+.mal20R{margin-left: 20rpx;}
+.centerByContent_Right image{
+  width: 40px;
+  height: 40px;
 }

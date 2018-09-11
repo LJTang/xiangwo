@@ -17,8 +17,51 @@ Page({
     ],
     brochure:[],
     replyTemArray:[],
-    xwURL:''
+    xwURL:'',
+      height:''
   },
+    onLoad:function(){
+      var that=this;
+        wx.getSystemInfo({
+            success: function(res) {
+                var rpx=(res.windowWidth / 750);
+                that.setData({
+                    height:res.windowHeight-(rpx*140)
+                });
+            }
+        });
+    },
+    // http://xiao.guangzhoubaidu.com/api/exhibition/exhiSearch?search=%E5%AE%A3
+    onShow:function(){
+        var that=this;
+        GMAPI.doSendMsg('api/exhibition/index',{type:4,share:''},'GET',that.onMsgCallBack_Train);
+
+    },
+
+    getFocus: function (e) {
+        this.setData({
+            search_Text: e.detail.value,
+            brochure:[]
+        });
+        var that=this;
+        GMAPI.doSendMsg('api/exhibition/exhiSearch',{search:e.detail.value}, 'GET',that.onMsgCallBack_Train);
+    },
+    clearInput: function (){
+        this.setData({
+            search_Text:'',
+            brochure:[]
+        });
+    },
+    //  搜索
+    onSearch:function(e){
+        var that=this;
+        this.setData({
+            search_Text: e.detail.value,
+            brochure:[]
+        });
+        GMAPI.doSendMsg('api/exhibition/exhiSearch',{search:e.detail.value}, 'GET',that.onMsgCallBack_Train);
+    },
+
   setFilterPanel: function (e) { //展开筛选面板
     const d = this.data;
     const i = e.currentTarget.dataset.findex;
@@ -57,14 +100,6 @@ Page({
       showfilterindex: null
     })
   },
-    onShow:function(){
-        var that=this;
-        GMAPI.doSendMsg('api/exhibition/index',{type:4,share:''},'GET',that.onMsgCallBack_Train);
-/*********
-
-*********/
-
-    },
     onMsgCallBack_Train:function (jsonBack){
         var data=jsonBack.data;
         var that=this;
@@ -79,12 +114,6 @@ Page({
                 var arr='';
 
                 for(var i=0;i<list.length;i++){
-
-                    // WxParse.wxParse('reply' + i, 'html', list[i].art, that);
-                    // if (i === list.length - 1) {
-                    //   WxParse.wxParseTemArray("replyTemArray",'reply', list.length, that)
-                    // }
-
                     goods.push(list[i]);
                 }
                 this.setData({
@@ -95,11 +124,10 @@ Page({
             }
 
         }else{
-            wx.showToast({
-                title:data.msg,
-                icon:'none',
-                duration: 2000
-            });
+            this.setData({
+                brochure :[]
+
+            })
         }
     }
 

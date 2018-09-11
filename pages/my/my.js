@@ -17,7 +17,7 @@ Page({
       { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
       { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order?status=100" },
       { limg: "../../img/my6.png", text: "联系客服", rimg: "../../img/myr.png", url: "/pages/contact_service/contact_service" },
-      { limg: "../../img/my6.png", text: "我的地址", rimg: "../../img/myr.png", url: "/pages/select_address/select_address?status=0" },
+      { limg: "../../img/address_c.png", text: "我的地址", rimg: "../../img/myr.png", url: "/pages/select_address/select_address?status=0" },
 
     ],
     nav: [
@@ -32,8 +32,6 @@ Page({
          // { limg: "../../img/my11.png", text: "宣传册", rimg: "../../img/myr.png", url: "/pages/publicity/publicity" },
           { limg: "../../img/my8.png", text: "我的团队", rimg: "../../img/myr.png", url: "/pages/team_superior/team_superior" },
           { limg: "../../img/my8.png", text: "我的推广", rimg: "../../img/myr.png", url: "/pages/generalize/generalize" },
-          { limg: "../../img/my4.png", text: "购物车", rimg: "../../img/myr.png", url:"/pages/cart/cart"},
-          { limg: "../../img/my5.png", text: "全部订单", rimg: "../../img/myr.png", url: "/pages/all_order/all_order?status=100" },
           { limg: "../../img/my12.png", text: "佣金明细", rimg: "../../img/myr.png", url: "/pages/commission/commission" },
           { limg: "../../img/my5.png", text: "分销订单", rimg: "../../img/myr.png", url: "/pages/sale_order/sale_order" },
 
@@ -46,7 +44,9 @@ Page({
           { price: "￥7.00", text: "未结算佣金",},
       ],
       info:'',
-      code_ids:''
+      code_ids:'',
+      erURL:'',
+      copy_Code:''
   },
 
     onLoad: function (option) {
@@ -61,9 +61,6 @@ Page({
             });
             GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_P);
         }
-        this.setData({
-            user_View:app.data.loge_Bool
-        });
         wx.getSetting({
             success: res => {
                 if (res.authSetting['scope.userInfo']){
@@ -78,6 +75,7 @@ Page({
                                 this.userInfoReadyCallback(res)
 
                             }
+                            GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
                         }
                     })
                 }else{
@@ -92,42 +90,43 @@ Page({
     onShow:function(){
       var that=this;
       this.setData({
-          user_View:app.data.loge_Bool,
-          business_View:(app.data.loge_Bool==true?false:true),
+          // user_View:app.data.loge_Bool,
+          // business_View:(app.data.loge_Bool==true?false:true),
       });
-      GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_UserInfo);
+
     },
     onMsgCallBack_UserInfo:function (jsonBack){
         var data=jsonBack.data;
         var that=this;
         if(data.code==200){
-            this.setData({
-                info:data.data
-            });
-            /*
+
+
             if(data.data.type==0){
                 this.setData({
                     info:data.data,
                     user_View:false,
                     business_View: true
                 })
-            }else if(data.data.type==2&&data.data.type_status==2){
-                this.setData({
-                    info:data.data,
-                    user_View:true,
-                    business_View: false
-                });
+            // }else if(data.data.type==2&&data.data.type_status==2){
+            //     this.setData({
+            //         info:data.data,
+            //         user_View:true,
+            //         business_View: false
+            //     });
                 // GMAPI.doSendMsg('api/user/myTeam',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_myTeam);
             }else{
                 this.setData({
                     info:data.data,
-                    user_View:false,
-                    business_View: true
+                    user_View:true,
+                    business_View: false
                 })
             }
-*/
 
         }else{
+            this.setData({
+                user_View:false,
+                business_View: true
+            });
             wx.showToast({
                 title:data.msg,
                 icon:'none',
@@ -135,6 +134,7 @@ Page({
             });
         }
     },
+
     // 业务员
   getUserInfo: function (e) {
       var that=this;
@@ -186,6 +186,9 @@ Page({
         }
     },
     open_spread: function () { //打开
+        var that=this;
+        GMAPI.doSendMsg('api/index/er',{uid:wx.getStorageSync('strWXID').strUserID}, 'POST',that.onMsgCallBack_ER);
+
         this.setData({
             spread_box: true,
         })
@@ -206,9 +209,25 @@ Page({
                 });
             }
         });
-
-
     },
+    onMsgCallBack_ER:function (jsonBack){
+        var data=jsonBack.data;
+        var that=this;
+        if(data.code==200){
+            this.setData({
+                erURL:'',
+                copy_Code:''
+            })
+        }else{
+            wx.showToast({
+                title:data.msg,
+                icon:'none',
+                duration: 2000
+            });
+        }
+    },
+
+
     download:function () {
         wx.getSetting({
             success: function (res) {
@@ -267,7 +286,7 @@ Page({
     onShareAppMessage: function (res) {
         var that=this;
         return {
-            title: '享沃测试2',
+            title: '享沃',
             path: '/pages/my/my?pid='+wx.getStorageSync('strWXID').strUserID,
             success: function(res) {
                 // 转发成功
@@ -286,5 +305,11 @@ Page({
     },
     onMsgCallBack_P:function (jsonBack){},
 
-
+    onTrigger:function (e) {
+      var index=parseInt(e.currentTarget.dataset.index);
+        this.setData({
+            user_View:(index==0?true:false),
+            business_View: (index==1?true:false)
+        });
+    }
 });

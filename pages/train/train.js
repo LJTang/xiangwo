@@ -80,17 +80,17 @@ Page({
   setFilterPanel: function (e) { //展开筛选面板
     const d = this.data;
     const i = e.currentTarget.dataset.findex;
-    if (d.showfilterindex == i) {
-      this.setData({
-        showfilter: false,
-        showfilterindex: null
-      })
-    }else{
-      this.setData({
-        showfilter: true,
-        showfilterindex: i,
-      })
-    }
+      if (d.showfilterindex == i) {
+          this.setData({
+              showfilter: false,
+              showfilterindex: null
+          })
+      } else {
+          this.setData({
+              showfilter: true,
+              showfilterindex: i,
+          })
+      }
   },
   setCateIndex: function (e) { //分类一级索引
     const dataset = e.currentTarget.dataset;

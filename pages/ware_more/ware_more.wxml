@@ -46,22 +46,28 @@
 </view>
 <view class='concent'>
   <view class='top'><text>商品详情</text></view>
-  <view class='p3 xq_concent'>
+  <view class='xq_concent' style="margin-left:5px;">
     <import src="../../wxParse/wxParse.wxml"/>
     <template is="wxParse" data="{{wxParseData:article.nodes}}"/>
   </view>
 </view>
 <view class='fixed_nav container'>
-  <view class='left cf'>
-    <button open-type="contact" class="btn">
-    <image class='' src='../../img/kefu.png'></image><text class=''></text>
-    </button>
+  <view style="width:390rpx;display:flex;">
+    <view class='left cf'>
+      <button open-type="contact" class="btn">
+        <image class='' src='../../img/my6.png'></image><text class=''></text>
+      </button>
+    </view>
+    <view class='left cf' bindtap="onMakePhoneCall"><image src="../../img/limg.png"></image></view>
+    <view class='left cf p_Relative' bindtap="jump_Cart"><image src="../../img/my4.png"></image><span class="bg_Radio" hidden="{{cart_numb==0}}">{{cart_numb}}</span></view>
   </view>
-  <view class='left cf' bindtap="onMakePhoneCall"><image src="../../img/h_phone.png"></image></view>
-  <view class='left cf p_Relative' bindtap="jump_Cart"><image src="../../img/s_cart.png"></image><span class="bg_Radio" hidden="{{cart_numb==0}}">{{cart_numb}}</span></view>
-  <view class='center' bindtap='jiaru'>加入购物车</view>
-  <!--<view class='center' style="background: #fff;"></view>-->
-  <view class='right' bindtap='buy'>立即购买</view>
+
+  <view style="width:360rpx;display:flex;">
+    <view class='center' bindtap='jiaru'>加入购物车</view>
+    <view class='right' bindtap='buy'>立即购买</view>
+  </view>
+
+
 </view>
 
 <!-- 立即购买 -->

@@ -35,15 +35,18 @@
         </view>
         <view class='concent'>
             <!--<template is="wxParse" data="{{wxParseData:item}}"/>-->
-                <view class='topic' hidden="{{item.selected}}">#{{item.title}}# <text>{{item.art}}</text> <span bindtap="full" data-index="{{index}}"><text>...</text>全文</span></view>
+                <view class='topic' hidden="{{item.selected}}">#{{item.title}}# <text>{{item.art}}</text></view>
+                <!--<view class='topic' hidden="{{item.selected}}">#{{item.title}}# <text>{{item.art}}</text> <span bindtap="full" data-index="{{index}}"><text>...</text>全文</span></view>-->
 
-            <view class='topic' hidden="{{item.active}}">#{{item.title}}# <text>{{item.art}}{{item.art2}}</text> <span bindtap="fewer" data-index="{{index}}">收起</span></view>
+            <!--<view class='topic' hidden="{{item.active}}">#{{item.title}}# <text>{{item.art}}{{item.art2}}</text> <span bindtap="fewer" data-index="{{index}}">收起</span></view>-->
 
 
           <view hidden="{{item.active}}" style="font-size:28rpx;">{{item.art2}}</view>
           <view class='video_box' wx:if="{{item.type==3}}">
-            <video id='myVideo' class="video {{(mask_box == true ) ? 'goleft' : ''}}" controls="true" src='{{item.video}}' bindpause="stop" bindended="stop">
+            <video id='myVideo' class="video {{(mask_box == true ) ? 'goleft' :''}}" src='{{item.video}}'>
+            <!--<video id='myVideo' class="video {{(mask_box == true ) ? 'goleft' : ''}}" controls="true" src='https://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400' bindpause="stop" bindended="stop">-->
             </video>
+            <!--<video id="myVideo" src="http://wxsnsdy.tc.qq.com/105/20210/snsdyvideodownload?filekey=30280201010421301f0201690402534804102ca905ce620b1241b726bc41dcff44e00204012882540400&bizid=1023&hy=SH&fileparam=302c020101042530230204136ffd93020457e3c4ff02024ef202031e8d7f02030f42400204045a320a0201000400" enable-danmu danmu-btn controls></video>-->
           </view>
           <view class='img_box img_boxs' wx:elif="{{item.type==2}}">
 

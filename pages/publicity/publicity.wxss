@@ -1,3 +1,81 @@
+.screen_Box{
+  display: flex;
+  flex-direction: row;
+  width:710rpx;
+  height:50px;
+  border:1rpx solid #d9d9d9;
+  margin:20rpx;
+  border-radius:5px;
+}
+.screen_Box .import{
+  width:550rpx;
+}
+.screen_Box .import input{
+  margin-left: 20rpx;
+  width:530rpx;
+  height:50px;
+  line-height:50px;
+}
+.screen_Box .clear{
+  width:60rpx;
+  text-align: center;
+}
+.screen_Box .clear icon{
+  margin-top:15px;
+}
+
+.screen_Box .search_Btn{
+  width:100rpx;
+  text-align: center;
+}
+.screen_Box .search_Btn icon{
+  margin-top:10px;
+}
+
+.clear{
+  width:10px;
+}
+.clear icon{
+
+}
+
+.search-box{
+  width: 710rpx;
+  border: 1px solid #ccc;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin: 20rpx auto;
+  border-radius: 4px;
+  display: flex;
+  flex-direction:row;
+
+}
+.search-box input{
+  width: 82%;
+  height: 80rpx;
+  line-height: 80rpx;
+  font-size: 28rpx;
+  padding-left:30rpx;
+}
+.search-box .search-btn{
+  width: 80rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  /* position: absolute; */
+  /* top: 0; */
+  /* right: 0; */
+}
+.search-box .search-btn image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-top: 20rpx;
+  margin-left: 20rpx;
+}
+
+
 .top_nav{
   height: 60rpx;
   line-height: 60rpx;

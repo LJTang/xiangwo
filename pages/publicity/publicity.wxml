@@ -1,5 +1,11 @@
-<view class="{{(showfilter == true ) ? 'fixed' : ''}}"> 
-  <view class='publicity' style='padding:0 0 20rpx 0;'>
+<view class="{{(showfilter == true ) ? 'fixed' : ''}}">
+  <view class="search-box">
+    <input class="search-input" type="search" confirm-type="search" name="searchKey" placeholder="请输入搜索内容" placeholder-class='color' value="{{search_Text}}" bindinput='getFocus' bindconfirm="onSearch"/>
+    <view class="clear" bindtap="clearInput"><icon wx:if="{{search_Text.length>0}}" type="clear" size="10"></icon></view>
+    <view class="search-btn" form-type="submit" bindtap="onSearch"><image src='../../img/zoom.png'></image></view>
+  </view>
+
+  <view class='publicity' style='height:{{height}}px;padding:0 0 20rpx 0;'>
     <block wx:for="{{brochure}}" wx:key="{{index}}">
       <view class='list db'>
         <view class='list_top cf mal20R mar20R'>

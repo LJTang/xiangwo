@@ -16,6 +16,7 @@ Page({
     condition: false,
     search_Bool: false,
     form_Bool: true,
+    v_Bool: false,
     goods_id:''
 
   },
@@ -125,19 +126,25 @@ Page({
 
     getFocus: function (e) {
         this.setData({
-            search_Text: e.detail.value
+            search_Text: e.detail.value,
+            goods:[]
         });
         var that=this;
-        // GMAPI.doSendMsg('api/merchants/merchantsList',{seach_name:e.detail.value}, 'GET',that.onMsgCallBack_BusinessList);
+        GMAPI.doSendMsg('api/merchants/merchantsList',{seach_name:e.detail.value}, 'GET',that.onMsgCallBack_BusinessList);
     },
     clearInput: function (){
         this.setData({
             search_Text:'',
+            v_Bool:false
         });
     },
     //  搜索
-    onSearch:function(){
+    onSearch:function(e){
         var that=this;
+        this.setData({
+            search_Text: e.detail.value,
+            goods:[]
+        });
         GMAPI.doSendMsg('api/merchants/merchantsList',{seach_name:that.data.search_Text}, 'GET',that.onMsgCallBack_BusinessList);
     },
     onMsgCallBack_BusinessList: function (jsonBack) {
@@ -146,20 +153,25 @@ Page({
             var list=data.data;
             var goods=[];
             if(list.length==0){
-                goods=[]
+                goods=[];
+                this.setData({
+                    v_Bool:true
+                });
             }else{
                 for(var i=0;i<list.length;i++){
                     goods.push(list[i]);
                 }
+                this.setData({
+                    v_Bool:false
+                });
             }
             this.setData({
-                goods:goods
+                goods:goods,
             });
         }else{
-            wx.showToast({
-                title:data.msg,
-                icon:'none',
-                duration: 2000
+            this.setData({
+                goods:[],
+                v_Bool:false
             });
         }
     },
@@ -228,6 +240,7 @@ Page({
                 duration: 2000
             });
         }else{
+            // var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:that.data.goods_id,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_x:that.data.location.longitude,m_address_y:that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed,invitation_code:e.detail.value.invitation_code};
             var json={uid:wx.getStorageSync('strWXID').strUserID,m_name:e.detail.value.m_name,m_phone:e.detail.value.m_phone,m_openid:e.detail.value.m_openid,m_product_id:that.data.goods_id,m_store_name:e.detail.value.m_store_name,m_address:e.detail.value.m_address,m_address_x:that.data.location.longitude,m_address_y:that.data.location.latitude,m_address_detailed:e.detail.value.m_address_detailed};
             console.log(json)
             // verification/merchantRegister
@@ -258,6 +271,15 @@ Page({
 
     //  审核 审核中
     onAudit :function(e){
+        var that=this;
+        var id=e.currentTarget.dataset.id;
+        var m_id=e.currentTarget.dataset.mid;
+        wx.navigateTo({
+            url: '/pages/writes/writes?id='+id+'&m_id='+m_id
+        })
+        // GMAPI.doSendMsg('api/verification/merchantSearch',{uid:wx.getStorageSync('strWXID').strUserID,id:e.currentTarget.dataset.id,m_product_id:that.data.goods_id}, 'POST',that.onMsgCallBack_Audit);
+    },
+    onAudit_Z :function(e){
         var that=this;
         GMAPI.doSendMsg('api/verification/merchantSearch',{uid:wx.getStorageSync('strWXID').strUserID,id:e.currentTarget.dataset.id,m_product_id:that.data.goods_id}, 'POST',that.onMsgCallBack_Audit);
     },

@@ -202,3 +202,31 @@ button::after{
 button::after{
   border:none;
 }
+
+.centerByContent{
+  height: auto;
+  padding: 20rpx 0;
+  border-bottom: 1rpx solid #eee;
+  display: flex;
+}
+.centerByContent .title{
+  margin:auto 0 auto 0;
+  width: 160rpx;
+  color: #7c7c7c;
+}
+.centerByContent .centeredContent{width:520rpx;}
+.centerByContent textarea{
+  box-sizing: border-box;
+  width: 520rpx;
+}
+.centerByContent image{
+  margin:auto 0 auto 0;
+  width: 30rpx;
+  height:30rpx;
+}
+
+.centerByContent .title image{
+  width:100rpx;
+  height:100rpx;
+}
+.centerByContent_Right{margin: auto;}

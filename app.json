@@ -30,7 +30,8 @@
     "pages/commission_cashed/commission_cashed",
     "pages/my_commission/my_commission",
     "pages/cart_confirm/cart_confirm",
-    "pages/generalize/generalize"
+    "pages/generalize/generalize",
+    "pages/writes/writes"
   ],
   "window":{
     "backgroundTextStyle":"light",
