@@ -23,30 +23,35 @@ Page({
         const system = wx.getSystemInfoSync();
         this.setData({
           height: system.windowHeight
-        })
-        wx.getLocation({
-            type: 'wgs84',
-            success: (res) => {
-                this.setData({
-                    center: [res.longitude, res.latitude]
-                });
-                wx.setStorage({
-                    key: 'getLocation',
-                    data: {lon:res.longitude,lat:res.latitude}
-                });
-                // console.log(res.longitude, res.latitude);
-                // GMAPI.doSendMsg('near_seller',{lon:res.longitude,lat:res.latitude,fanwei:10}, 'GET',that.onMsgCallBack_Business);
-                // GMAPI.doSendMsg('api/merchants/index',{ x_y:res.longitude+','+res.latitude}, 'GET', that.onMsgCallBack_Business);
-            }
         });
+      wx.getLocation({
+        type: 'wgs84',
+        success: (res) => {
+          console.log(res)
+          that.setData({
+            center: [res.longitude, res.latitude],
+            markers:[]
+          });
+          wx.setStorage({
+            key: 'getLocation',
+            data: { lon: res.longitude, lat: res.latitude }
+          });
+      
+          GMAPI.doSendMsg('api/merchants/index', { x_y: res.longitude + ',' + res.latitude}, 'GET', that.onMsgCallBack_Business);
+
+        }
+      });
+       
       },
 
     onShow:function(){
         var that = this;
+    
         this.setData({
-            center:[wx.getStorageSync('getLocation').lon,wx.getStorageSync('getLocation').lat],
+          markers: [],
+          center: []
         });
-        GMAPI.doSendMsg('api/merchants/index',{ x_y:wx.getStorageSync('getLocation').lon+','+wx.getStorageSync('getLocation').lat}, 'GET', that.onMsgCallBack_Business);
+      GMAPI.doSendMsg('api/merchants/index', { x_y: wx.getStorageSync('getLocation').lon + ',' + wx.getStorageSync('getLocation').lat }, 'GET', that.onMsgCallBack_Business);
 
       },
 
@@ -78,7 +83,8 @@ Page({
             }
 
             this.setData({
-                markers:markers
+                markers:markers,
+              center: [wx.getStorageSync('getLocation').lon, wx.getStorageSync('getLocation').lat]
             })
         }else{
             wx.showToast({

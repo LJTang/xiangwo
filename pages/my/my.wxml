@@ -154,9 +154,9 @@
       </view>
     </view>
 
-    <view class='ewm'><image src='https://xiao.guangzhoubaidu.com/uploads/qrcode/12341.png'></image></view>
+    <view class='ewm'><image src='{{erURL}}'></image></view>
     <view class='copy_box cf'>
-      <view class='conents fl'selectable='true' bindlongtap='copyBtn'>{{code_ids}}</view>
+      <view class='conents fl'selectable='true' bindlongtap='copyBtn'>{{copy_Code}}</view>
       <view class='copy_bnt fl' bindtap='copyBtn'>复制邀请码</view>
     </view>
     <view class='hold' bindtap="download">保存图片</view>

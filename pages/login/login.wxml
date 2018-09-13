@@ -18,31 +18,32 @@
       <form bindsubmit="submitData">
         <view class='list cf'>
           <text class='fl text'>店名</text>
-          <view class='fl input'><input type='text' name="m_store_name" placeholder="请输入店名"/></view>
+          <view class='fl input'><input type='text' name="m_store_name"
+          placeholder-class="place" placeholder="请输入店名"/></view>
         </view>
 
         <view class='list cf' bindtap="chooseLocation">
           <text class='fl text'>店铺地址</text>
           <view class="fl input" >
-            <input type='text' name="m_address" placeholder="请输入详细地址" value="{{d_address}}"/>
+            <input type='text' name="m_address" placeholder-class="place"  placeholder="请输入详细地址" value="{{d_address}}"/>
           </view>
         </view>
         <view class='list cf'>
           <text class='fl text'>详细地址</text>
-          <view class='fl input'><input type='text' name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
+          <view class='fl input'><input type='text' placeholder-class="place"  name="m_address_detailed" placeholder="请输入详细地址" maxlength="20"/></view>
         </view>
 
         <view class='list cf'>
           <text class='fl text'>姓名</text>
-          <view class='fl input'><input type='text' name="m_name" placeholder="请输入姓名"/></view>
+          <view class='fl input'><input type='text' placeholder-class="place"  name="m_name" placeholder="请输入姓名"/></view>
         </view>
         <view class='list cf'>
           <text class='fl text'>手机号</text>
-          <view class='fl input'><input type='number' name="m_phone" placeholder="请输入手机号" maxlength="11"/></view>
+          <view class='fl input'><input type='number' placeholder-class="place"  name="m_phone" placeholder="请输入手机号" maxlength="11"/></view>
         </view>
         <view class='list cf'>
           <text class='fl text'>店铺老板微信</text>
-          <view class='fl input'><input type='text' name="m_openid" placeholder="请输入微信号"/></view>
+          <view class='fl input'><input type='text' placeholder-class="place"  name="m_openid" placeholder="请输入微信号"/></view>
         </view>
 
         <view class='list cf'>
@@ -51,7 +52,7 @@
 
           <picker bindchange="bindPickerChange" value="{{objectIndex}}" range="{{gx_list}}" range-key="title">
             <view class="picker">
-              <input type='text' name="m_product_id" placeholder="点击选择产品" value="{{m_product}}" disabled="true"/>
+              <input type='text' name="m_product_id" placeholder-class="place"  placeholder="点击选择产品" value="{{m_product}}" disabled="true"/>
             </view>
           </picker>
         </view>

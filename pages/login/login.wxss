@@ -168,3 +168,4 @@ picker-view-column view{
 }
 
 .big_bnt{font-size: 34rpx;}
+.place{color:#bbb;}

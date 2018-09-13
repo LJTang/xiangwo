@@ -31,7 +31,7 @@ Page({
           // { limg: "../../img/my10.png", text: "培训", rimg: "../../img/myr.png", url: "/pages/train/train" },
          // { limg: "../../img/my11.png", text: "宣传册", rimg: "../../img/myr.png", url: "/pages/publicity/publicity" },
           { limg: "../../img/my8.png", text: "我的团队", rimg: "../../img/myr.png", url: "/pages/team_superior/team_superior" },
-          { limg: "../../img/my8.png", text: "我的推广", rimg: "../../img/myr.png", url: "/pages/generalize/generalize" },
+          { limg: "../../img/my8.png", text: "推广列表", rimg: "../../img/myr.png", url: "/pages/generalize/generalize" },
           { limg: "../../img/my12.png", text: "佣金明细", rimg: "../../img/myr.png", url: "/pages/commission/commission" },
           { limg: "../../img/my5.png", text: "分销订单", rimg: "../../img/myr.png", url: "/pages/sale_order/sale_order" },
 
@@ -202,7 +202,7 @@ Page({
         var that = this;
         wx.setClipboardData({
             //准备复制的数据
-            data: that.data.code_ids,
+          data: that.data.copy_Code,
             success: function (res) {
                 wx.showToast({
                     title: '复制成功',
@@ -215,8 +215,8 @@ Page({
         var that=this;
         if(data.code==200){
             this.setData({
-                erURL:'',
-                copy_Code:''
+              erURL: data.dest_path,
+              copy_Code:data.data.invitation_code
             })
         }else{
             wx.showToast({
@@ -229,12 +229,13 @@ Page({
 
 
     download:function () {
+      var that=this;
         wx.getSetting({
             success: function (res) {
                 wx.authorize({
                     scope: 'scope.writePhotosAlbum',
                     success: function (res) {
-                        var imgUrl ='https://xiao.guangzhoubaidu.com/uploads/qrcode/12341.png';//图片地址
+                      var imgUrl = that.data.erURL;//图片地址
                             wx.downloadFile({//下载文件资源到本地，客户端直接发起一个 HTTP GET 请求，返回文件的本地临时路径
                                 url: imgUrl,
                                 success: function (res) {
