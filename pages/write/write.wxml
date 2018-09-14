@@ -14,7 +14,8 @@
   <!--</view>-->
 <!--</view>-->
 
-<view class="list_box" hidden="{{search_Bool}}">
+<!--<view class="list_box" hidden="{{search_Bool}}">-->
+<view class="list_box" hidden="true">
   <form>
   <view class="search-box">
       <input class="search-input" type="search" confirm-type="search" name="searchKey" placeholder="搜索店铺名称" placeholder-class='color' value="{{search_Text}}" bindinput='getFocus' bindconfirm="onSearch"/>
@@ -67,7 +68,8 @@
 </view>
 
 
-<view class='form' hidden="{{form_Bool}}">
+<!--<view class='form' hidden="{{form_Bool}}">-->
+<view class='form'>
   <form bindsubmit="submitData">
     <view class='list cf'>
       <text class='fl text'>店名</text>

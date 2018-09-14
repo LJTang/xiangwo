@@ -281,9 +281,9 @@ background:#fff;
 .join .join_box .decrease .count-num {
   width:80rpx;
   font-size:28rpx;
-  color:#999;
   display: inline-block;
   text-align: center;
+  color:#000;
 }
 .join .join_box .bnt{
   position: absolute;

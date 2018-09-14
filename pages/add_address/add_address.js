@@ -88,8 +88,6 @@ Page({
       });
       return;
     }
-
-
   },
   open: function () {
     this.setData({

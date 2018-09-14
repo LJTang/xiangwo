@@ -82,7 +82,8 @@
             <view class="name omit">{{details.title}}</view>
             <view class="price">￥{{details.price}}</view>
           </view>
-          <text class="close fr" bindtap="close" data-index="{{index}}">×</text>
+          <!--<text class="close fr" bindtap="close" data-index="{{index}}"><icon type="clear" size="20"/></text>-->
+          <view class="fr" bindtap="close"><icon type="clear" size="20"/></view>
         </view>
         <view class='cf decrease'>
           <view class='name fl'>数量</view>

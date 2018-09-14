@@ -57,11 +57,12 @@ page{
     border: 1px solid #ddd;
     text-align: center;
     color: #999;
+    background:#f5f5f5;
 }
 .cart-count-num{
     width: 80rpx;
     font-size: 28rpx;
-    color: #999;
+    color: #000;
 }
 .cart-del{
     width: 80rpx;

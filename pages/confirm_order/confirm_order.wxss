@@ -83,6 +83,7 @@
     text-align: center;
     color: #999;
     display: inline-block;
+    background:#f5f5f5;
     
 }
 .cart-count-num{
@@ -90,7 +91,7 @@
   text-align: center;
   width:60rpx;
   font-size: 28rpx;
-  color: #999;
+  color: #000;
 }
 .leave{
   height: 100rpx;
