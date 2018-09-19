@@ -55,11 +55,11 @@
   <view style="width:390rpx;display:flex;">
     <view class='left cf'>
       <button open-type="contact" class="btn">
-        <image class='' src='../../img/my6.png'></image><text class=''></text>
+        <image class='' src='../../img/kefu_h.png'></image><text class=''></text>
       </button>
     </view>
-    <view class='left cf' bindtap="onMakePhoneCall"><image src="../../img/limg.png"></image></view>
-    <view class='left cf p_Relative' bindtap="jump_Cart"><image src="../../img/my4.png"></image><span class="bg_Radio" hidden="{{cart_numb==0}}">{{cart_numb}}</span></view>
+    <view class='left cf' bindtap="onMakePhoneCall"><image src="../../img/phone_h.png"></image></view>
+    <view class='left cf p_Relative' bindtap="jump_Cart"><image src="../../img/car_h.png"></image><span class="bg_Radio" hidden="{{cart_numb==0}}">{{cart_numb}}</span></view>
   </view>
 
   <view style="width:360rpx;display:flex;">

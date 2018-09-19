@@ -18,12 +18,24 @@
             <view class='price'>￥{{item.goods_price}}</view>
             <view class='numbers'>x{{item.goods_num}}</view>
             <view class='cancel fr' wx:if="{{item.order_status==0}}" bindtap="orderPay" data-id="{{item.order_id}}">去付款</view>
-            <view class='cancel fr' wx:elif="{{item.order_status==1}}" bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
-            <view class='cancel fr bor_N' wx:elif="{{item.order_status==2}}">已发货</view>
+            <view class="fr display_F" wx:elif="{{item.order_status==1}}">
+              <view class='cancel' bindtap="onRefundBox" data-id="{{item.order_id}}">申请退款</view>
+              <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">待发货</view>
+            </view>
+
+            <view class="fr display_F" wx:elif="{{item.order_status==2}}">
+              <view class='cancel' bindtap="onGoodsBox" data-id="{{item.order_id}}">申请退货</view>
+              <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
+            </view>
+            <!--<view class='cancel fr' wx:elif="{{item.order_status==1}}" bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>-->
             <view class='cancel fr bor_N' wx:elif="{{item.order_status==3}}">已完成</view>
             <view class='cancel fr bor_N' wx:elif="{{item.order_status==4}}">已完成</view>
             <view class='cancel fr bor_N' wx:elif="{{item.order_status==5}}">已完成</view>
             <view class='cancel fr bor_N' wx:elif="{{item.order_status==6}}">已关闭</view>
+            <view class='cancel fr bor_N' wx:elif="{{item.order_status==8}}">退款中</view>
+            <view class='cancel fr bor_N' wx:elif="{{item.order_status==9}}">退款成功</view>
+            <view class='cancel fr bor_N' wx:elif="{{item.order_status==10}}">退款退货中</view>
+            <view class='cancel fr bor_N' wx:elif="{{item.order_status==11}}">退款退货成功</view>
             <view class='cancel fr bor_N' wx:else>未知</view>
           </view>
         </block>
@@ -38,7 +50,7 @@
       <view class="my_keep_list">
         <block wx:for="{{all_Order}}" wx:key="{{index}}">
           <view class='list cf'>
-            <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none">
+            <navigator class="list_box cf" url="/pages/order_more/order_more?id={{item.order_id}}" hover-class="none">
               <image src="{{wxURL}}{{item.goods_img}}" class="left fl" mode="widthFix"/>
               <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
             </navigator>
@@ -56,13 +68,18 @@
       <view class="my_keep_list">
         <block wx:for="{{all_Order}}" wx:key="{{index}}">
           <view class='list  cf'>
-            <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none">
+            <navigator class="list_box cf" url="/pages/order_more/order_more?id={{item.order_id}}" hover-class="none">
               <image src="{{wxURL}}{{item.goods_img}}" class="left fl" mode="widthFix"/>
               <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
             </navigator>
             <view class='price'>￥{{item.goods_price}}</view>
             <view class='numbers'>x{{item.goods_num}}</view>
-            <view class='cancel fr'>等待发货</view>
+
+            <view class="fr display_F">
+              <view class='cancel' bindtap="onRefundBox" data-id="{{item.order_id}}">申请退款</view>
+              <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">待发货</view>
+            </view>
+            <!--<view class='cancel fr'>等待发货</view>-->
           </view>
         </block>
 
@@ -78,13 +95,17 @@
 
         <block wx:for="{{all_Order}}" wx:key="{{index}}">
           <view class='list cf'>
-            <navigator class="list_box cf" url="/pages/order_more/order_more" hover-class="none">
+            <navigator class="list_box cf" url="/pages/order_more/order_more?id={{item.order_id}}" hover-class="none">
               <image src="{{wxURL}}{{item.goods_img}}" class="left fl" mode="widthFix"/>
               <view class='fl right'><text class='name '>{{item.goods_name}}</text><text class='time'>{{item.goods_desc}}</text></view>
             </navigator>
             <view class='price'>￥{{item.goods_price}}</view>
             <view class='numbers'>x{{item.goods_num}}</view>
-            <view class='cancel fr' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
+            <view class="fr display_F">
+              <view class='cancel' bindtap="onGoodsBox" data-id="{{item.order_id}}">申请退货</view>
+              <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
+            </view>
+            <!--<view class='cancel fr' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>-->
           </view>
         </block>
         <!--<view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>-->
@@ -93,4 +114,48 @@
   </view>
 
   <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
+
+</view>
+<!-- 退款原因 -->
+<view class="popUp_Box" wx:if="{{refund_Bool}}">
+  <view class="shadow"></view>
+  <view class="show_Layer authorized_Box refund_Box">
+    <view class="bgFFF">
+      <view class="title">退款原因</view>
+      <view class="">
+        <textarea bindinput="bindTextAreaBlur" placeholder="请输入退款原因"/>
+      </view>
+
+      <view class="authorized_Btn">
+        <view class="btn_Cancel" bindtap="popClose">取消</view>
+        <view class="btn_OK"><button bindtap="sh_Refund">申请退款</button></view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 退货原因 -->
+<view class="popUp_Box" wx:if="{{goods_Bool}}">
+  <view class="shadow"></view>
+  <view class="show_Layer authorized_Box goods_Box">
+    <view class="bgFFF">
+      <form bindsubmit="submit_Goods">
+        <view class="title">退货原因</view>
+        <view class="">
+         <view class="">
+           <view class="patb10R"><text>物流公司名称</text></view>
+           <input type="text" name="wl_name" placeholder="请输入物流公司名称"/></view>
+         <view class="">
+           <view class="patb10R"><text>订单号</text></view>
+           <input type="text" name="order_numb" placeholder="请输入订单号"/></view>
+         <view class="">
+           <textarea name="nont" placeholder="请输入退货原因"/></view>
+
+        </view>
+        <view class="authorized_Btn">
+          <view class="btn_Cancel" bindtap="popClose">取消</view>
+          <view class="btn_OK"><button formType="submit">申请退货</button></view>
+        </view>
+      </form>
+    </view>
+  </view>
 </view>

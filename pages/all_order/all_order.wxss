@@ -98,3 +98,67 @@
   border-color:#fff;
   text-align:right;
   }
+.display_F{display: flex;}
+.mal20R{margin-left: 20rpx;}
+.patb10R{padding-top:10rpx;padding-bottom:10rpx;}
+/***********/
+.refund_Box{
+  text-align:left;
+  height:450rpx;
+  width:650rpx;
+  left: 50rpx;
+}
+.refund_Box .title{
+  line-height: 80rpx;
+  font-size: 34rpx;
+  text-align:center;
+}
+.refund_Box textarea{
+  width: 630rpx;
+  height:250rpx;
+  text-align:left;
+  padding:10rpx;
+  background:#f5f5f5;
+}
+.refund_Box .authorized_Btn{
+  width: 650rpx;
+  text-align: center;
+}
+
+.goods_Box{
+  text-align:left;
+  height:750rpx;
+  width:650rpx;
+  left: 50rpx;
+  margin-top: -350rpx;
+}
+.goods_Box .title{
+  line-height:80rpx;
+  font-size: 34rpx;
+  text-align:center;
+}
+.goods_Box text{
+  margin-left: 10rpx;
+  padding:10rpx 0;
+}
+.goods_Box input{
+  width: 630rpx;
+  height:90rpx;
+  line-height:90rpx;
+  text-align:left;
+  padding:0 10rpx;
+  background:#f5f5f5;
+}
+.goods_Box textarea{
+  width: 630rpx;
+  height:209rpx;
+  text-align:left;
+  padding:10rpx;
+  background:#f5f5f5;
+  margin-top:10px;
+  margin-bottom:10px;
+}
+.goods_Box .authorized_Btn{width: 650rpx;text-align: center;}
+.authorized_Btn .btn_Cancel,.authorized_Btn .btn_OK {
+    width:325rpx;
+}

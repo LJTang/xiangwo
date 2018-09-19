@@ -18,7 +18,11 @@ Page({
     brochure:[],
     replyTemArray:[],
     xwURL:'',
-      height:''
+    height:'',
+    cat_list:[],
+    all_list:[],
+    classifySeleted:0,
+    seletedText:'全部类型'
   },
     onLoad:function(){
       var that=this;
@@ -26,7 +30,7 @@ Page({
             success: function(res) {
                 var rpx=(res.windowWidth / 750);
                 that.setData({
-                    height:res.windowHeight-(rpx*140)
+                    height:res.windowHeight-(rpx*122)
                 });
             }
         });
@@ -34,10 +38,31 @@ Page({
     // http://xiao.guangzhoubaidu.com/api/exhibition/exhiSearch?search=%E5%AE%A3
     onShow:function(){
         var that=this;
-        GMAPI.doSendMsg('api/exhibition/index',{type:4,share:''},'GET',that.onMsgCallBack_Train);
-
+        // GMAPI.doSendMsg('api/exhibition/index',{type:4,share:''},'GET',that.onMsgCallBack_Train);
+        GMAPI.doSendMsg('api/exhibition/cat_list','','GET',that.onMsgCallBack_Train);
+        // http://xiao.guangzhoubaidu.com/api/Exhibition/art_list
+        GMAPI.doSendMsg('api/Exhibition/art_list',{cat_id:''}, 'POST', that.onMsgCallBack_allList);
     },
-
+    onMsgCallBack_allList: function (jsonBack) {
+        var goods=[];
+        var list=jsonBack.data.data;
+        for(var i=0;i<list.length;i++){
+            goods.push(list[i]);
+        }
+        if(list.length>0){
+            this.setData({
+                len_Bool:true
+            });
+        }else{
+            this.setData({
+                len_Bool:false
+            });
+        }
+        this.setData({
+            xwURL:jsonBack.data.url,
+            all_list:goods
+        })
+    },
     getFocus: function (e) {
         this.setData({
             search_Text: e.detail.value,
@@ -76,7 +101,6 @@ Page({
         showfilterindex: i,
       })
     }
-    console.log('显示第几个筛选类别：' + d.showfilterindex);
   },
   setCateIndex: function (e) { //分类一级索引
     const dataset = e.currentTarget.dataset;
@@ -100,35 +124,44 @@ Page({
       showfilterindex: null
     })
   },
+
     onMsgCallBack_Train:function (jsonBack){
         var data=jsonBack.data;
         var that=this;
         if(data.code==200){
             if(data.data.length==0){
                 this.setData({
-                    brochure :[]
+                    cat_list :[]
                 })
             }else{
                 var goods=[];
                 var list=data.data;
-                var arr='';
-
                 for(var i=0;i<list.length;i++){
                     goods.push(list[i]);
                 }
                 this.setData({
-                    brochure :goods,
-                    xwURL:jsonBack.data.Https
+                    cat_list:goods
                 })
-
             }
 
         }else{
             this.setData({
-                brochure :[]
+                cat_list :[]
 
             })
         }
-    }
+    },
+    tapClassify: function (e) {
+        var id =e.currentTarget.dataset.id;
+        var index =e.currentTarget.dataset.statu;
+        var text =e.currentTarget.dataset.text;
+        this.setData({
+            classifySeleted:index,
+            seletedText:text,
+            listID:id,
+            all_list:[]
+        });
+        GMAPI.doSendMsg('api/Exhibition/art_list',{cat_id:id}, 'POST', that.onMsgCallBack_allList);
+    },
 
 });

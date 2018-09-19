@@ -7,16 +7,16 @@
         <navigator url=""><image class="cart-thumb fl" src="{{wxURL}}{{item.image}}" mode="widthFix"></image></navigator>
         <view class='right fl'>
           <view class='top cf'>
-            <text class="cart-pro-name fl omit">{{item.goods_name}}</text>
-            <text class="cart-del fr" bindtap="onDelete" data-index="{{index}}" data-id='{{item.goods_id}}'>×</text>
+            <view class="cart-pro-name fl omit">{{item.goods_name}}</view>
+            <view class="cart-del fr" bindtap="onDelete" data-index="{{index}}" data-id='{{item.goods_id}}'><icon type="clear" size="20"/></view>
           </view>
           <view class='concent'>{{item.goods_spc}}</view>
           <view class='cf down'>
             <text class="cart-pro-price fl">￥{{item.goods_price}}</text>
             <view class="cart-count-box fr">
-              <text class="cart-count-down" bindtap="minusCount" data-index="{{index}}" data-id='{{item.goods_id}}'>-</text>
-              <text class="cart-count-num">{{item.goods_num}}</text>
-              <text class="cart-count-add" bindtap="addCount" data-index="{{index}}" data-id='{{item.goods_id}}'>+</text>
+              <view class="cart-count-down" bindtap="minusCount" data-index="{{index}}" data-id='{{item.goods_id}}'>-</view>
+              <view class="cart-count-num">{{item.goods_num}}</view>
+              <view class="cart-count-add" bindtap="addCount" data-index="{{index}}" data-id='{{item.goods_id}}'>+</view>
             </view>
           </view>
         </view>

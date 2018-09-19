@@ -87,6 +87,19 @@ Page({
       //     });
       // }
       // GMAPI.doSendMsg('api/user/userInfo',{uid:wx.getStorageSync('strWXID').strUserID},'GET',that.onMsgCallBack_BusinessTips);
+
+    // wx.connectSocket({
+    //   url: 'wss://xiao.guangzhoubaidu.com',
+    //   data: {
+    //     x: '',
+    //     y: ''
+    //   },
+    //   header: {
+    //     'content-type': 'application/json'
+    //   },
+    //   protocols: ['protocol1'],
+    //   method: "GET"
+    // })
   },
     onShow:function(){
         var that = this;

@@ -35,10 +35,10 @@
         <text class='show' hidden="{{info.huo_pay==0}}">{{info.huo_pay}}</text>
       </view>
     </navigator>
-    <navigator hover-class='none' url='/pages/all_order/all_order?status=100'>
+    <navigator hover-class='none' url='/pages/exchange_a_purchase/exchange_a_purchase?status=100'>
       <view>
         <image src='/img/my4.png'></image>
-        <view>售后</view>
+        <view>退换服务</view>
         <text class='show' hidden="{{info.shou_pay==0}}">{{info.shou_pay}}</text>
       </view>
     </navigator>

@@ -95,7 +95,6 @@ Page({
     })
   },
   onLoad: function (option) {
-      console.log(option.id)
     if(option.id==''){
         this.setData({
             address_id:''

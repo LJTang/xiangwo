@@ -11,6 +11,7 @@
     "pages/business_list_s/business_list_s",
     "pages/wares_more/wares_more",
     "pages/publicity/publicity",
+    "pages/publicity_details/publicity_details",
     "pages/review_details/review_details",
     "pages/released/released",
     "pages/register/register",
@@ -31,7 +32,8 @@
     "pages/my_commission/my_commission",
     "pages/cart_confirm/cart_confirm",
     "pages/generalize/generalize",
-    "pages/writes/writes"
+    "pages/writes/writes",
+    "pages/exchange_a_purchase/exchange_a_purchase"
   ],
   "window":{
     "backgroundTextStyle":"light",

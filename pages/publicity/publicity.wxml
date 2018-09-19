@@ -5,7 +5,8 @@
     <view class="search-btn" form-type="submit" bindtap="onSearch"><image src='../../img/zoom.png'></image></view>
   </view>
 
-  <view class='publicity' style='height:{{height}}px;padding:0 0 20rpx 0;'>
+  <view class='publicity' style='height:{{height}}px;'>
+    <!--
     <block wx:for="{{brochure}}" wx:key="{{index}}">
       <view class='list db'>
         <view class='list_top cf mal20R mar20R'>
@@ -18,7 +19,7 @@
             <!--<image src='../../img/fenx.png'></image>-->
             <!--<view>分享</view>-->
           <!--</view>-->
-          
+          <!--
         </view>
         <view class='concent'>
           <view class='topic  mal20R mar20R'>#{{item.title}}#</view>
@@ -30,8 +31,36 @@
         </view>
       </view>
     </block>
+-->
+    <!-- 左边栏 -->
+    <scroll-view class="classify-container" style="height:{{height}}px;" scroll-y="true">
+      <view class="classify {{classifySeleted==0?'active':''}}" data-id="" data-statu="0" data-text='全部类型' bindtap="tapClassify">
+        <view class="name">全部类型</view>
+      </view>
+      <block wx:for="{{cat_list}}"  wx:for-item="classify" wx:key="{{index}}">
+        <view class="classify {{classifySeleted==index+1?'active':''}}" data-id="{{classify.id}}" data-statu="{{index+1}}" data-text='{{classify.cat_name}}' bindtap="tapClassify">
+          <view class="name">{{classify.cat_name}}</view>
+        </view>
+      </block>
 
-    <view class="data_suggest" hidden="{{brochure.length>0}}">没有更多数据了...</view>
+    </scroll-view>
+    <!-- 右边栏 -->
+    <scroll-view style="height:{{height}}px;" class="goods-container" scroll-y="true" scroll-into-view="{{classifyViewed}}" bindscroll="">
+      <view class="title">{{seletedText}}</view>
+      <view class='sp_list'>
+        <block wx:for="{{all_list}}" wx:key="{{index}}">
+          <navigator hover-class='none' id="{{item.id}}" url='/pages/publicity_details/publicity_details?id={{item.id}}'>
+            <image src="{{xwURL}}{{item.user_photo}}" mode="widthFix"></image>
+            <view class='cf name'>
+              <text class='fl left'>{{item.title}}</text>
+            </view>
+            <view class='concent'>{{item.goods_desc}}</view>
+          </navigator>
+        </block>
+      </view>
+    </scroll-view>
+
+    <!--<view class="data_suggest" hidden="{{brochure.length>0}}">没有更多数据了...</view>-->
 
   </view>
 </view>

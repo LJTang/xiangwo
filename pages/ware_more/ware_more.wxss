@@ -90,9 +90,9 @@ background:#fff;
   /* margin-left:60rpx */
 }
 .fixed_nav .left image{
-  width:50rpx;
-  height:50rpx;
-  margin:25rpx 0 0 60rpx;
+  width:70rpx;
+  height:70rpx;
+  margin:15rpx 0 0 50rpx;
 }
 .fixed_nav .left text{
   font-size: 28rpx;
@@ -264,7 +264,8 @@ background:#fff;
   margin-top: 25rpx;
 }
 .join .join_box .decrease .count-box{
-  
+  border-top:1rpx solid #ccc;
+  border-bottom:1rpx solid #ccc;
   margin-top: 15rpx;
 }
 .join .join_box .decrease .count-box .count-down,.join .join_box .decrease .count-box .count-add {
@@ -276,7 +277,10 @@ background:#fff;
   text-align:center;
   color:#999;
   display: inline-block;
-  background:#f5f5f5;
+  background:#fff;
+  border-left:1rpx solid #ccc;
+  border-right:1rpx solid #ccc;
+
 }
 .join .join_box .decrease .count-num {
   width:80rpx;

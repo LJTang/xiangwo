@@ -17,6 +17,18 @@
     <view class='form'>
       <form bindsubmit="submitData">
         <view class='list cf'>
+          <text class='fl text'>产品名称</text>
+          <view class='fl input'>
+
+            <picker bindchange="bindPickerChange" value="{{objectIndex}}" range="{{gx_list}}" range-key="title">
+              <view class="picker">
+                <input type='text' name="m_product_id" placeholder-class="place"  placeholder="点击选择产品" value="{{m_product}}" disabled="true"/>
+              </view>
+            </picker>
+          </view>
+        </view>
+
+        <view class='list cf'>
           <text class='fl text'>店名</text>
           <view class='fl input'><input type='text' name="m_store_name"
           placeholder-class="place" placeholder="请输入店名"/></view>
@@ -46,17 +58,6 @@
           <view class='fl input'><input type='text' placeholder-class="place"  name="m_openid" placeholder="请输入微信号"/></view>
         </view>
 
-        <view class='list cf'>
-        <text class='fl text'>产品名称</text>
-        <view class='fl input'>
-
-          <picker bindchange="bindPickerChange" value="{{objectIndex}}" range="{{gx_list}}" range-key="title">
-            <view class="picker">
-              <input type='text' name="m_product_id" placeholder-class="place"  placeholder="点击选择产品" value="{{m_product}}" disabled="true"/>
-            </view>
-          </picker>
-        </view>
-        </view>
 
         <!--<view class='list cf'>-->
           <!--<text class='fl text'>邀请码</text>-->

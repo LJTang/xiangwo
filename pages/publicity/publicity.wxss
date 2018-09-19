@@ -44,10 +44,11 @@
   border: 1px solid #ccc;
   height: 80rpx;
   line-height: 80rpx;
-  margin: 20rpx auto;
+  margin:20rpx auto;
   border-radius: 4px;
   display: flex;
   flex-direction:row;
+  /*padding:20rpx 0;*/
 
 }
 .search-box input{
@@ -179,3 +180,104 @@
 
 .mal20R{margin-left:20rpx;}
 .mar20R{margin-right:20rpx;}
+
+/**********************/
+.publicity {
+  display: -webkit-flex;
+  height: 100%;
+  width: 100%;
+  overflow:auto;
+}
+.classify-container {
+  width: 180rpx;
+  background: #efefef;
+  height: 100%;
+  overflow: auto;
+}
+
+.classify-container .classify {
+  padding:20rpx 20rpx;
+  text-align: center;
+}
+
+.classify-container .classify.active {
+  background:#fff;
+}
+
+.classify-container .classify .name {
+  display: inline-block;
+  font-size: 34rpx;
+  color: #000;
+  line-height: 1.2;
+  text-align: left;
+  pointer-events: none;
+}
+
+.goods-container {
+  -webkit-flex: 1;
+  background: #fff;
+  height: 100%;
+  width:570rpx;
+}
+
+.goods-container .title {
+  padding: 20rpx 25rpx;
+  color: #646464;
+  font-size: 30rpx;
+  line-height: 30rpx;
+  background: #f7f7f7;
+}
+/*/**********************************************/
+.sp_list{
+  display:flex;
+  flex-wrap:wrap;
+  margin-top:20rpx;
+}
+.sp_list navigator{
+  width: 45.5%;
+  margin-bottom: 20rpx;
+  margin-left:3%;
+
+}
+.sp_list navigator image{
+  width: 100%;
+  /* height: 416rpx; */
+  border: 1px solid #ddd;
+}
+.sp_list navigator .name{
+  margin: 10rpx 0;
+}
+.sp_list navigator .name .left{
+  font-size: 28rpx;
+}
+.sp_list navigator .name .right{
+  font-size: 28rpx;
+  color: #F47070;
+}
+.sp_list navigator .concent{
+  font-size: 24rpx;
+  line-height: 180%;
+  color: #ccc;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+.tab_nav{
+  height: 100rpx;
+  line-break: 100rpx;
+  background-color: #709EF4;
+}
+.tab_nav view{
+  width: 30%;
+  font-size: 24rpx;
+  color: #fff;
+  text-align: center;
+  line-height: 94rpx;
+}
+.tab_nav view.on{
+  border-bottom: 2px solid #fff;
+}
+.active{
+  background:#fff;
+}

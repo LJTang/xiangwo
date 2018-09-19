@@ -41,22 +41,107 @@
   <view class='list' style="margin-top:40rpx;border:none;">
     <view class='left'>订单状态：
       <text wx:if="{{order_D.order_status==0}}">待付款</text>
-      <text wx:elif="{{order_D.order_status==1}}">待收货</text>
-      <text wx:elif="{{order_D.order_status==2}}">已发货</text>
+      <text wx:elif="{{order_D.order_status==1}}">待发货</text>
+      <text wx:elif="{{order_D.order_status==2}}">确认收货</text>
       <text wx:elif="{{order_D.order_status==3}}">已完成</text>
       <text wx:elif="{{order_D.order_status==4}}">已完成</text>
       <text wx:elif="{{order_D.order_status==5}}">已完成</text>
       <text wx:elif="{{order_D.order_status==6}}">已关闭</text>
+      <view wx:elif="{{item.order_status==8}}">退款中</view>
+      <view wx:elif="{{item.order_status==9}}">退款成功</view>
+      <view wx:elif="{{item.order_status==10}}">退款退货中</view>
+      <view wx:elif="{{item.order_status==11}}">退款退货成功</view>
       <text wx:else>未知</text>
     </view>
 
     <view class='right' wx:if="{{order_D.order_status==0}}" bindtap="orderPay">去付款</view>
-    <view class='right' wx:elif="{{order_D.order_status==1}}" bindtap="confirmReceipt">确认收货</view>
-    <view class='right bor_N' wx:elif="{{order_D.order_status==2}}">已发货</view>
+
+    <!--<view class='right' wx:elif="{{order_D.order_status==1}}" bindtap="confirmReceipt">待发货</view>-->
+    <view class="fr display_F" wx:elif="{{order_D.order_status==1}}">
+      <view class='right' bindtap="onRefundBox" data-id="{{order_D.order_id}}">申请退款</view>
+      <view class='right mal20R' bindtap="confirmReceipt" data-id="{{order_D.order_id}}">待发货</view>
+    </view>
+
+    <!--<view class='right bor_N' wx:elif="{{order_D.order_status==2}}" >确认收货</view>-->
+    <view class="fr display_F" wx:elif="{{order_D.order_status==2}}">
+      <view class='right' bindtap="onGoodsBox" data-id="{{order_D.order_id}}">申请退货</view>
+      <view class='right mal20R' bindtap="confirmReceipt" data-id="{{order_D.order_id}}">确认收货</view>
+    </view>
+
     <view class='right bor_N' wx:elif="{{order_D.order_status==3}}">已完成</view>
     <view class='right bor_N' wx:elif="{{order_D.order_status==4}}">已完成</view>
     <view class='right bor_N' wx:elif="{{order_D.order_status==5}}">已完成</view>
     <view class='right bor_N' wx:elif="{{order_D.order_status==6}}">已关闭</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==8}}">退款中</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==9}}">退款成功</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==10}}">退款退货中</view>
+    <view class='right bor_N' wx:elif="{{order_D.order_status==11}}">退款退货成功</view>
     <view class='right bor_N' wx:else>未知</view>
+
+  </view>
+
+  <view style="margin-top:40rpx;border:none;" wx:if="{{order_D.order_status==8}}">
+    <view class='list'>退款原因：<text>kk更丰富付付付付付付军付过女过付错军女法国门口好没好人的更好地发挥部分凤凰女规划hj</text></view>
+  </view>
+  <view style="margin-top:40rpx;border:none;" wx:elif="{{order_D.order_status==9}}">
+    <view class='list'>退款原因：<text>kk更丰富付付付付付付军付过女过付错军女法国门口好没好人的更好地发挥部分凤凰女规划hj</text></view>
+  </view>
+
+  <view style="margin-top:40rpx;border:none;" wx:elif="{{order_D.order_status==10}}">
+    <!--<view class='list'>物流公司名称：<text>kk规划hj</text></view>-->
+    <!--<view class='list'>退款原因：<text>kk规划hj</text></view>-->
+    <view class='list'>退货原因：<text>kk规划hj</text></view>
+  </view>
+  <view style="margin-top:40rpx;border:none;" wx:elif="{{order_D.order_status==11}}">
+    <!--<view class='list'>物流公司名称：<text>kk规划hj</text></view>-->
+    <!--<view class='list'>退款原因：<text>kk规划hj</text></view>-->
+    <view class='list'>退货原因：<text>kk规划hj</text></view>
+  </view>
+  <view wx:else></view>
+
+
+</view>
+
+<!-- 退款原因 -->
+<view class="popUp_Box" wx:if="{{refund_Bool}}">
+  <view class="shadow"></view>
+  <view class="show_Layer authorized_Box refund_Box">
+    <view class="bgFFF">
+      <view class="title">退款原因</view>
+      <view class="">
+        <textarea bindinput="bindTextAreaBlur" placeholder="请输入退款原因"/>
+      </view>
+
+      <view class="authorized_Btn">
+        <view class="btn_Cancel" bindtap="popClose">取消</view>
+        <view class="btn_OK"><button bindtap="sh_Refund">申请退款</button></view>
+      </view>
+    </view>
+  </view>
+</view>
+<!-- 退货原因 -->
+<view class="popUp_Box" wx:if="{{goods_Bool}}">
+  <view class="shadow"></view>
+  <view class="show_Layer authorized_Box goods_Box">
+    <view class="bgFFF">
+      <form bindsubmit="submit_Goods">
+        <view class="title">退货原因</view>
+        <view class="">
+          <view class="">
+            <view class="patb10R"><text>物流公司名称</text></view>
+            <input type="text" name="wl_name" placeholder="请输入物流公司名称"/></view>
+          <view class="">
+            <view class="patb10R"><text>订单号</text></view>
+            <input type="text" name="order_numb" placeholder="请输入订单号"/></view>
+          <view class="">
+            <textarea name="nont" placeholder="请输入退货原因"/></view>
+
+        </view>
+        <view class="authorized_Btn">
+          <view class="btn_Cancel" bindtap="popClose">取消</view>
+          <view class="btn_OK"><button formType="submit">申请退货</button></view>
+        </view>
+      </form>
+    </view>
   </view>
 </view>

@@ -69,6 +69,8 @@
 }
 .cart-count-box{
     margin-top: 40rpx;
+    border-top:1rpx solid #ccc;
+    border-bottom:1rpx solid #ccc;
 }
 .cart-count-box text{
     display: inline-block;
@@ -76,15 +78,16 @@
 }
 .cart-count-down,.cart-count-add{
     font-size: 30rpx;
-    width: 40rpx;
-    height: 40rpx;
-    line-height: 40rpx;
-    border: 1px solid #ddd;
+    width: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+    /* border: 1px solid #ddd; */
     text-align: center;
     color: #999;
     display: inline-block;
-    background:#f5f5f5;
-    
+    background:#fff;
+    border-left:1rpx solid #ccc;
+    border-right:1rpx solid #ccc;  
 }
 .cart-count-num{
   display: inline-block;

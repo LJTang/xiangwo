@@ -43,26 +43,35 @@ page{
     font-size: 28rpx;
 }
 .cart-list .cart-count-box{
-    width: 156rpx;
+    /* width: 152rpx; */
+    /* border-top:1rpx solid #999; */
+  /* border-bottom:1rpx solid #999; */
 }
-.cart-list .cart-count-box text{
+.cart-list .cart-count-box view{
     display: inline-block;
     text-align: center;
+    height:40rpx;
+    line-height: 40rpx;
+      border-top:1rpx solid #ccc;
+  border-bottom:1rpx solid #ccc;
 }
 .cart-count-down,.cart-count-add{
     font-size: 30rpx;
-    width: 30rpx;
-    height: 30rpx;
-    line-height: 30rpx;
-    border: 1px solid #ddd;
+    width:40rpx;
+    /* height:40rpx; */
+    /* line-height: 40rpx; */
     text-align: center;
     color: #999;
-    background:#f5f5f5;
+    background:#fff;
+    border-left:1rpx solid #ccc;
+  border-right:1rpx solid #ccc;
 }
 .cart-count-num{
     width: 80rpx;
     font-size: 28rpx;
     color: #000;
+    /* border-top:1rpx solid #999; */
+  /* border-bottom:1rpx solid #999; */
 }
 .cart-del{
     width: 80rpx;
@@ -72,6 +81,7 @@ page{
     font-size: 35rpx;
     color: #999;
 }
+.cart-del icon{margin-top: 10rpx;}
 .cart-footer{
     position: fixed;
     bottom: 0;
