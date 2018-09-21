@@ -165,7 +165,7 @@ Page({
                 key: 'strWXID',
                 data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid,userType:(strData.data.type==2&&strData.data.type_status==2)}
             });
-            GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
+            GMAPI.doSendMsg('api/verification/savePid',{pid:that.data.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
             GMAPI.doSendMsg('api/user/userInfo',{uid:strData.data.uid},'GET',that.onMsgCallBack_BusinessTips);
         }else{
             wx.showToast({

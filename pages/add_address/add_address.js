@@ -140,12 +140,11 @@ Page({
       
     })
   },
-
     add_Address:function (e) {
     var that=this;
         if(e.detail.value.userName==''){
             wx.showToast({
-                title: '店铺老板名称不能为空',
+                title: '收货地址不能为空',
                 icon: 'none',
                 duration: 2000
             });

@@ -52,15 +52,16 @@
           <navigator hover-class='none' id="{{item.id}}" url='/pages/publicity_details/publicity_details?id={{item.id}}'>
             <image src="{{xwURL}}{{item.user_photo}}" mode="widthFix"></image>
             <view class='cf name'>
-              <text class='fl left'>{{item.title}}</text>
+              <text class='left'>{{item.title}}</text>
             </view>
             <view class='concent'>{{item.goods_desc}}</view>
           </navigator>
         </block>
+        <view class="data_suggest" hidden="{{len_Bool}}">没有更多数据了...</view>
       </view>
     </scroll-view>
 
-    <!--<view class="data_suggest" hidden="{{brochure.length>0}}">没有更多数据了...</view>-->
+
 
   </view>
 </view>

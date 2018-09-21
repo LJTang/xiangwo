@@ -2,27 +2,17 @@ import GMAPI from "../../utils/api";
 var app = getApp();
 Page({
   data: {
-    // carts:[],               // 购物车列表
     hasList:false,          // 列表是否有数据
     totalPrice:0,           // 总价，初始为0
     selectAllStatus:false , // 全选状态
-    carts: [
-      { id: 1, title: '体重秤', concent: "规格和描述，免费测量体重机，可放在商城或者大型购物广场内。【高1.2米】", image: '../../img/gouwu.png', num: 1, price: 100, selected: false },
-      { id: 2, title: '体重秤', concent: "规格和描述，免费测量体重机，可放在商城或者大型购物广场内。【高1.2米】", image: '../../img/gouwu.png', num: 1, price: 100, selected: false },
-      { id: 3, title: '体重秤', concent: "规格和描述，免费测量体重机，可放在商城或者大型购物广场内。【高1.2米】", image: '../../img/gouwu.png', num: 1, price: 100, selected: false }
-    ],
+    carts:[],
     imgURL:app.data.imgURL,
     xwURL:'',
       selectedAllStatus:true,
       cart_arr:'',
-      len_Bool :true
+      len_Bool :false
   },
 
-    // onUnload:function () {
-    //     wx.switchTab({
-    //         url: '/pages/my/my'
-    //     })
-    // },
   /**
    * 当前商品选中事件
    */

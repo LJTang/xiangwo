@@ -10,7 +10,9 @@ Page({
       refund_Bool:false,
       goods_Bool:false,
       note:'',
-    
+      cause:'',
+      date:''
+
   },
     onLoad:function (option) {
       this.setData({
@@ -32,6 +34,8 @@ Page({
             }
             this.setData({
                 order_D:data.data,
+                cause:data.order,
+                date:GMAPI.formatTime(data.order.log_time*1000,'Y-M-D'),
                 goods:goods,
                 wxURL:data.url
             })
@@ -128,6 +132,7 @@ Page({
     },
     onMsgCallBack_OrderRefund:function (jsonBack){
         var data=jsonBack.data;
+        var that=this;
         this.setData({
             refund_Bool:false
         });
@@ -137,6 +142,10 @@ Page({
                 icon:'none',
                 duration: 2000
             });
+            this.setData({
+                goods:[]
+            });
+            GMAPI.doSendMsg('api/Order/order_detail',{uid:wx.getStorageSync('strWXID').strUserID,order_id:that.data.order_id},'POST',that.onMsgCallBack_Order_D);
         }else{
             wx.showToast({
                 title:data.msg,
@@ -146,7 +155,7 @@ Page({
         }
     },
     //    申请退huo
-    onGoodsBox:function(){
+    onGoodsBox:function(e){
         this.setData({
             goods_Bool:true,
             order_id:e.currentTarget.dataset.id
@@ -180,6 +189,7 @@ Page({
     },
     onMsgCallBack_RunGoods:function (jsonBack){
         var data=jsonBack.data;
+        var that=this;
         this.setData({
             goods_Bool:false
         });
@@ -189,6 +199,10 @@ Page({
                 icon:'none',
                 duration: 2000
             });
+            this.setData({
+                goods:[]
+            });
+            GMAPI.doSendMsg('api/Order/order_detail',{uid:wx.getStorageSync('strWXID').strUserID,order_id:that.data.order_id},'POST',that.onMsgCallBack_Order_D);
         }else{
             wx.showToast({
                 title:data.msg,
@@ -197,10 +211,10 @@ Page({
             });
         }
     },
-    popClose:function () {
+    popClose:function (){
         this.setData({
             refund_Bool:false,
             goods_Bool:false
         })
     }
-})
+});

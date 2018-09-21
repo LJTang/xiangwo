@@ -19,12 +19,12 @@
             <view class='numbers'>x{{item.goods_num}}</view>
             <view class='cancel fr' wx:if="{{item.order_status==0}}" bindtap="orderPay" data-id="{{item.order_id}}">去付款</view>
             <view class="fr display_F" wx:elif="{{item.order_status==1}}">
-              <view class='cancel' bindtap="onRefundBox" data-id="{{item.order_id}}">申请退款</view>
-              <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">待发货</view>
+              <view wx:if="{{item.type==1}}" class='cancel' bindtap="onRefundBox" data-id="{{item.order_id}}">申请退款</view>
+              <view class='cancel mal20R bor_N' data-id="{{item.order_id}}">待发货</view>
             </view>
 
             <view class="fr display_F" wx:elif="{{item.order_status==2}}">
-              <view class='cancel' bindtap="onGoodsBox" data-id="{{item.order_id}}">申请退货</view>
+              <view wx:if="{{item.type==1}}" class='cancel' bindtap="onGoodsBox" data-id="{{item.order_id}}">申请退货</view>
               <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
             </view>
             <!--<view class='cancel fr' wx:elif="{{item.order_status==1}}" bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>-->
@@ -76,8 +76,8 @@
             <view class='numbers'>x{{item.goods_num}}</view>
 
             <view class="fr display_F">
-              <view class='cancel' bindtap="onRefundBox" data-id="{{item.order_id}}">申请退款</view>
-              <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">待发货</view>
+              <view wx:if="{{item.type==1}}" class='cancel' bindtap="onRefundBox" data-id="{{item.order_id}}">申请退款</view>
+              <view class='cancel mal20R bor_N' data-id="{{item.order_id}}">待发货</view>
             </view>
             <!--<view class='cancel fr'>等待发货</view>-->
           </view>
@@ -102,8 +102,8 @@
             <view class='price'>￥{{item.goods_price}}</view>
             <view class='numbers'>x{{item.goods_num}}</view>
             <view class="fr display_F">
-              <view class='cancel' bindtap="onGoodsBox" data-id="{{item.order_id}}">申请退货</view>
-              <view class='cancel mal20R' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
+              <view wx:if="{{item.type==1}}" class='cancel' bindtap="onGoodsBox" data-id="{{item.order_id}}">申请退货</view>
+              <view class='cancel mal20R bor_N' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>
             </view>
             <!--<view class='cancel fr' bindtap="confirmReceipt" data-id="{{item.order_id}}">确认收货</view>-->
           </view>

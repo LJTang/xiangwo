@@ -23,7 +23,6 @@ Page({
         len_Bool:true
     });
       var that=this;
-      // that.data.all_Order=[];
       GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:(current==100?'':current),type:0},'POST',that.onMsgCallBack_Order);
   },
     onLoad:function(option){
@@ -169,6 +168,11 @@ Page({
                 icon:'none',
                 duration: 2000
             });
+            var that=this;
+            that.setData({
+                all_Order:[]
+            });
+            GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:(that.data.menuTapCurrent==100?'':that.data.menuTapCurrent),type:0},'POST',that.onMsgCallBack_Order);
         }else{
             wx.showToast({
                 title:data.msg,
@@ -178,7 +182,7 @@ Page({
         }
     },
     //    申请退huo
-    onGoodsBox:function(){
+    onGoodsBox:function(e){
         this.setData({
             goods_Bool:true,
             order_id:e.currentTarget.dataset.id
@@ -220,6 +224,11 @@ Page({
                 icon:'none',
                 duration: 2000
             });
+            var that=this;
+            that.setData({
+                all_Order:[]
+            });
+            GMAPI.doSendMsg('api/Order/order_list',{uid:wx.getStorageSync('strWXID').strUserID,status:(that.data.menuTapCurrent==100?'':that.data.menuTapCurrent),type:0},'POST',that.onMsgCallBack_Order);
         }else{
             wx.showToast({
                 title:data.msg,

@@ -128,7 +128,7 @@
   border-top:1rpx solid #999;
 }
 .authorized_Btn .btn_Cancel,.authorized_Btn .btn_OK{
-  width:275rpx;
+  /* width:275rpx; */
   line-height:100rpx;
 }
 .authorized_Btn .btn_Cancel{

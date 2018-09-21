@@ -38,7 +38,7 @@
     <view class="h10"></view>
   </block>
 
-  <view class='list' style="margin-top:40rpx;border:none;">
+  <view class='lists' style="margin-top:20rpx;border:none;">
     <view class='left'>订单状态：
       <text wx:if="{{order_D.order_status==0}}">待付款</text>
       <text wx:elif="{{order_D.order_status==1}}">待发货</text>
@@ -47,10 +47,10 @@
       <text wx:elif="{{order_D.order_status==4}}">已完成</text>
       <text wx:elif="{{order_D.order_status==5}}">已完成</text>
       <text wx:elif="{{order_D.order_status==6}}">已关闭</text>
-      <view wx:elif="{{item.order_status==8}}">退款中</view>
-      <view wx:elif="{{item.order_status==9}}">退款成功</view>
-      <view wx:elif="{{item.order_status==10}}">退款退货中</view>
-      <view wx:elif="{{item.order_status==11}}">退款退货成功</view>
+      <text wx:elif="{{order_D.order_status==8}}">退款中</text>
+      <text wx:elif="{{order_D.order_status==9}}">退款成功</text>
+      <text wx:elif="{{order_D.order_status==10}}">退款退货中</text>
+      <text wx:elif="{{order_D.order_status==11}}">退款退货成功</text>
       <text wx:else>未知</text>
     </view>
 
@@ -58,13 +58,13 @@
 
     <!--<view class='right' wx:elif="{{order_D.order_status==1}}" bindtap="confirmReceipt">待发货</view>-->
     <view class="fr display_F" wx:elif="{{order_D.order_status==1}}">
-      <view class='right' bindtap="onRefundBox" data-id="{{order_D.order_id}}">申请退款</view>
-      <view class='right mal20R' bindtap="confirmReceipt" data-id="{{order_D.order_id}}">待发货</view>
+      <view class='right' wx:if="{{item.type==1}}" bindtap="onRefundBox" data-id="{{order_D.order_id}}">申请退款</view>
+      <view class='right mal20R bor_N' bindtap="confirmReceipt" data-id="{{order_D.order_id}}">待发货</view>
     </view>
 
     <!--<view class='right bor_N' wx:elif="{{order_D.order_status==2}}" >确认收货</view>-->
     <view class="fr display_F" wx:elif="{{order_D.order_status==2}}">
-      <view class='right' bindtap="onGoodsBox" data-id="{{order_D.order_id}}">申请退货</view>
+      <view class='right' wx:if="{{item.type==1}}" bindtap="onGoodsBox" data-id="{{order_D.order_id}}">申请退货</view>
       <view class='right mal20R' bindtap="confirmReceipt" data-id="{{order_D.order_id}}">确认收货</view>
     </view>
 
@@ -81,21 +81,21 @@
   </view>
 
   <view style="margin-top:40rpx;border:none;" wx:if="{{order_D.order_status==8}}">
-    <view class='list'>退款原因：<text>kk更丰富付付付付付付军付过女过付错军女法国门口好没好人的更好地发挥部分凤凰女规划hj</text></view>
+    <view class='list'>申请退款时间：<text>{{date}}</text></view>
+    <view class='list'>退款原因：<text>{{cause.action_note==''?'未填写':cause.action_note}}</text></view>
   </view>
   <view style="margin-top:40rpx;border:none;" wx:elif="{{order_D.order_status==9}}">
-    <view class='list'>退款原因：<text>kk更丰富付付付付付付军付过女过付错军女法国门口好没好人的更好地发挥部分凤凰女规划hj</text></view>
+    <view class='list'>申请退款时间：<text>{{date}}</text></view>
+    <view class='list'>退款原因：<text>{{cause.action_note==''?'未填写':cause.action_note}}</text></view>
   </view>
 
   <view style="margin-top:40rpx;border:none;" wx:elif="{{order_D.order_status==10}}">
-    <!--<view class='list'>物流公司名称：<text>kk规划hj</text></view>-->
-    <!--<view class='list'>退款原因：<text>kk规划hj</text></view>-->
-    <view class='list'>退货原因：<text>kk规划hj</text></view>
+    <view class='list'>申请退货时间：<text>{{date}}</text></view>
+    <view class='list'>退货原因：<text>{{cause.action_note==''?'未填写':cause.action_note}}</text></view>
   </view>
   <view style="margin-top:40rpx;border:none;" wx:elif="{{order_D.order_status==11}}">
-    <!--<view class='list'>物流公司名称：<text>kk规划hj</text></view>-->
-    <!--<view class='list'>退款原因：<text>kk规划hj</text></view>-->
-    <view class='list'>退货原因：<text>kk规划hj</text></view>
+    <view class='list'>申请退款退货时间：<text>{{date}}</text></view>
+    <view class='list'>退货原因：<text>{{cause.action_note==''?'未填写':cause.action_note}}</text></view>
   </view>
   <view wx:else></view>
 

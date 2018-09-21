@@ -28,12 +28,19 @@
 .top .right{
   margin-left: 30rpx;
 }
+.lists .left{
+  font-size: 28rpx;
+  color: #999;
+  float:left;
+  height:60rpx;
+  line-height:60rpx;
+}
 .list .left{
   font-size: 28rpx;
   color: #999;
   float:left;
 }
-.list .left text{
+.list .left text,.lists .left text{
   color: #666;
   text-align: justify;
   overflow:hidden;
@@ -41,7 +48,7 @@
   text-overflow:ellipsis;
 
 }
-.list .right{
+.list .right,.lists .right{
   width: 150rpx;
   height: 60rpx;
   line-height: 60rpx;
@@ -49,7 +56,7 @@
   color: #f47070;
   border:1px solid #f47070;
   border-radius: 3px;
-  font-size: 24rpx;
+  font-size: 26rpx;
   /* margin-top: 10rpx; */
   /* position: absolute;
   right: 0;
@@ -63,10 +70,18 @@
   border-bottom: 1px solid #f1f1f1;
   position: relative;
 }
+.lists{
+  font-size: 28rpx;
+  color: #999;
+  height:60rpx;
+  border-bottom: 1px solid #f1f1f1;
+  position: relative;
+}
+
 .list text{
   color: #666;
 }
-.list .bor_N{border-color:#fff;}
+.list .bor_N,.lists .bor_N{border-color:#fff;}
 
 
 

@@ -22,7 +22,8 @@ Page({
     cat_list:[],
     all_list:[],
     classifySeleted:0,
-    seletedText:'全部类型'
+    seletedText:'全部类型',
+      search_Text:''
   },
     onLoad:function(){
       var that=this;
@@ -34,14 +35,17 @@ Page({
                 });
             }
         });
+        GMAPI.doSendMsg('api/exhibition/cat_list','','GET',that.onMsgCallBack_Train);
+        // http://xiao.guangzhoubaidu.com/api/Exhibition/art_list
+        GMAPI.doSendMsg('api/Exhibition/art_list',{cat_id:''}, 'POST', that.onMsgCallBack_allList);
     },
     // http://xiao.guangzhoubaidu.com/api/exhibition/exhiSearch?search=%E5%AE%A3
     onShow:function(){
         var that=this;
         // GMAPI.doSendMsg('api/exhibition/index',{type:4,share:''},'GET',that.onMsgCallBack_Train);
-        GMAPI.doSendMsg('api/exhibition/cat_list','','GET',that.onMsgCallBack_Train);
-        // http://xiao.guangzhoubaidu.com/api/Exhibition/art_list
-        GMAPI.doSendMsg('api/Exhibition/art_list',{cat_id:''}, 'POST', that.onMsgCallBack_allList);
+        // GMAPI.doSendMsg('api/exhibition/cat_list','','GET',that.onMsgCallBack_Train);
+        // // http://xiao.guangzhoubaidu.com/api/Exhibition/art_list
+        // GMAPI.doSendMsg('api/Exhibition/art_list',{cat_id:''}, 'POST', that.onMsgCallBack_allList);
     },
     onMsgCallBack_allList: function (jsonBack) {
         var goods=[];
@@ -66,25 +70,28 @@ Page({
     getFocus: function (e) {
         this.setData({
             search_Text: e.detail.value,
-            brochure:[]
+            all_list:[],
+            classifySeleted:0
         });
         var that=this;
-        GMAPI.doSendMsg('api/exhibition/exhiSearch',{search:e.detail.value}, 'GET',that.onMsgCallBack_Train);
+        GMAPI.doSendMsg('api/Exhibition/artSelect',{art:e.detail.value}, 'GET',that.onMsgCallBack_allList);
     },
     clearInput: function (){
+      var that=this;
         this.setData({
             search_Text:'',
-            brochure:[]
+            all_list:[],
         });
+        GMAPI.doSendMsg('api/Exhibition/artSelect',{art:e.detail.value}, 'GET',that.onMsgCallBack_allList);
     },
     //  搜索
     onSearch:function(e){
         var that=this;
         this.setData({
             search_Text: e.detail.value,
-            brochure:[]
+            all_list:[]
         });
-        GMAPI.doSendMsg('api/exhibition/exhiSearch',{search:e.detail.value}, 'GET',that.onMsgCallBack_Train);
+        GMAPI.doSendMsg('api/Exhibition/artSelect',{art:e.detail.value}, 'GET',that.onMsgCallBack_allList);
     },
 
   setFilterPanel: function (e) { //展开筛选面板
@@ -147,11 +154,11 @@ Page({
         }else{
             this.setData({
                 cat_list :[]
-
             })
         }
     },
     tapClassify: function (e) {
+      var that=this;
         var id =e.currentTarget.dataset.id;
         var index =e.currentTarget.dataset.statu;
         var text =e.currentTarget.dataset.text;

@@ -90,9 +90,9 @@ background:#fff;
   /* margin-left:60rpx */
 }
 .fixed_nav .left image{
-  width:70rpx;
-  height:70rpx;
-  margin:15rpx 0 0 50rpx;
+  width:60rpx;
+  height:60rpx;
+  margin:15rpx 0 0 55rpx;
 }
 .fixed_nav .left text{
   font-size: 28rpx;

@@ -209,7 +209,7 @@ Page({
     onShareAppMessage: function (res) {
       var that=this;
         return {
-            title: '享沃测试2',
+            title: '享沃',
             path: '/pages/ware_more/ware_more?pid='+wx.getStorageSync('strWXID').strUserID+'&id='+that.data.id,
             success: function(res) {
                 // 转发成功
@@ -253,13 +253,14 @@ Page({
         }
     },
     onMsgCallBack:function (jsonBack){
+      var that=this;
         var strData=jsonBack.data;
         if(jsonBack.data.code==200){
             wx.setStorage({
                 key: 'strWXID',
                 data: {strWXOpenID:strData.data.openid,strUserID:strData.data.uid}
             });
-            GMAPI.doSendMsg('api/verification/savePid',{pid:option.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
+            GMAPI.doSendMsg('api/verification/savePid',{pid:that.data.pid,uid:strData.data.uid}, 'POST',that.onMsgCallBack_P);
         }else{
             wx.showToast({
                 title:jsonBack.data.msg,
